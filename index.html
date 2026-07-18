@@ -154,7 +154,109 @@
       transform: translateY(-4px);
       opacity: 0.85;
     }
+/* SERVICES */
 
+.services {
+  padding: 100px 8%;
+  background: #222;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.services-header h2 {
+  display: inline-block;
+  background: #a90000;
+  padding: 14px 28px;
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.services-header p {
+  font-size: 18px;
+  color: #ddd;
+}
+
+.service-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.service-card {
+  background: #171717;
+  padding: 35px 28px;
+  min-height: 280px;
+  border-top: 4px solid #c7a21b;
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  background: #292929;
+}
+
+.service-number {
+  color: #c7a21b;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.service-card h3 {
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+.service-card p {
+  color: #ccc;
+  line-height: 1.6;
+  min-height: 75px;
+}
+
+.service-card a {
+  display: inline-block;
+  margin-top: 22px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.service-card a:hover {
+  color: #c7a21b;
+}
+
+.highlight-card {
+  border-top-color: #12ad39;
+}
+
+/* MOBILE SERVICES */
+
+@media (max-width: 800px) {
+
+  .services {
+    padding: 70px 20px;
+  }
+
+  .services-header h2 {
+    font-size: 30px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    min-height: auto;
+  }
+
+}
     /* CONTACT */
     .contact {
       min-height: 650px;
@@ -358,24 +460,75 @@
 
   </section>
 
-  <!-- TEMPORARY MIDDLE SECTION -->
-  <section
-    id="services"
-    style="
-      min-height: 300px;
-      padding: 100px 20px;
-      text-align: center;
-      background: #222;
-    "
-  >
-    <h2 style="font-size: 40px; color: #c7a21b;">
-      OUR SERVICES
-    </h2>
+ <!-- OUR SERVICES -->
+<section class="services" id="services">
 
-    <p style="margin-top: 20px; font-size: 20px;">
-      Car Windscreen • Lorry Windscreen • Windscreen Repair • Windscreen Tinted
+  <div class="services-header">
+    <h2>OUR SERVICES</h2>
+    <p>
+      Professional windscreen solutions for cars, lorries and commercial vehicles.
     </p>
-  </section>
+  </div>
+
+  <div class="service-grid">
+
+    <div class="service-card">
+      <div class="service-number">01</div>
+      <h3>CAR WINDSCREEN</h3>
+      <p>
+        Windscreen replacement for all types of cars with professional installation.
+      </p>
+      <a href="#contact">ENQUIRE NOW →</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-number">02</div>
+      <h3>LORRY & TRUCK</h3>
+      <p>
+        Windscreen replacement for lorries, trucks, trailers and commercial vehicles.
+      </p>
+      <a href="#contact">ENQUIRE NOW →</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-number">03</div>
+      <h3>WINDSCREEN REPAIR</h3>
+      <p>
+        Repair services for suitable windscreen chips and cracks.
+      </p>
+      <a href="#contact">ENQUIRE NOW →</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-number">04</div>
+      <h3>WINDSCREEN TINTED</h3>
+      <p>
+        Professional windscreen tinting solutions for better comfort and protection.
+      </p>
+      <a href="#contact">ENQUIRE NOW →</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-number">05</div>
+      <h3>INSURANCE CLAIM</h3>
+      <p>
+        Assistance with windscreen insurance claim procedures.
+      </p>
+      <a href="#contact">ENQUIRE NOW →</a>
+    </div>
+
+    <div class="service-card highlight-card">
+      <div class="service-number">06</div>
+      <h3>DOOR-TO-DOOR SERVICE</h3>
+      <p>
+        Convenient windscreen service available for customers in KL and Selangor.
+      </p>
+      <a href="#contact">WHATSAPP US →</a>
+    </div>
+
+  </div>
+
+</section>
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
