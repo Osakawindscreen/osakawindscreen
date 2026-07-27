@@ -479,7 +479,51 @@ background:
 .why-us-whatsapp:hover {
   transform: translateY(-3px);
 }   
-  </style>
+/* CUSTOMER GALLERY */
+
+.gallery {
+  padding: 80px 40px;
+  background: #1b1b1b;
+  text-align: center;
+}
+
+.gallery-header h2 {
+  font-size: 42px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.gallery-header p {
+  color: #bdbdbd;
+  margin-bottom: 40px;
+}
+
+.gallery-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gallery-item {
+  height: 260px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #292929;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}    
+ </style>
 </head>
 
 <body>
