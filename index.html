@@ -552,7 +552,128 @@ background:
   transform: scale(1.05);
 }
   transform: scale(1.08);
-}    
+}
+/* ===========================
+   CLIENT REVIEW
+=========================== */
+
+.reviews{
+padding:80px 40px;
+background:#232323;
+text-align:center;
+}
+
+.reviews-header h2{
+font-size:42px;
+color:#d6af2b;
+margin-bottom:10px;
+}
+
+.reviews-header p{
+color:#cfcfcf;
+margin-bottom:50px;
+}
+
+.review-grid{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+
+max-width:1200px;
+margin:auto;
+
+}
+
+.review-card{
+
+background:#2d2d2d;
+
+padding:35px;
+
+border-radius:18px;
+
+transition:.35s;
+
+}
+
+.review-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.stars{
+
+font-size:26px;
+
+color:#FFD700;
+
+margin-bottom:20px;
+
+}
+
+.review-card p{
+
+line-height:1.8;
+
+color:white;
+
+font-size:17px;
+
+min-height:180px;
+
+}
+
+.review-card h4{
+
+margin-top:20px;
+
+font-size:18px;
+
+color:#d6af2b;
+
+}
+
+.google-review{
+
+margin-top:60px;
+
+font-size:28px;
+
+font-weight:bold;
+
+}
+
+.review-button{
+
+display:inline-block;
+
+margin-top:25px;
+
+padding:16px 45px;
+
+background:#00b140;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+border-radius:8px;
+
+font-size:20px;
+
+transition:.3s;
+
+}
+
+.review-button:hover{
+
+background:#008d32;
+
+}
  </style>
 </head>
 
@@ -754,6 +875,94 @@ background:
     </div>
 
   </div>
+
+</section>
+  <section class="reviews" id="reviews">
+
+<div class="reviews-header">
+<h2>CLIENT REVIEW</h2>
+<p>Trusted by customers across Klang & Selangor.</p>
+</div>
+
+<div class="review-grid">
+
+<div class="review-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+
+"Highly recommended to all car lovers.
+Labour charges, workmanship are all reasonable
+and done professionally.
+No complaints at all."
+
+</p>
+
+<h4>— TW</h4>
+
+</div>
+
+
+
+<div class="review-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+
+"Very professional and fast response.
+The shop really helped advise me on the proper
+process of changing my windscreen."
+
+</p>
+
+<h4>— Abbas Suhaimi</h4>
+
+</div>
+
+
+
+<div class="review-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+
+"Replaced my front windscreen in less than an hour.
+Very satisfied with the fast service.
+Niceu! 👌"
+
+</p>
+
+<h4>— Nurul Izzah</h4>
+
+</div>
+
+</div>
+
+<div class="google-review">
+
+★★★★★ 4.9 Google Rating
+
+<br><br>
+
+<a
+class="review-button"
+href="https://g.page/r/CfXXXXXXXXXXXX/review"
+target="_blank">
+
+VIEW MORE GOOGLE REVIEWS
+
+</a>
+
+</div>
 
 </section>
   <!-- CONTACT -->
