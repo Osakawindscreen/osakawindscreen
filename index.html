@@ -877,21 +877,43 @@ background:#008d32;
 
 flex:1;
 
-text-align:center;
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 }
 
-.atome-right img{
+.payment-logos{
 
-width:100%;
+display:flex;
 
-max-width:450px;
+justify-content:center;
 
-}    
- </style>
-</head>
+align-items:center;
 
-<body>
+gap:35px;
+
+flex-wrap:wrap;
+
+}
+
+.payment-logos img{
+
+width:150px;
+
+height:auto;
+
+transition:0.3s;
+
+}
+
+.payment-logos img:hover{
+
+transform:scale(1.08);
+
+}
 
   <!-- NAVIGATION -->
   <nav>
