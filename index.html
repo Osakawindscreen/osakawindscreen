@@ -24,44 +24,89 @@
     }
 
     /* NAVIGATION */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 55px;
-      background: #171717;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      border-bottom: 1px solid #333;
-    }
+    nav{
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: bold;
-      margin: 0 15px;
-      transition: 0.3s;
-    }
+position:fixed;
 
-    nav a:hover {
-      color: #d5aa19;
-    }
+top:0;
 
-    /* HERO */
-    .hero {
-      min-height: 85vh;
-      padding: 70px 20px 35px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-background:
-  radial-gradient(
+left:0;
+
+width:100%;
+
+height:80px;
+
+background:#171717;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:0 50px;
+
+border-bottom:1px solid #333;
+
+z-index:9999;
+
+}
+
+.nav-logo img{
+
+height:55px;
+
+}
+
+.nav-menu{
+
+display:flex;
+
+gap:30px;
+
+}
+
+.nav-menu a{
+
+color:white;
+
+text-decoration:none;
+
+font-size:14px;
+
+font-weight:bold;
+
+}
+
+.nav-menu a:hover{
+
+color:#d6af2b;
+
+}
+
+.nav-call a{
+
+background:#d6af2b;
+
+color:black;
+
+padding:15px 30px;
+
+border-radius:40px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+.nav-call a:hover{
+
+background:radial-gradient{;
+
+}
     circle at center,
     #303030 0%,
     #1b1b1b 55%,
@@ -908,17 +953,35 @@ color:#dddddd;
 
 <!-- NAVIGATION -->
 <nav>
-    <a href="#home">HOME</a>
-    <a href="#services">OUR SERVICES</a>
-    <a href="#why-us">WHY CHOOSE US</a>
-    <a href="#gallery">CUSTOMER GALLERY</a>
-    <a href="#reviews">CLIENT REVIEW</a>
-    <a href="#claims">CLAIM PROCEDURES</a>
-    <a href="#instalment">EASY INSTALMENT</a>
-    <a href="#about">ABOUT US</a>
-    <a href="#contact">CONTACT US</a>
-  </nav>
 
+<div class="nav-logo">
+    <img src="osaka-logo-final.png" alt="Osaka Windscreen">
+</div>
+
+<div class="nav-menu">
+
+<a href="#home">HOME</a>
+<a href="#services">OUR SERVICES</a>
+<a href="#why-us">WHY CHOOSE US</a>
+<a href="#gallery">CUSTOMER GALLERY</a>
+<a href="#reviews">CLIENT REVIEW</a>
+<a href="#claims">CLAIM PROCEDURES</a>
+<a href="#instalment">EASY INSTALLMENT</a>
+<a href="#about">ABOUT US</a>
+
+</div>
+
+<div class="nav-call">
+
+<a href="tel:0103209929">
+
+📞 CALL US
+
+</a>
+
+</div>
+
+</nav>
   <!-- HERO -->
   <section class="hero" id="home">
 
