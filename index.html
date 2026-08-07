@@ -152,9 +152,9 @@ background:radial-gradient{;
 
 .hero-content{
 
-width:100%;
+max-width:1250px;
 
-max-width:1300px;
+width:100%;
 
 margin:auto;
 
@@ -164,21 +164,25 @@ justify-content:space-between;
 
 align-items:center;
 
-position:relative;
-
-z-index:2;
+gap:80px;
 
 }
 
 .hero-left{
 
-width:55%;
+width:52%;
 
 }
   
 .hero-right{
 
-display:none;
+width:48%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 }
 .hero h1{
@@ -231,9 +235,13 @@ margin-top:40px;
 
 .windscreen-image{
 
-width:650px;
+width:620px;
 
-height:auto;
+max-width:100%;
+
+opacity:0.20;
+
+filter:brightness(1.2);
 
 }
 
@@ -495,10 +503,21 @@ font-weight:bold;
         margin: 0 8px;
       }
 
-      .hero {
-        padding-top: 80px;
-      }
+      .hero{
 
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:90px 80px;
+
+background:#1b1b1b;
+
+}
       .hero-top {
         flex-direction: column;
         gap: 35px;
@@ -1218,10 +1237,9 @@ CALL NOW
 
 <div class="hero-right">
 
-<img
-src="windscreen-hero.png"
-alt="Osaka Windscreen"
-class="windscreen-image">
+<img src="windscreen-hero.png"
+class="windscreen-image"
+alt="Windscreen">
 
 </div>
 
