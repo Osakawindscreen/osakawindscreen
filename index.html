@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TJSKJ29M');</script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js');var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TJSKJ29M');</script>
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
     .nav-call a:hover{background:#e7c83c;transform:translateY(-2px)}
 
     /* HERO */
-    .hero{position:relative;min-height:calc(100vh - 0px);padding:120px 30px 70px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#171717}
+    .hero{position:relative;min-height:100vh;padding:120px 30px 70px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#171717}
     .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(20,20,20,.82),rgba(20,20,20,.88)),url("windscreen-hero.png");background-size:cover;background-position:center;background-repeat:no-repeat;opacity:1}
     .hero-content{position:relative;z-index:2;width:100%;max-width:1050px;margin:auto;text-align:center}
     .hero-left{width:100%}
@@ -81,13 +81,95 @@
     footer{background:#111;text-align:center;padding:20px;color:#999;font-size:12px}
 
     /* FLOATING WHATSAPP */
-    .floating-whatsapp{position:fixed;left:20px;bottom:22px;background:#00b140;color:#fff;padding:13px 20px;border-radius:30px;font-size:15px;font-weight:800;z-index:10000;box-shadow:0 4px 15px rgba(0,0,0,.45);transition:.25s}.floating-whatsapp:hover{background:#008d32;transform:translateY(-2px)}
+    .floating-whatsapp{position:fixed;left:20px;bottom:22px;background:#00b140;color:#fff;padding:13px 20px;border-radius:30px;font-size:15px;font-weight:800;z-index:10000;box-shadow:0 4px 15px rgba(0,0,0,.45);transition:.25s}
+    .floating-whatsapp:hover{background:#008d32;transform:translateY(-2px)}
 
     /* MOBILE */
     @media(max-width:900px){
-      nav{height:68px;padding:8px 12px}.nav-logo{width:95px}.nav-logo img{width:90px;max-height:52px}.nav-menu{gap:14px;overflow-x:auto;justify-content:flex-start}.nav-menu a{font-size:10px}.nav-call{width:82px}.nav-call a{padding:9px 11px;font-size:11px}
-      .hero{min-height:100vh;padding:95px 20px 55px}.hero h1{font-size:clamp(42px,11vw,62px)}.hero h2{font-size:20px}.hero-list p{font-size:16px}.btn{width:100%;min-width:0;font-size:20px}.buttons{flex-direction:column;gap:12px}
-      .section{padding:65px 20px}.section-title h2{font-size:32px}.service-grid,.review-grid,.about-stats{grid-template-columns:1fr}.why-us-grid{grid-template-columns:repeat(2,1fr)}.gallery-grid{grid-template-columns:1fr}.gallery-item{height:300px}.claim-steps{grid-template-columns:1fr}.atome-content{grid-template-columns:1fr;text-align:center}.atome-left h2{font-size:34px}.payment-logos{gap:14px}.payment-logos img{width:95px;height:60px}.contact{flex-direction:column;padding:65px 25px;gap:50px}.contact .section-title{text-align:center}.floating-whatsapp{left:12px;bottom:14px;padding:11px 16px;font-size:14px}
+      html{scroll-padding-top:112px}
+      body{overflow-x:hidden}
+      nav{height:108px;padding:7px 10px;display:grid;grid-template-columns:1fr auto;grid-template-rows:54px 46px;column-gap:10px;align-items:center}
+      .nav-logo{width:auto;height:50px;justify-content:flex-start}
+      .nav-logo img{width:112px;max-width:112px;height:auto;max-height:48px}
+      .nav-call{width:auto;height:50px;display:flex;align-items:center;justify-content:flex-end}
+      .nav-call a{padding:10px 14px;font-size:12px;border-radius:24px}
+      .nav-menu{grid-column:1 / -1;grid-row:2;width:100%;display:flex;justify-content:flex-start;align-items:center;gap:20px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;padding:0 3px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+      .nav-menu::-webkit-scrollbar{display:none}
+      .nav-menu a{font-size:11px;flex:0 0 auto;padding:9px 0}
+
+      .hero{min-height:calc(100svh - 108px);padding:130px 18px 50px;align-items:center}
+      .hero::before{background-image:linear-gradient(rgba(20,20,20,.88),rgba(20,20,20,.92)),url("windscreen-hero.png");background-size:78%;background-position:center 25%;background-repeat:no-repeat}
+      .hero-content{max-width:620px;text-align:center}
+      .hero h1{font-size:clamp(40px,12vw,58px);line-height:.98;letter-spacing:-1px;margin-bottom:18px}
+      .hero h2{font-size:18px;line-height:1.35;margin-bottom:18px}
+      .hero-list{margin-bottom:22px}
+      .hero-list p{font-size:15px;line-height:1.45;margin:8px 0}
+      .buttons{margin-top:20px;gap:10px}
+      .btn{width:100%;min-width:0;padding:14px 20px;font-size:18px}
+
+      .section{padding:58px 18px}
+      .section-title{margin-bottom:32px}
+      .section-title h2{font-size:30px;line-height:1.1}
+      .section-title p{font-size:15px;line-height:1.5}
+
+      .service-grid,.review-grid,.about-stats{grid-template-columns:1fr;gap:16px}
+      .service-card{min-height:auto;padding:26px 22px}
+      .service-card h3{font-size:21px}
+      .service-card p{min-height:0;font-size:15px}
+
+      .why-us-grid{grid-template-columns:repeat(2,1fr);gap:12px;padding:18px 12px;border-radius:16px}
+      .why-us-card img{width:105px;height:105px;margin-bottom:10px}
+      .why-us-card h3{font-size:12px}
+      .why-us-whatsapp{margin-top:24px;padding:12px 24px;font-size:14px}
+
+      .gallery-grid{grid-template-columns:1fr;gap:16px}
+      .gallery-item{height:280px;border-radius:12px}
+
+      .review-grid{gap:16px}
+      .review-card{padding:25px 20px}
+      .review-card p{font-size:15px}
+      .google-review{font-size:15px;margin-top:28px}
+      .review-button{font-size:13px;padding:12px 18px}
+
+      .claim-steps{grid-template-columns:1fr;gap:14px}
+      .claim-card{padding:24px 18px}
+
+      .atome{padding:58px 18px}
+      .atome-content{grid-template-columns:1fr;gap:30px;text-align:center}
+      .atome-left h2{font-size:32px;line-height:1.1}
+      .atome-left p{font-size:16px;line-height:1.6}
+      .atome-left li{font-size:15px;margin:8px 0}
+      .payment-logos{width:100%;gap:12px;justify-content:center;flex-wrap:nowrap}
+      .payment-logos img{width:30%;max-width:105px;height:55px}
+
+      .about-stats{margin-bottom:28px}
+      .about-card{padding:24px 18px}
+      .about-card h3{font-size:23px}
+      .about-text{font-size:16px;line-height:1.7}
+
+      .contact{min-height:auto;flex-direction:column;padding:60px 22px;gap:35px}
+      .contact-column{max-width:none;width:100%}
+      .contact .section-title{text-align:center;margin-bottom:25px}
+      .contact .section-title h2{font-size:28px;padding:10px 18px}
+      .contact-item{padding-left:0;text-align:center;margin-bottom:22px}
+      .contact-item a{font-size:16px}
+      .social a{font-size:17px;margin:24px 0}
+      .social-icon{width:58px;height:58px;font-size:30px}
+
+      .floating-whatsapp{left:12px;bottom:14px;padding:11px 16px;font-size:14px}
+      footer{padding:18px 12px}
+    }
+
+    @media(max-width:380px){
+      .nav-logo img{width:96px}
+      .nav-call a{padding:9px 11px;font-size:11px}
+      .nav-menu{gap:17px}.nav-menu a{font-size:10px}
+      .hero{padding-left:14px;padding-right:14px}
+      .hero h1{font-size:40px}
+      .hero h2{font-size:16px}
+      .hero-list p{font-size:14px}
+      .why-us-card img{width:88px;height:88px}
+      .payment-logos img{max-width:92px}
     }
   </style>
 </head>
