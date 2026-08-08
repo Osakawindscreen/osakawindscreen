@@ -2,1700 +2,222 @@
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TJSKJ29M');</script>
-<!-- End Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TJSKJ29M');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Osaka Windscreen | Windscreen Specialist No.1 in Klang</title>
-
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #1b1b1b;
-      color: white;
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
+    body{font-family:Arial,Helvetica,sans-serif;background:#171717;color:#fff;line-height:1.5}
+    a{text-decoration:none}
 
     /* NAVIGATION */
-    nav{
+    nav{position:fixed;top:0;left:0;width:100%;height:80px;background:#111;display:flex;align-items:center;justify-content:space-between;padding:0 38px;border-bottom:1px solid #333;z-index:9999}
+    .nav-logo{width:190px;display:flex;align-items:center}
+    .nav-logo img{width:150px;height:auto;max-height:68px;object-fit:contain;display:block}
+    .nav-menu{display:flex;align-items:center;justify-content:center;gap:28px}
+    .nav-menu a{color:#fff;font-size:14px;font-weight:700;white-space:nowrap;transition:.25s}
+    .nav-menu a:hover{color:#d6af2b}
+    .nav-call{width:190px;display:flex;justify-content:flex-end}
+    .nav-call a{background:#d6af2b;color:#111;padding:13px 25px;border-radius:30px;font-weight:800;white-space:nowrap;transition:.25s}
+    .nav-call a:hover{background:#e7c83c;transform:translateY(-2px)}
+
+    /* HERO */
+    .hero{position:relative;min-height:calc(100vh - 0px);padding:120px 30px 70px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#171717}
+    .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(20,20,20,.82),rgba(20,20,20,.88)),url("windscreen-hero.png");background-size:cover;background-position:center;background-repeat:no-repeat;opacity:1}
+    .hero-content{position:relative;z-index:2;width:100%;max-width:1050px;margin:auto;text-align:center}
+    .hero-left{width:100%}
+    .hero h1{color:#d6af2b;font-size:clamp(48px,6.5vw,82px);line-height:.96;font-weight:900;letter-spacing:-2px;margin-bottom:22px}
+    .hero h2{color:#fff;font-size:clamp(20px,2.4vw,30px);font-weight:700;margin-bottom:22px}
+    .hero-list{margin-bottom:25px}
+    .hero-list p{color:#fff;font-size:18px;font-weight:600;margin:7px 0}
+    .buttons{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap}
+    .btn{display:inline-block;min-width:240px;padding:16px 28px;border-radius:8px;font-size:22px;font-weight:800;transition:.25s}
+    .whatsapp-btn{background:#00b140;color:#fff}.call-btn{background:#d6af2b;color:#111}
+    .btn:hover{transform:translateY(-3px);opacity:.92}
+
+    /* COMMON */
+    .section{padding:85px 35px}
+    .section-title{text-align:center;margin-bottom:48px}
+    .section-title h2{font-size:42px;color:#d6af2b;letter-spacing:1px;margin-bottom:10px}
+    .section-title p{color:#bbb;font-size:17px}
+
+    /* SERVICES */
+    .services{background:#222}
+    .service-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .service-card{background:#171717;padding:32px 28px;min-height:270px;border-top:4px solid #d6af2b;transition:.3s}
+    .service-card:hover{transform:translateY(-6px);background:#292929}
+    .service-number{color:#d6af2b;font-size:16px;font-weight:800;margin-bottom:20px}
+    .service-card h3{font-size:23px;margin-bottom:15px}
+    .service-card p{color:#ccc;line-height:1.65;min-height:75px}
+    .service-card a{display:inline-block;margin-top:18px;color:#fff;font-weight:700;font-size:14px}.service-card a:hover{color:#d6af2b}
+    .highlight-card{border-top-color:#00b140}
+
+    /* WHY US */
+    .why-us{background:#191919;text-align:center}
+    .why-us-grid{max-width:1200px;margin:auto;padding:32px 25px;background:#b80000;border-radius:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+    .why-us-card img{width:145px;height:145px;object-fit:contain;margin-bottom:15px}.why-us-card h3{font-size:16px;line-height:1.35}
+    .why-us-whatsapp{display:inline-block;margin-top:32px;padding:14px 32px;background:#25d366;color:#fff;border-radius:8px;font-weight:800}
+
+    /* GALLERY */
+    .gallery{background:#171717;text-align:center}.gallery-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.gallery-item{height:360px;overflow:hidden;border-radius:14px;background:#252525;display:flex;align-items:center;justify-content:center}.gallery-item img{width:100%;height:100%;object-fit:contain;display:block;transition:.35s}.gallery-item:hover img{transform:scale(1.05)}
+
+    /* REVIEWS */
+    .reviews{background:#232323;text-align:center}.review-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:25px}.review-card{background:#2d2d2d;padding:32px;border-radius:16px;transition:.3s}.review-card:hover{transform:translateY(-5px)}.stars{color:#d6af2b;font-size:22px;margin-bottom:15px}.review-card p{color:#ddd;line-height:1.7}.review-card h4{margin-top:20px;color:#fff}.google-review{margin-top:35px;color:#d6af2b;font-weight:700}.review-button{display:inline-block;margin-top:12px;background:#d6af2b;color:#111;padding:13px 24px;border-radius:7px;font-weight:800}
+
+    /* CLAIMS */
+    .claims{background:#1b1b1b;text-align:center}.claim-steps{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}.claim-card{background:#252525;padding:28px 18px;border-radius:14px}.step-number{width:42px;height:42px;margin:0 auto 15px;border-radius:50%;background:#d6af2b;color:#111;display:flex;align-items:center;justify-content:center;font-weight:900}.claim-card h3{font-size:17px;margin-bottom:10px}.claim-card p{color:#ccc;font-size:14px;line-height:1.6}
+
+    /* INSTALLMENT */
+    .atome{padding:90px 35px;background:#202020}.atome-content{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}.atome-left h2{font-size:44px;color:#d6af2b;margin-bottom:18px}.atome-left p{font-size:18px;color:#ddd;line-height:1.7;margin-bottom:20px}.atome-left ul{list-style:none;margin-bottom:28px}.atome-left li{font-size:17px;margin:9px 0}.atome-btn{display:inline-block;background:#00b140;color:#fff;padding:15px 30px;border-radius:8px;font-weight:800}.payment-logos{display:flex;justify-content:center;align-items:center;gap:35px;flex-wrap:nowrap}.payment-logos img{width:150px;height:70px;object-fit:contain;display:block;transition:.25s}.payment-logos img:hover{transform:scale(1.06)}
+
+    /* ABOUT */
+    .about{background:#181818;text-align:center}.about-stats{max-width:1200px;margin:0 auto 45px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}.about-card{background:#2b2b2b;padding:30px;border-radius:15px}.about-card h3{font-size:26px;color:#d6af2b;margin-bottom:10px}.about-card p{color:#ddd}.about-text{max-width:900px;margin:auto;color:#ddd;font-size:18px;line-height:1.8}
 
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:80px;
-
-background:#171717;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:0 45px;
-
-z-index:9999;
-
-border-bottom:1px solid #333;
-
-}
-
-.nav-logo img{
-
-height:70px;
-
-width:auto;
-
-display:block;
-
-}
-
-.nav-menu{
-
-display:flex;
-
-align-items:center;
-
-gap:38px;
-
-}
-.nav-menu a{
-
-color:white;
-
-font-size:15px;
-
-font-weight:700;
-
-text-decoration:none;
-
-transition:.3s;
-
-}
-
-.nav-menu a:hover{
-
-color:#d6af2b;
-
-}
-
-.nav-action a{
-
-background:#d6af2b;
-
-color:black;
-
-padding:14px 28px;
-
-border-radius:40px;
-
-font-weight:700;
-
-text-decoration:none;
-
-font-size:18px;
-
-}
-
-.nav-action a:hover{
-background:#009a35;
-}
-
-.nav-call a{
-
-background:#d6af2b;
-
-color:black;
-
-padding:15px 30px;
-
-border-radius:40px;
-
-text-decoration:none;
-
-font-weight:bold;
-
-transition:.3s;
-
-}
-
-.nav-call a:hover{
-
-background:radial-gradient{;
-
-}
-    circle at center,
-    #303030 0%,
-    #1b1b1b 55%,
-    #111 100%
-  );
-    }
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-
-  width: 100%;
-  max-width: 900px;
-
-  margin: auto;
-}
-
-.hero-left{
-
-width:52%;
-
-}
-  
-.hero-right{
-
-width:48%;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-}
-.hero h1 {
-  color: #d6af2b;
-  font-size: clamp(48px, 6vw, 82px);
-  line-height: 0.98;
-  font-weight: 900;
-  margin: 0 0 25px;
-  letter-spacing: -2px;
-}
-
-..hero h2{
-
-font-size:34px;
-
-font-weight:700;
-
-margin-bottom:35px;
-
-color:white;
-
-}
-
-.hero-list p{
-
-font-size:22px;
-
-margin-bottom:18px;
-
-color:white;
-
-font-weight:600;
-
-}
-
-.buttons{
-
-display:flex;
-
-gap:18px;
-
-margin-top:40px;
-
-}
-
-.windscreen-image{
-
-width:620px;
-
-max-width:100%;
-
-opacity:0.20;
-
-filter:brightness(1.2);
-
-}
-
-.whatsapp-btn{
-
-background:#00b140;
-
-padding:18px 38px;
-
-border-radius:8px;
-
-color:white;
-
-text-decoration:none;
-
-font-size:22px;
-
-font-weight:bold;
-
-}
-
-.call-btn{
-
-background:#d6af2b;
-
-padding:18px 38px;
-
-border-radius:8px;
-
-color:black;
-
-text-decoration:none;
-
-font-size:22px;
-
-font-weight:bold;
-
-}
-
-    .btn {
-      display: inline-block;
-      min-width: 325px;
-      padding: 18px 30px;
-      color: white;
-      text-decoration: none;
-      font-size: 32px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .call-btn {
-      background: #a90000;
-    }
-
-    .whatsapp-btn {
-      background: #12ad39;
-    }
-
-    .btn:hover {
-      transform: translateY(-4px);
-      opacity: 0.85;
-    }
-/* SERVICES */
-
-.services {
-  padding: 100px 8%;
-  background: #222;
-}
-
-.services-header {
-  text-align: center;
-  margin-bottom: 55px;
-}
-
-.services-header h2 {
-  display: inline-block;
-  background: #a90000;
-  padding: 14px 28px;
-  font-size: 42px;
-  font-weight: 900;
-  margin-bottom: 20px;
-}
-
-.services-header p {
-  font-size: 18px;
-  color: #ddd;
-}
-
-.service-grid {
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.service-card {
-  background: #171717;
-  padding: 35px 28px;
-  min-height: 280px;
-  border-top: 4px solid #c7a21b;
-  transition: 0.3s;
-}
-
-.service-card:hover {
-  transform: translateY(-8px);
-  background: #292929;
-}
-
-.service-number {
-  color: #c7a21b;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 25px;
-}
-
-.service-card h3 {
-  font-size: 24px;
-  margin-bottom: 18px;
-}
-
-.service-card p {
-  color: #ccc;
-  line-height: 1.6;
-  min-height: 75px;
-}
-
-.service-card a {
-  display: inline-block;
-  margin-top: 22px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.service-card a:hover {
-  color: #c7a21b;
-}
-
-.highlight-card {
-  border-top-color: #12ad39;
-}
-
-/* MOBILE SERVICES */
-
-@media (max-width: 800px) {
-
-  .services {
-    padding: 70px 20px;
-  }
-
-  .services-header h2 {
-    font-size: 30px;
-  }
-
-  .service-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-card {
-    min-height: auto;
-  }
-
-}
     /* CONTACT */
-    .contact {
-      min-height: 650px;
-      padding: 90px 10%;
-      background:
-        linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)),
-        url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=2000&q=80");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      justify-content: center;
-      gap: 100px;
-    }
+    .contact{min-height:600px;padding:85px 10%;background:linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.82)),url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=2000&q=80");background-size:cover;background-position:center;display:flex;justify-content:center;gap:100px}.contact-column{flex:1;max-width:500px}.contact .section-title{text-align:left;margin-bottom:30px}.contact .section-title h2{display:inline-block;background:#a90000;color:#fff;padding:12px 22px;font-size:32px}.contact-item{margin-bottom:25px;padding-left:15px}.contact-item h3{font-size:19px;margin-bottom:7px}.contact-item a{color:#fff;font-size:17px;line-height:1.5}.social{text-align:center}.social a{display:block;color:#fff;font-size:19px;font-weight:700;margin:28px 0}.social-icon{width:65px;height:65px;border-radius:12px;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;margin:0 auto 9px;font-size:35px;font-weight:800}
+    footer{background:#111;text-align:center;padding:20px;color:#999;font-size:12px}
 
-    .contact-column {
-      flex: 1;
-      max-width: 500px;
-    }
-
-    .section-title {
-      display: inline-block;
-      background: #a90000;
-      padding: 12px 22px;
-      font-size: 35px;
-      font-weight: 900;
-      margin-bottom: 35px;
-    }
-
-    .contact-item {
-      margin-bottom: 28px;
-      padding-left: 20px;
-    }
-
-    .contact-item h3 {
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-
-    .contact-item p,
-    .contact-item a {
-      color: white;
-      font-size: 17px;
-      line-height: 1.5;
-    }
-
-    .social {
-      text-align: center;
-    }
-
-    .social a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: bold;
-      margin: 30px 0;
-    }
-
-    .social-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 12px;
-      background: white;
-      color: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 10px;
-      font-size: 38px;
-      font-weight: bold;
-    }
-
-    footer {
-      background: #111;
-      text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      color: #aaa;
-    }
+    /* FLOATING WHATSAPP */
+    .floating-whatsapp{position:fixed;left:20px;bottom:22px;background:#00b140;color:#fff;padding:13px 20px;border-radius:30px;font-size:15px;font-weight:800;z-index:10000;box-shadow:0 4px 15px rgba(0,0,0,.45);transition:.25s}.floating-whatsapp:hover{background:#008d32;transform:translateY(-2px)}
 
     /* MOBILE */
-    @media (max-width: 800px) {
-
-      nav {
-        height: auto;
-        padding: 12px 5px;
-        overflow-x: auto;
-        justify-content: flex-start;
-      }
-
-      nav a {
-        white-space: nowrap;
-        font-size: 10px;
-        margin: 0 8px;
-      }
-
-.hero {
-  position: relative;
-  min-height: calc(100vh - 55px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 70px 30px;
-  overflow: hidden;
-
-  background-image:
-    linear-gradient(
-      rgba(20,20,20,0.78),
-      rgba(20,20,20,0.82)
-    ),
-    url("windscreen-hero.png");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-      .hero-top {
-        flex-direction: column;
-        gap: 35px;
-      }
-
-      .logo {
-        font-size: 42px;
-      }
-.company-logo {
-  width: 150px;
-  height: auto;
-}   
-.logo-subtitle {
-  font-size: 20px;
-}
-      .hero h1 {
-        font-size: 42px;
-      }
-
-      .hero h2 {
-  color: white;
-  font-size: clamp(20px, 2.5vw, 30px);
-  margin-bottom: 20px;
-}
-
-.hero-list {
-  margin-bottom: 30px;
-}
-
-.hero-list p {
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-      .buttons {
-        flex-direction: column;
-        width: 100%;
-        gap: 18px;
-      }
-
-      .btn {
-        width: 100%;
-        min-width: 0;
-        font-size: 25px;
-      }
-
-      .contact {
-        flex-direction: column;
-        padding: 70px 25px;
-        gap: 60px;
-      }
-
-      .section-title {
-        font-size: 28px;
-      }
+    @media(max-width:900px){
+      nav{height:68px;padding:8px 12px}.nav-logo{width:95px}.nav-logo img{width:90px;max-height:52px}.nav-menu{gap:14px;overflow-x:auto;justify-content:flex-start}.nav-menu a{font-size:10px}.nav-call{width:82px}.nav-call a{padding:9px 11px;font-size:11px}
+      .hero{min-height:100vh;padding:95px 20px 55px}.hero h1{font-size:clamp(42px,11vw,62px)}.hero h2{font-size:20px}.hero-list p{font-size:16px}.btn{width:100%;min-width:0;font-size:20px}.buttons{flex-direction:column;gap:12px}
+      .section{padding:65px 20px}.section-title h2{font-size:32px}.service-grid,.review-grid,.about-stats{grid-template-columns:1fr}.why-us-grid{grid-template-columns:repeat(2,1fr)}.gallery-grid{grid-template-columns:1fr}.gallery-item{height:300px}.claim-steps{grid-template-columns:1fr}.atome-content{grid-template-columns:1fr;text-align:center}.atome-left h2{font-size:34px}.payment-logos{gap:14px}.payment-logos img{width:95px;height:60px}.contact{flex-direction:column;padding:65px 25px;gap:50px}.contact .section-title{text-align:center}.floating-whatsapp{left:12px;bottom:14px;padding:11px 16px;font-size:14px}
     }
- /* WHY US SECTION */
-
-.why-us {
-  padding: 80px 40px;
-  background: #1b1b1b;
-  text-align: center;
-}
-
-.why-us-header h2 {
-  font-size: 42px;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.why-us-header p {
-  color: #bdbdbd;
-  margin-bottom: 40px;
-}
-
-.why-us-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 35px 30px;
-  background: #b80000;
-  border-radius: 25px;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  align-items: center;
-}
-
-.why-us-card {
-  text-align: center;
-}
-
-.why-us-card img {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  margin-bottom: 18px;
-}
-
-.why-us-card h3 {
-  font-size: 17px;
-  line-height: 1.35;
-  letter-spacing: 0.5px;
-}
-
-.why-us-whatsapp {
-  display: inline-block;
-  margin-top: 35px;
-  padding: 15px 35px;
-  background: #25d366;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.why-us-whatsapp:hover {
-  transform: translateY(-3px);
-}   
-/* CUSTOMER GALLERY */
-
-.gallery {
-  padding: 80px 40px;
-  background: #1b1b1b;
-  text-align: center;
-}
-
-.gallery-header h2 {
-  font-size: 42px;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.gallery-header p {
-  color: #bdbdbd;
-  margin-bottom: 40px;
-}
-
-/* CUSTOMER GALLERY */
-
-.gallery {
-  padding: 80px 40px;
-  background: #1b1b1b;
-  text-align: center;
-}
-
-.gallery-header h2 {
-  font-size: 42px;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.gallery-header p {
-  color: #bdbdbd;
-  margin-bottom: 40px;
-}
-
-.gallery-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-
-  align-items: stretch;
-}
-
-.gallery-item {
-  height: 360px;
-  overflow: hidden;
-  border-radius: 14px;
-  background: #252525;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-
-  transition: transform 0.4s ease;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.05);
-}
-  transform: scale(1.08);
-}
-/* ===========================
-   CLIENT REVIEW
-=========================== */
-
-.reviews{
-padding:80px 40px;
-background:#232323;
-text-align:center;
-}
-
-.reviews-header h2{
-font-size:42px;
-color:#d6af2b;
-margin-bottom:10px;
-}
-
-.reviews-header p{
-color:#cfcfcf;
-margin-bottom:50px;
-}
-
-.review-grid{
-
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-
-max-width:1200px;
-margin:auto;
-
-}
-
-.review-card{
-
-background:#2d2d2d;
-
-padding:35px;
-
-border-radius:18px;
-
-transition:.35s;
-
-}
-
-.review-card:hover{
-
-transform:translateY(-8px);
-
-}
-
-.stars{
-
-font-size:26px;
-
-color:#FFD700;
-
-margin-bottom:20px;
-
-}
-
-.review-card p{
-
-line-height:1.8;
-
-color:white;
-
-font-size:17px;
-
-min-height:180px;
-
-}
-
-.review-card h4{
-
-margin-top:20px;
-
-font-size:18px;
-
-color:#d6af2b;
-
-}
-
-.google-review{
-
-margin-top:60px;
-
-font-size:28px;
-
-font-weight:bold;
-
-}
-
-.review-button{
-
-display:inline-block;
-
-margin-top:25px;
-
-padding:16px 45px;
-
-background:#00b140;
-
-color:white;
-
-text-decoration:none;
-
-font-weight:bold;
-
-border-radius:8px;
-
-font-size:20px;
-
-transition:.3s;
-
-}
-
-.review-button:hover{
-
-background:#008d32;
-
-}
-/* CLAIM PROCEDURE */
-
-.claims{
-
-padding:80px 40px;
-
-background:#181818;
-
-text-align:center;
-
-}
-
-.claims-header h2{
-
-font-size:42px;
-
-color:#d6af2b;
-
-margin-bottom:15px;
-
-}
-
-.claims-header p{
-
-margin-bottom:50px;
-
-color:#ccc;
-
-}
-
-.claim-steps{
-
-display:grid;
-
-grid-template-columns:repeat(5,1fr);
-
-gap:20px;
-
-max-width:1300px;
-
-margin:auto;
-
-}
-
-.claim-card{
-
-background:#2b2b2b;
-
-padding:30px;
-
-border-radius:18px;
-
-transition:.35s;
-
-}
-
-.claim-card:hover{
-
-transform:translateY(-8px);
-
-}
-
-.step-number{
-
-width:60px;
-
-height:60px;
-
-background:#c40000;
-
-border-radius:50%;
-
-margin:auto;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:28px;
-
-font-weight:bold;
-
-margin-bottom:20px;
-
-}
-
-.claim-card h3{
-
-margin-bottom:15px;
-
-}
-
-.claim-card p{
-
-color:#ddd;
-
-line-height:1.7;
-
-}
-
-/* ===========================
-   ATOME
-=========================== */
-
-/* Paste ALL of your Atome CSS here */
-
-.atome{
-
-background:#202020;
-
-padding:100px 60px;
-
-}
-
-.atome-content{
-
-max-width:1400px;
-
-margin:auto;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-gap:80px;
-
-}
-
-.atome-left{
-
-flex:1;
-
-}
-
-.atome-left h2{
-
-font-size:48px;
-
-font-weight:900;
-
-color:#d6af2b;
-
-margin-bottom:25px;
-
-}
-
-.atome-left p{
-
-font-size:20px;
-
-line-height:1.8;
-
-color:#dddddd;
-
-margin-bottom:25px;
-
-}
-
-.atome-left ul{
-
-list-style:none;
-
-padding:0;
-
-margin:30px 0;
-
-}
-
-.atome-left li{
-
-font-size:20px;
-
-margin-bottom:15px;
-
-color:white;
-
-}
-
-.atome-btn{
-
-display:inline-block;
-
-background:#00B140;
-
-color:white;
-
-text-decoration:none;
-
-padding:18px 40px;
-
-border-radius:8px;
-
-font-size:20px;
-
-font-weight:bold;
-
-margin-top:15px;
-
-}
-
-.atome-btn:hover{
-
-background:#009b36;
-
-}
-
-.atome-right{
-
-flex:1;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-}
-.payment-logos{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:50px;
-
-flex-wrap:wrap;
-
-margin-top:20px;
-
-}
-
-.payment-logos img{
-
-width:180px;
-
-height:70px;
-
-object-fit:contain;
-
-transition:0.3s;
-
-}
-
-.payment-logos img:hover{
-
-transform:scale(1.08);
-  
-}
-/* ===========================
-   ABOUT US
-=========================== */
-
-.about{
-padding:80px 40px;
-background:#181818;
-text-align:center;
-}
-
-.about-header h2{
-font-size:42px;
-color:#d6af2b;
-margin-bottom:15px;
-}
-
-.about-header p{
-color:#cccccc;
-margin-bottom:50px;
-}
-
-.about-stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:25px;
-max-width:1200px;
-margin:auto;
-margin-bottom:50px;
-}
-
-.about-card{
-background:#2b2b2b;
-padding:35px;
-border-radius:15px;
-transition:.3s;
-}
-
-.about-card:hover{
-transform:translateY(-8px);
-}
-
-.about-card h3{
-font-size:28px;
-color:#d6af2b;
-margin-bottom:10px;
-}
-
-.about-card p{
-color:#dddddd;
-}
-
-.about-text{
-max-width:900px;
-margin:auto;
-line-height:1.8;
-font-size:18px;
-color:#dddddd;
-}
-.whatsapp-btn{
-background:#00B140;
-color:white;
-}
-
-.call-btn{
-background:#d6af2b;
-color:black;
-}
-
-.buttons{
-display:flex;
-gap:20px;
-margin-top:35px;
-}  
-.floating-whatsapp {
-  position: fixed;
-  left: 20px;
-  bottom: 25px;
-  background: #00b140;
-  color: white;
-  padding: 14px 22px;
-  border-radius: 30px;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  z-index: 9999;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-  transition: 0.3s;
-}
-
-.floating-whatsapp:hover {
-  transform: scale(1.05);
-  background: #008d32;
-}    
-</style>
+  </style>
 </head>
-
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJSKJ29M"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<!-- NAVIGATION -->
-<nav>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJSKJ29M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-<div class="nav-logo">
-    <img src="osaka-logo-final.png" alt="Osaka Windscreen">
-</a>  
-</div>
+  <nav>
+    <div class="nav-logo"><img src="osaka-logo-final.png" alt="Osaka Windscreen"></div>
+    <div class="nav-menu">
+      <a href="#home">HOME</a>
+      <a href="#services">OUR SERVICES</a>
+      <a href="#why-us">WHY CHOOSE US</a>
+      <a href="#gallery">CUSTOMER GALLERY</a>
+      <a href="#reviews">CLIENT REVIEW</a>
+      <a href="#claims">CLAIM PROCEDURES</a>
+      <a href="#instalment">EASY INSTALLMENT</a>
+      <a href="#about">ABOUT US</a>
+    </div>
+    <div class="nav-call"><a href="tel:0103209929">📞 CALL US</a></div>
+  </nav>
 
-<div class="nav-menu">
-<a href="#home">HOME</a>
-<a href="#services">OUR SERVICES</a>
-<a href="#why-us">WHY CHOOSE US</a>
-<a href="#reviews">CLIENT REVIEW</a>
-<a href="#instalment">EASY INSTALLMENT</a>
-<a href="#about">ABOUT US</a>
-</div>
-
-<div class="nav-call">
-
-<a href="tel:0103209929">
-
-📞 CALL US
-
-</a>
-</div>
-
-</nav>
-  <!-- HERO -->
   <section class="hero" id="home">
-
-<div class="hero-content">
-
-<div class="hero-left">
-
-<h1>
-WINDSCREEN<br>
-SPECIALIST<br>
-NO.1 IN KLANG
-</h1>
-
-<h2>Professional Auto Glass Specialist Since 2001</h2>
-
-<div class="hero-list">
-
-<p>✔ 25 Years Experience</p>
-
-<p>✔ Cars, Lorries & Commercial Vehicles</p>
-
-<p>✔ Insurance Claim Assistance</p>
-
-<p>✔ Same Day Service</p>
-
-</div>
-
-<div class="buttons">
-
-<a class="btn whatsapp-btn"
-href="https://wa.me/60103209929"
-target="_blank">
-
-WHATSAPP US
-
-</a>
-
-<a class="btn call-btn"
-href="tel:0103209929">
-
-CALL NOW
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
- <!-- OUR SERVICES -->
-<section class="services" id="services">
-
-  <div class="services-header">
-    <h2>OUR SERVICES</h2>
-    <p>
-      Professional windscreen solutions for cars, lorries and commercial vehicles.
-    </p>
-  </div>
-
-  <div class="service-grid">
-
-    <div class="service-card">
-      <div class="service-number">01</div>
-      <h3>CAR WINDSCREEN</h3>
-      <p>
-        Windscreen replacement for all types of cars with professional installation.
-      </p>
-      <a href="#contact">ENQUIRE NOW →</a>
-    </div>
-
-    <div class="service-card">
-      <div class="service-number">02</div>
-      <h3>LORRY & TRUCK</h3>
-      <p>
-        Windscreen replacement for lorries, trucks, trailers and commercial vehicles.
-      </p>
-      <a href="#contact">ENQUIRE NOW →</a>
-    </div>
-
-    <div class="service-card">
-      <div class="service-number">03</div>
-      <h3>WINDSCREEN REPAIR</h3>
-      <p>
-        Repair services for suitable windscreen chips and cracks.
-      </p>
-      <a href="#contact">ENQUIRE NOW →</a>
-    </div>
-
-    <div class="service-card">
-      <div class="service-number">04</div>
-      <h3>WINDSCREEN TINTED</h3>
-      <p>
-        Professional windscreen tinting solutions for better comfort and protection.
-      </p>
-      <a href="#contact">ENQUIRE NOW →</a>
-    </div>
-
-    <div class="service-card">
-      <div class="service-number">05</div>
-      <h3>INSURANCE CLAIM</h3>
-      <p>
-        Assistance with windscreen insurance claim procedures.
-      </p>
-      <a href="#contact">ENQUIRE NOW →</a>
-    </div>
-
-    <div class="service-card highlight-card">
-      <div class="service-number">06</div>
-      <h3>WINDSCREEN PRODUCTS & PARTS</h3>
-      <p>
-        Wide product range for car & commercial vehicle windscreen & parts.
-      </p>
-      <a href="#contact">WHATSAPP US →</a>
-    </div>
-
-  </div>
-
-</section>
-<section class="why-us" id="why-us">
-
-  <div class="why-us-header">
-    <h2>WHY US?</h2>
-    <p>Why customers choose Osaka Windscreen</p>
-  </div>
-
-  <div class="why-us-grid">
-
-    <div class="why-us-card">
-      <img src="experience.jpg" alt="25+ Years Experience">
-      <h3>20+ YEARS<br>EXPERIENCE</h3>
-    </div>
-
-    <div class="why-us-card">
-      <img src="guarantee.jpg" alt="Up to 90% Ready Stock">
-      <h3>UP TO 90% READY STOCK<br>FOR CAR & LORRY</h3>
-    </div>
-
-    <div class="why-us-card">
-      <img src="referral.png" alt="Referral Program">
-      <h3>REFERRAL<br>PROGRAM</h3>
-    </div>
-
-    <div class="why-us-card">
-      <img src="same-day.jpg" alt="Same Day Release Car">
-      <h3>SAME DAY<br>RELEASE CAR</h3>
-    </div>
-
-  </div>
-
-  <a
-    href="https://wa.me/60103209929"
-    class="why-us-whatsapp"
-    target="_blank"
-  >
-    WHATSAPP US
-  </a>
-
-</section>
-  <section class="gallery" id="gallery">
-
-  <div class="gallery-header">
-    <h2>CUSTOMER GALLERY</h2>
-    <p>Our work. Our customers. Our commitment.</p>
-  </div>
-
-  <div class="gallery-grid">
-
-    <div class="gallery-item">
-      <img src="customer-1.jpg" alt="Customer Windscreen Replacement">
-    </div>
-
-    <div class="gallery-item">
-      <img src="customer-2.jpg" alt="Customer Windscreen Service">
-    </div>
-
-    <div class="gallery-item">
-      <img src="customer-3.jpg" alt="Customer Windscreen Replacement">
-    </div>
-
-  </div>
-
-</section>
-  <section class="reviews" id="reviews">
-
-<div class="reviews-header">
-<h2>CLIENT REVIEW</h2>
-<p>Trusted by customers across Klang & Selangor.</p>
-</div>
-
-<div class="review-grid">
-
-<div class="review-card">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-
-"Highly recommended to all car lovers.
-Labour charges, workmanship are all reasonable
-and done professionally.
-No complaints at all."
-
-</p>
-
-<h4>— TW</h4>
-
-</div>
-
-
-
-<div class="review-card">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-
-"Very professional and fast response.
-The shop really helped advise me on the proper
-process of changing my windscreen."
-
-</p>
-
-<h4>— Abbas Suhaimi</h4>
-
-</div>
-
-
-
-<div class="review-card">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-
-"Replaced my front windscreen in less than an hour.
-Very satisfied with the fast service.
-Niceu! 👌"
-
-</p>
-
-<h4>— Nurul Izzah</h4>
-
-</div>
-
-</div>
-
-<div class="google-review">
-
-★★★★★ 4.9 Google Rating
-
-<br><br>
-
-<a
-class="review-button"
-href="https://g.page/r/CeidsNMvKbWkEB0/review"
-target="_blank">
-
-VIEW MORE GOOGLE REVIEWS
-
-</a>
-
-</div>
-
-</section>
-  <section class="claims" id="claims">
-
-<div class="claims-header">
-<h2>INSURANCE CLAIM PROCEDURE</h2>
-
-<p>
-Fast, Easy & Hassle-Free Insurance Claim
-</p>
-
-</div>
-
-<div class="claim-steps">
-
-<div class="claim-card">
-<div class="step-number">1</div>
-<h3>CONTACT US</h3>
-<p>Call or WhatsApp us to check your windscreen damage.</p>
-</div>
-
-<div class="claim-card">
-<div class="step-number">2</div>
-<h3>SEND INSURANCE DETAILS</h3>
-<p>Provide your insurance policy.</p>
-</div>
-
-<div class="claim-card">
-<div class="step-number">3</div>
-<h3>WE HANDLE THE CLAIM</h3>
-<p>Our team submits and manages the insurance claim for you.</p>
-</div>
-
-<div class="claim-card">
-<div class="step-number">4</div>
-<h3>WINDSCREEN REPLACEMENT</h3>
-<p>Professional installation using quality materials.</p>
-</div>
-
-<div class="claim-card">
-<div class="step-number">5</div>
-<h3>DRIVE AWAY SAFELY</h3>
-<p>Same-day completion for most vehicles.</p>
-</div>
-
-</div>
-
-</section>
- <section class="atome" id="instalment">
-
-<div class="atome-content">
-
-<div class="atome-left">
-
-<h2>0% EASY INSTALLMENT </h2>
-
-<p>
-
-Pay Later with Your Preferred Provider.
-
-Choose Atome, Grab PayLater or SPayLater and split your payment into easy installments.
-
-</p>
-
-<ul>
-
-<li>✔ 0% Interest Available*</li>
-
-<li>✔ Instant Approval</li>
-
-<li>✔ Fast & Secure Payment</li>
-
-<li>✔ No Hidden Charges from Osaka Windscreen</li>
-
-</ul>
-
-<a href="https://wa.me/60103209929" class="atome-btn" target="_blank">
-
-WHATSAPP US
-
-</a>
-
-</div>
-
-<div class="payment-logos">
-
-<img src="atome-logo.png" alt="Atome">
-
-<img src="grabpay-logo.png" alt="GrabPay">
-
-<img src="spaylater-logo.png" alt="SPayLater">
-
-</div>
-
-</div>
-
-</div>
-</section>
-<section class="about" id="about">
-
-<div class="about-header">
-<h2>ABOUT OSAKA WINDSCREEN</h2>
-<p>Trusted Windscreen Specialist Since 2001</p>
-</div>
-
-<div class="about-stats">
-
-<div class="about-card">
-<h3>25+</h3>
-<p>Years in Business</p>
-</div>
-
-<div class="about-card">
-<h3>35+</h3>
-<p>Years Automotive Experience</p>
-</div>
-
-<div class="about-card">
-<h3>Cars & Lorries</h3>
-<p>Professional Windscreen Specialist</p>
-</div>
-
-<div class="about-card">
-<h3>Insurance Claim</h3>
-<p>Fast & Hassle-Free Assistance</p>
-</div>
-
-</div>
-
-<div class="about-text">
-
-<p>
-
-Osaka Windscreen has proudly served customers for over 25 years with 35 years of automotive industry experience. We specialise in professional windscreen replacement, repair, tinting and insurance claim assistance for cars, lorries and commercial vehicles. Our mission is to provide quality workmanship, honest advice and reliable service to every customer.
-
-</p>
-
-</div>
-
-</section>
-<!-- CONTACT -->
-  <section class="contact" id="contact">
-
-    <div class="contact-column">
-
-      <div class="section-title">
-        CONTACT US
+    <div class="hero-content">
+      <div class="hero-left">
+        <h1>WINDSCREEN<br>SPECIALIST<br>NO.1 IN KLANG</h1>
+        <h2>Professional Auto Glass Specialist Since 2001</h2>
+        <div class="hero-list">
+          <p>✔ 25 Years Experience</p>
+          <p>✔ Cars, Lorries &amp; Commercial Vehicles</p>
+          <p>✔ Insurance Claim Assistance</p>
+          <p>✔ Same Day Service</p>
+        </div>
+        <div class="buttons">
+          <a class="btn whatsapp-btn" href="https://wa.me/60103209929" target="_blank">WHATSAPP US</a>
+          <a class="btn call-btn" href="tel:0103209929">CALL NOW</a>
+        </div>
       </div>
-
-      <div class="contact-item">
-        <h3>☎ PHONE</h3>
-        <a href="tel:0103209929">
-          010 - 320 9929
-        </a>
-        <br>
-        <a href="tel:0164106860">
-          016 - 410 6860
-        </a>
-      </div>
-
-      <div class="contact-item">
-        <h3>✉ EMAIL</h3>
-        <a href="mailto:osaka.auto@gmail.com">
-          osaka.auto@gmail.com
-        </a>
-      </div>
-
-      <div class="contact-item">
-        <h3>📍 LOCATION</h3>
-        <a
-          href="https://maps.google.com/?q=No+4+Lorong+Sungai+Rasa+27+off+Jalan+Batu+Tiga+Lama+Kaw+16+41300+Klang+Selangor"
-          target="_blank"
-        >
-          No 4, Lorong Sungai Rasa 27,<br>
-          off Jalan Batu Tiga Lama,<br>
-          Kaw.16, 41300 Klang,<br>
-          Selangor
-        </a>
-      </div>
-
     </div>
-
-    <div class="contact-column social">
-
-      <div class="section-title">
-        FOLLOW US
-      </div>
-
-      <a
-        href="https://www.tiktok.com/@osakawindscreen"
-        target="_blank"
-      >
-        <div class="social-icon">♪</div>
-        @osakawindscreen
-      </a>
-
-      <a
-        href="https://www.facebook.com/osakawindscreen"
-        target="_blank"
-      >
-        <div class="social-icon">f</div>
-        facebook.com/osakawindscreen
-      </a>
-
-    </div>
-
   </section>
 
-  <footer>
-    Osaka Windscreen © 2026
-  </footer>
-<a
-  href="https://wa.me/60103209929"
-  class="floating-whatsapp"
-  target="_blank"
-  aria-label="Chat with us on WhatsApp">
-  💬 WhatsApp
-</a>
+  <section class="services section" id="services">
+    <div class="section-title"><h2>OUR SERVICES</h2><p>Professional windscreen solutions for cars, lorries and commercial vehicles.</p></div>
+    <div class="service-grid">
+      <div class="service-card"><div class="service-number">01</div><h3>CAR WINDSCREEN</h3><p>Windscreen replacement for all types of cars with professional installation.</p><a href="#contact">ENQUIRE NOW →</a></div>
+      <div class="service-card"><div class="service-number">02</div><h3>LORRY &amp; TRUCK</h3><p>Windscreen replacement for lorries, trucks, trailers and commercial vehicles.</p><a href="#contact">ENQUIRE NOW →</a></div>
+      <div class="service-card"><div class="service-number">03</div><h3>WINDSCREEN REPAIR</h3><p>Repair services for suitable windscreen chips and cracks.</p><a href="#contact">ENQUIRE NOW →</a></div>
+      <div class="service-card"><div class="service-number">04</div><h3>WINDSCREEN TINTED</h3><p>Professional windscreen tinting solutions for better comfort and protection.</p><a href="#contact">ENQUIRE NOW →</a></div>
+      <div class="service-card"><div class="service-number">05</div><h3>INSURANCE CLAIM</h3><p>Assistance with windscreen insurance claim procedures.</p><a href="#contact">ENQUIRE NOW →</a></div>
+      <div class="service-card highlight-card"><div class="service-number">06</div><h3>WINDSCREEN PRODUCTS &amp; PARTS</h3><p>Wide product range for car &amp; commercial vehicle windscreen &amp; parts.</p><a href="https://wa.me/60103209929" target="_blank">WHATSAPP US →</a></div>
+    </div>
+  </section>
+
+  <section class="why-us section" id="why-us">
+    <div class="section-title"><h2>WHY US?</h2><p>Why customers choose Osaka Windscreen</p></div>
+    <div class="why-us-grid">
+      <div class="why-us-card"><img src="experience.jpg" alt="25+ Years Experience"><h3>25+ YEARS<br>EXPERIENCE</h3></div>
+      <div class="why-us-card"><img src="guarantee.jpg" alt="Ready Stock"><h3>UP TO 90% READY STOCK<br>FOR CAR &amp; LORRY</h3></div>
+      <div class="why-us-card"><img src="referral.png" alt="Referral Program"><h3>REFERRAL<br>PROGRAM</h3></div>
+      <div class="why-us-card"><img src="same-day.jpg" alt="Same Day Service"><h3>SAME DAY<br>RELEASE CAR</h3></div>
+    </div>
+    <a href="https://wa.me/60103209929" class="why-us-whatsapp" target="_blank">WHATSAPP US</a>
+  </section>
+
+  <section class="gallery section" id="gallery">
+    <div class="section-title"><h2>CUSTOMER GALLERY</h2><p>Our work. Our customers. Our commitment.</p></div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="customer-1.jpg" alt="Customer Windscreen Replacement"></div>
+      <div class="gallery-item"><img src="customer-2.jpg" alt="Customer Windscreen Service"></div>
+      <div class="gallery-item"><img src="customer-3.jpg" alt="Customer Windscreen Replacement"></div>
+    </div>
+  </section>
+
+  <section class="reviews section" id="reviews">
+    <div class="section-title"><h2>CLIENT REVIEW</h2><p>Trusted by customers across Klang &amp; Selangor.</p></div>
+    <div class="review-grid">
+      <div class="review-card"><div class="stars">★★★★★</div><p>"Highly recommended to all car lovers. Labour charges, workmanship are all reasonable and done professionally. No complaints at all."</p><h4>— TW</h4></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p>"Very professional and fast response. The shop really helped advise me on the proper process of changing my windscreen."</p><h4>— Abbas Suhaimi</h4></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p>"Replaced my front windscreen in less than an hour. Very satisfied with the fast service. Niceu! 👌"</p><h4>— Nurul Izzah</h4></div>
+    </div>
+    <div class="google-review">★★★★★ 4.9 Google Rating<br><a class="review-button" href="https://g.page/r/CeidsNMvKbWkEB0/review" target="_blank">VIEW MORE GOOGLE REVIEWS</a></div>
+  </section>
+
+  <section class="claims section" id="claims">
+    <div class="section-title"><h2>INSURANCE CLAIM PROCEDURE</h2><p>Fast, Easy &amp; Hassle-Free Insurance Claim</p></div>
+    <div class="claim-steps">
+      <div class="claim-card"><div class="step-number">1</div><h3>CONTACT US</h3><p>Call or WhatsApp us to check your windscreen damage.</p></div>
+      <div class="claim-card"><div class="step-number">2</div><h3>SEND INSURANCE DETAILS</h3><p>Provide your insurance policy.</p></div>
+      <div class="claim-card"><div class="step-number">3</div><h3>WE HANDLE THE CLAIM</h3><p>Our team submits and manages the insurance claim for you.</p></div>
+      <div class="claim-card"><div class="step-number">4</div><h3>WINDSCREEN REPLACEMENT</h3><p>Professional installation using quality materials.</p></div>
+      <div class="claim-card"><div class="step-number">5</div><h3>DRIVE AWAY SAFELY</h3><p>Same-day completion for most vehicles.</p></div>
+    </div>
+  </section>
+
+  <section class="atome" id="instalment">
+    <div class="atome-content">
+      <div class="atome-left">
+        <h2>0% EASY INSTALLMENT</h2>
+        <p>Pay Later with Your Preferred Provider.<br>Choose Atome, Grab PayLater or SPayLater and split your payment into easy installments.</p>
+        <ul><li>✔ 0% Interest Available*</li><li>✔ Instant Approval</li><li>✔ Fast &amp; Secure Payment</li><li>✔ No Hidden Charges from Osaka Windscreen</li></ul>
+        <a href="https://wa.me/60103209929" class="atome-btn" target="_blank">WHATSAPP US</a>
+      </div>
+      <div class="payment-logos"><img src="atome-logo.png" alt="Atome"><img src="grabpay-logo.png" alt="GrabPay"><img src="spaylater-logo.png" alt="SPayLater"></div>
+    </div>
+  </section>
+
+  <section class="about section" id="about">
+    <div class="section-title"><h2>ABOUT OSAKA WINDSCREEN</h2><p>Trusted Windscreen Specialist Since 2001</p></div>
+    <div class="about-stats">
+      <div class="about-card"><h3>25+</h3><p>Years in Business</p></div>
+      <div class="about-card"><h3>35+</h3><p>Years Automotive Experience</p></div>
+      <div class="about-card"><h3>Cars &amp; Lorries</h3><p>Professional Windscreen Specialist</p></div>
+      <div class="about-card"><h3>Insurance Claim</h3><p>Fast &amp; Hassle-Free Assistance</p></div>
+    </div>
+    <div class="about-text"><p>Osaka Windscreen has proudly served customers for over 25 years with 35 years of automotive industry experience. We specialise in professional windscreen replacement, repair, tinting and insurance claim assistance for cars, lorries and commercial vehicles. Our mission is to provide quality workmanship, honest advice and reliable service to every customer.</p></div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-column">
+      <div class="section-title"><h2>CONTACT US</h2></div>
+      <div class="contact-item"><h3>☎ PHONE</h3><a href="tel:0103209929">010 - 320 9929</a><br><a href="tel:0164106860">016 - 410 6860</a></div>
+      <div class="contact-item"><h3>✉ EMAIL</h3><a href="mailto:osaka.auto@gmail.com">osaka.auto@gmail.com</a></div>
+      <div class="contact-item"><h3>📍 LOCATION</h3><a href="https://maps.google.com/?q=No+4+Lorong+Sungai+Rasa+27+off+Jalan+Batu+Tiga+Lama+Kaw+16+41300+Klang+Selangor" target="_blank">No 4, Lorong Sungai Rasa 27,<br>off Jalan Batu Tiga Lama,<br>Kaw.16, 41300 Klang,<br>Selangor</a></div>
+    </div>
+    <div class="contact-column social"><div class="section-title"><h2>FOLLOW US</h2></div><a href="https://www.tiktok.com/@osakawindscreen" target="_blank"><div class="social-icon">♪</div>@osakawindscreen</a><a href="https://www.facebook.com/osakawindscreen" target="_blank"><div class="social-icon">f</div>facebook.com/osakawindscreen</a></div>
+  </section>
+
+  <a href="https://wa.me/60103209929" class="floating-whatsapp" target="_blank">💬 WhatsApp</a>
+
+  <footer>Osaka Windscreen © 2026</footer>
 </body>
 </html>
