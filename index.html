@@ -22,31 +22,18 @@ nav{position:fixed;top:0;left:0;width:100%;height:78px;background:rgba(13,13,13,
 .language-overlay{position:fixed;inset:0;background:rgba(5,5,5,.88);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;z-index:20000;padding:20px}.language-box{width:min(520px,100%);background:#181818;border:1px solid #3a3a3a;border-top:3px solid var(--gold);padding:48px 35px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,.6)}.language-box .mini{font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:900;margin-bottom:15px}.language-box h2{font-size:clamp(28px,6vw,42px);margin-bottom:8px}.language-box p{color:#aaa;margin-bottom:28px}.language-buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px}.language-button{border:1px solid #555;background:#222;color:#fff;padding:17px 12px;font-size:14px;font-weight:900;cursor:pointer;transition:.2s}.language-button:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}.language-button.primary{background:var(--gold);color:#111;border-color:var(--gold)}.language-switch{position:fixed;right:20px;bottom:20px;z-index:10001;background:#222;border:1px solid #555;color:#fff;border-radius:20px;padding:8px 12px;font-size:11px;font-weight:900;cursor:pointer}.language-switch:hover{border-color:var(--gold);color:var(--gold)}
 @media(max-width:900px){html{scroll-padding-top:62px}nav{height:62px;padding:4px 10px;gap:8px;overflow:hidden}.nav-logo img{height:52px}.nav-menu{justify-content:flex-start;gap:16px;overflow-x:auto;flex:1;scrollbar-width:none}.nav-menu::-webkit-scrollbar{display:none}.nav-menu a{font-size:10px}.nav-call{display:none}.hero{min-height:calc(100svh - 62px);margin-top:62px;padding:50px 18px}.hero:before{background-size:cover,cover,115vw}.hero h1{font-size:clamp(42px,12vw,62px);letter-spacing:-2px}.hero h2{font-size:18px}.hero-list{display:block}.hero-list p{font-size:14px;margin:7px 0}.buttons{flex-direction:column;width:100%;gap:10px}.btn{width:100%;min-width:0;font-size:17px}.video-section,.gallery,.reviews,.about,.why-us,.claims{padding:65px 18px}.video-header h2,.gallery-header h2,.reviews-header h2,.about-header h2,.why-us-header h2,.claims-header h2{font-size:30px}.services{padding:65px 18px}.services-header{margin-bottom:32px}.service-grid,.review-grid,.about-stats,.claim-steps{grid-template-columns:1fr}.service-card{min-height:auto;padding:27px 22px}.service-card p{min-height:auto}.why-us-grid{grid-template-columns:repeat(2,1fr)}.why-us-card{padding:22px 10px}.why-us-card img{width:140px;height:140px}.why-us-card h3{font-size:11px}.gallery-grid{grid-template-columns:1fr}.gallery-item{height:270px}.atome{padding:65px 18px}.atome-content{grid-template-columns:1fr;gap:30px;text-align:center}.atome-left h2:after{margin-left:auto;margin-right:auto}.atome-left p,.atome-left li{font-size:15px}.payment-logos{gap:10px;padding:20px;min-height:130px}.payment-logos img{width:28%;max-width:100px;height:50px}.contact{min-height:auto;grid-template-columns:1fr;padding:65px 20px;gap:35px}.contact-column{max-width:none}.contact .section-title{font-size:25px}.floating-whatsapp{left:12px;bottom:12px;padding:10px 15px;font-size:13px}.language-box{padding:38px 22px}.language-buttons{grid-template-columns:1fr}.language-switch{right:12px;bottom:64px}}
 
-/* Osaka brand refresh */
-.hero {
-  background: #f4c400 !important;
-  position: relative !important;
-}
-.hero::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  background-image: linear-gradient(rgba(244,196,0,.78),rgba(244,196,0,.88)), url("windscreen-hero.png") !important;
-  background-size: cover, min(780px,75vw) !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  opacity: .95 !important;
-  filter: saturate(.35) contrast(.9) !important;
-}
-.hero h1 { color: #c9232d !important; }
-.hero-content { position: relative !important; z-index: 2 !important; }
-footer {
-  background: #f4c400 !important;
-  color: #111 !important;
-  border-top: 0 !important;
-}
-footer * { color: #111 !important; }
 
+/* Final Osaka header/footer color adjustment */
+nav { background:#f4c400 !important; border-bottom:0 !important; }
+.nav-menu a { color:#111 !important; }
+.nav-menu a:hover { color:#c9232d !important; }
+.nav-call a { background:#f4c400 !important; color:#111 !important; border:2px solid #111 !important; }
+.hero { background:var(--bg) !important; }
+.hero:before { background:radial-gradient(circle at 50% 48%,rgba(201,35,45,.06),transparent 38%),linear-gradient(rgba(10,10,10,.84),rgba(10,10,10,.92)),url("windscreen-hero.png") !important; filter:saturate(.65) !important; }
+.hero h1 { color:var(--gold) !important; }
+.call-btn { background:#f4c400 !important; color:#111 !important; }
+footer { background:#f4c400 !important; color:#111 !important; border-top:0 !important; }
+footer * { color:#111 !important; }
 </style>
 </head>
 <body>
