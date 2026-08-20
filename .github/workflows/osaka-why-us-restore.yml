@@ -1,0 +1,161 @@
+name: Restore Why Us Design
+
+on:
+  push:
+    paths:
+      - '.github/workflows/osaka-why-us-restore.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply requested design
+        shell: python
+        run: |
+          from pathlib import Path
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          css = r'''
+<style id="osaka-final-why-us-fix">
+/* WhatsApp buttons back to green */
+.whatsapp-btn,
+.why-us-whatsapp,
+.atome-btn,
+.floating-whatsapp,
+.review-button{background:#25d366!important;color:#fff!important}
+.whatsapp-btn:hover,
+.why-us-whatsapp:hover,
+.atome-btn:hover,
+.floating-whatsapp:hover,
+.review-button:hover{background:#20bd5a!important}
+
+/* WHY CHOOSE US - restored previous light/minimal design */
+.why-us{
+  padding:55px 35px 65px!important;
+  background:#eeeeee!important;
+  color:#111!important;
+  text-align:left!important;
+}
+.why-us-header{
+  max-width:1180px!important;
+  margin:0 auto 22px!important;
+}
+.why-us-header h2{
+  font-size:0!important;
+  color:#c9232d!important;
+  letter-spacing:1.4px!important;
+  margin:0 0 4px!important;
+  font-weight:900!important;
+}
+.why-us-header h2:before{
+  content:"WHY CHOOSE OSAKA";
+  font-size:13px;
+}
+.why-us-header h2:after{display:none!important}
+.why-us-header p{
+  font-size:0!important;
+  color:#111!important;
+  font-weight:900!important;
+  line-height:1.05!important;
+  margin:0!important;
+  letter-spacing:-.7px!important;
+}
+.why-us-header p:before{
+  content:"25+ YEARS. ONE STANDARD.";
+  font-size:30px;
+}
+.why-us-header p:after{display:none!important}
+
+.why-us-grid{
+  max-width:1180px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:1.45fr repeat(4,1fr)!important;
+  gap:1px!important;
+  background:#d6d6d6!important;
+  border:1px solid #d6d6d6!important;
+  border-radius:0!important;
+  align-items:stretch!important;
+}
+.why-us-grid:before{
+  content:"Since 2001, we have been committed to providing professional, reliable and high quality auto glass services with a focus on safety and customer satisfaction.";
+  display:flex!important;
+  align-items:center!important;
+  padding:28px 26px!important;
+  background:#eeeeee!important;
+  color:#333!important;
+  font-size:12px!important;
+  line-height:1.6!important;
+  font-weight:400!important;
+}
+.why-us-card{
+  background:#f8f8f8!important;
+  color:#111!important;
+  text-align:center!important;
+  padding:25px 15px!important;
+  min-height:175px!important;
+  border:0!important;
+  border-radius:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.why-us-card img{
+  width:58px!important;
+  height:58px!important;
+  object-fit:contain!important;
+  margin:0 auto 12px!important;
+  border-radius:0!important;
+}
+.why-us-card h3{
+  font-size:12px!important;
+  line-height:1.4!important;
+  letter-spacing:.2px!important;
+  color:#111!important;
+  margin:0!important;
+}
+.why-us-whatsapp{
+  display:inline-block!important;
+  margin:20px 0 0!important;
+  padding:10px 20px!important;
+  border-radius:3px!important;
+  font-size:11px!important;
+  font-weight:900!important;
+}
+
+@media(max-width:800px){
+  .why-us{padding:50px 18px 60px!important}
+  .why-us-header p:before{font-size:24px!important}
+  .why-us-grid{grid-template-columns:1fr 1fr!important}
+  .why-us-grid:before{grid-column:1/-1!important;min-height:110px!important;padding:22px!important}
+  .why-us-card{min-height:150px!important;padding:18px 8px!important}
+  .why-us-card img{width:52px!important;height:52px!important}
+  .why-us-card h3{font-size:10px!important}
+}
+</style>
+'''
+
+          marker = '</head>'
+          if 'id="osaka-final-why-us-fix"' not in s:
+              s = s.replace(marker, css + '\n' + marker, 1)
+
+          p.write_text(s, encoding='utf-8')
+      - name: Commit and remove workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git rm .github/workflows/osaka-why-us-restore.yml
+          git commit -m 'Restore Why Choose Us design and green WhatsApp buttons'
+          git push
