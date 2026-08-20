@@ -1,0 +1,208 @@
+name: Osaka Home and Why Us Fix
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/osaka-home-whyus-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply CSS overrides
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          css = r'''
+<style id="osaka-home-whyus-final">
+/* ===== FINAL HOME / WHY US DESIGN ===== */
+
+/* Keep the hero title centered and balanced */
+.hero-content{
+  justify-content:center!important;
+  align-items:center!important;
+  text-align:center!important;
+}
+.hero-left{
+  width:100%!important;
+  max-width:1050px!important;
+  margin:0 auto!important;
+  text-align:center!important;
+}
+.hero h1{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+.hero-list{justify-content:center!important}
+.buttons{justify-content:center!important}
+
+/* Header CALL US: white */
+.nav-call a{
+  background:#fff!important;
+  color:#111!important;
+  border:1px solid #fff!important;
+}
+.nav-call a:hover{background:#f2f2f2!important;color:#c9232d!important}
+
+/* ALL WhatsApp buttons: green */
+.whatsapp-btn,
+.why-us-whatsapp,
+.atome-btn,
+.floating-whatsapp,
+.review-button{
+  background:#20c463!important;
+  border-color:#20c463!important;
+  color:#fff!important;
+}
+.whatsapp-btn:hover,
+.why-us-whatsapp:hover,
+.atome-btn:hover,
+.floating-whatsapp:hover,
+.review-button:hover{
+  background:#19ad56!important;
+  border-color:#19ad56!important;
+  color:#fff!important;
+}
+
+/* WHY CHOOSE US - automotive-style layout */
+.why-us{
+  background:#eeeeee!important;
+  color:#111!important;
+  padding:72px 30px 78px!important;
+  text-align:left!important;
+}
+.why-us-header{
+  max-width:1180px!important;
+  margin:0 auto 30px!important;
+  text-align:left!important;
+}
+.why-us-header h2{
+  color:#c9232d!important;
+  font-size:14px!important;
+  letter-spacing:1.8px!important;
+  font-weight:900!important;
+  margin-bottom:6px!important;
+}
+.why-us-header h2:after{display:none!important}
+.why-us-header p{
+  color:#111!important;
+  font-size:30px!important;
+  line-height:1.05!important;
+  font-weight:900!important;
+  letter-spacing:-.8px!important;
+  margin:0!important;
+}
+
+.why-us-grid{
+  max-width:1180px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:1.35fr repeat(4,1fr)!important;
+  gap:1px!important;
+  background:#d5d5d5!important;
+  border:1px solid #d5d5d5!important;
+}
+
+/* Left-side introduction, similar to the automotive reference */
+.why-us-grid:before{
+  content:"Since 2001, we have been committed to providing professional, reliable and high quality auto glass services with a focus on safety and customer satisfaction.\\A\\A We serve cars, lorries and commercial vehicles with fast, dependable workmanship.\\A\\A MORE ABOUT US  →";
+  white-space:pre-line!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  padding:32px 28px!important;
+  background:#eeeeee!important;
+  color:#333!important;
+  font-size:12px!important;
+  line-height:1.7!important;
+  font-weight:500!important;
+}
+
+.why-us-card{
+  background:#f8f8f8!important;
+  color:#111!important;
+  text-align:center!important;
+  padding:28px 14px!important;
+  min-height:205px!important;
+  border:0!important;
+  border-radius:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+}
+.why-us-card img{
+  width:125px!important;
+  height:125px!important;
+  object-fit:cover!important;
+  margin:0 auto 18px!important;
+  border-radius:0!important;
+}
+.why-us-card h3{
+  color:#111!important;
+  font-size:13px!important;
+  line-height:1.45!important;
+  font-weight:900!important;
+}
+.why-us-whatsapp{
+  display:inline-block!important;
+  margin:26px 0 0!important;
+  padding:12px 26px!important;
+  border-radius:4px!important;
+  font-size:13px!important;
+}
+
+@media(max-width:900px){
+  .hero-content{padding:0!important}
+  .hero-left{max-width:100%!important}
+  .hero h1{font-size:clamp(42px,12vw,64px)!important}
+  .nav-call{display:block!important}
+  .nav-call a{padding:9px 14px!important;font-size:11px!important}
+  .why-us{padding:58px 18px 65px!important}
+  .why-us-header{margin-bottom:24px!important}
+  .why-us-header p{font-size:25px!important}
+  .why-us-grid{grid-template-columns:1fr 1fr!important}
+  .why-us-grid:before{
+    grid-column:1/-1!important;
+    min-height:150px!important;
+    padding:24px!important;
+  }
+  .why-us-card{min-height:175px!important;padding:20px 8px!important}
+  .why-us-card img{width:105px!important;height:105px!important;margin-bottom:12px!important}
+  .why-us-card h3{font-size:11px!important}
+}
+
+@media(max-width:600px){
+  .nav-call{display:none!important}
+  .hero h1{font-size:clamp(38px,11.5vw,55px)!important}
+  .why-us-grid{grid-template-columns:1fr!important}
+  .why-us-card{min-height:165px!important}
+}
+</style>
+'''
+          if 'id="osaka-home-whyus-final"' not in s:
+              s=s.replace('</head>',css+'\n</head>',1)
+              p.write_text(s,encoding='utf-8')
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Center hero, restore automotive Why Us layout, green WhatsApp, white header call button' || exit 0
+          git push
+      - name: Remove temporary workflow
+        if: success()
+        run: |
+          git rm .github/workflows/osaka-home-whyus-fix.yml
+          git commit -m 'Remove temporary design workflow'
+          git push
