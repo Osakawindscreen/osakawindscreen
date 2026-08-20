@@ -1,0 +1,67 @@
+name: Refine yellow header and red white hero branding
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  refine:
+    if: "!contains(github.event.head_commit.message, 'Refine yellow header and red white hero branding')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply visual refinements
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+
+          # Make the headline strictly red + white, with no yellow in the headline.
+          s=s.replace('<span class="hero-yellow">NO.1 IN KLANG</span>', '<span class="hero-red">NO.1 IN KLANG</span>')
+          s=s.replace('<span class="hero-yellow">NO.1 DI KLANG</span>', '<span class="hero-red">NO.1 DI KLANG</span>')
+
+          # Add a compact editorial intro panel to the Why Us section, matching the reference layout.
+          marker='<div class="why-us-grid">'
+          intro='''<div class="why-us-intro">
+            <div class="why-us-eyebrow" data-en="WHY CHOOSE OSAKA" data-ms="KENAPA PILIH OSAKA">WHY CHOOSE OSAKA</div>
+            <h3 data-en="25+ YEARS. ONE STANDARD." data-ms="25+ TAHUN. SATU STANDARD.">25+ YEARS. ONE STANDARD.</h3>
+            <p data-en="Since 2001, we have been committed to providing professional, reliable and high quality auto glass services with a focus on safety and customer satisfaction." data-ms="Sejak 2001, kami komited menyediakan perkhidmatan kaca kereta yang profesional, boleh dipercayai dan berkualiti tinggi dengan fokus kepada keselamatan dan kepuasan pelanggan.">Since 2001, we have been committed to providing professional, reliable and high quality auto glass services with a focus on safety and customer satisfaction.</p>
+            <a href="#about" class="why-us-more" data-en="MORE ABOUT US  →" data-ms="TENTANG KAMI  →">MORE ABOUT US  →</a>
+          </div>'''
+          if 'class="why-us-intro"' not in s:
+              s=s.replace(marker, marker+intro, 1)
+
+          css=r'''
+          /* FINAL BRAND REFINEMENT */
+          nav{background:#f4c400!important;border-bottom:1px solid #d3aa00!important;backdrop-filter:none!important}
+          .nav-menu a{color:#111!important}.nav-menu a:hover{color:#c9232d!important}
+          .nav-call a{background:#c9232d!important;color:#fff!important;border-color:#c9232d!important}
+          .automotive-hero .hero-red{color:#c9232d!important}.automotive-hero .hero-white{color:#fff!important}.automotive-hero .hero-yellow{color:#c9232d!important}
+          .automotive-hero .hero-headline{color:#fff!important}
+          .why-us{padding:46px 30px 52px!important;background:#f3f3f3!important;color:#111!important;text-align:left!important}
+          .why-us-grid{grid-template-columns:1.45fr repeat(4,1fr)!important;background:#d8d8d8!important;border:1px solid #d8d8d8!important;align-items:stretch}
+          .why-us-intro{background:#f3f3f3;padding:20px 28px;display:flex;flex-direction:column;justify-content:center;min-height:170px}
+          .why-us-eyebrow{color:#c9232d;font-size:11px;font-weight:900;letter-spacing:1.7px;margin-bottom:7px}
+          .why-us-intro h3{color:#111;font-size:24px;line-height:1.08;font-weight:900;margin-bottom:10px}
+          .why-us-intro p{color:#444;font-size:11px;line-height:1.55;max-width:330px;margin-bottom:14px}
+          .why-us-more{display:inline-block;width:max-content;border:1px solid #c9232d;color:#c9232d!important;padding:8px 13px;font-size:10px;font-weight:900;letter-spacing:.5px}
+          .why-us-card{background:#f8f8f8!important;color:#111!important;padding:24px 12px!important;min-height:170px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+          .why-us-card h3{color:#111!important}.why-us-card img{width:54px!important;height:54px!important;border-radius:0!important;margin-bottom:12px!important}
+          @media(max-width:900px){
+            nav{background:#f4c400!important}.nav-menu a{color:#111!important}.nav-logo img{filter:none!important}
+            .why-us{padding:38px 18px!important}.why-us-grid{grid-template-columns:1fr 1fr!important}.why-us-intro{grid-column:1/-1;min-height:auto;padding:22px 20px}.why-us-intro h3{font-size:22px}.why-us-intro p{max-width:none;font-size:11px}.why-us-card{min-height:125px!important;padding:18px 8px!important}.why-us-card img{width:46px!important;height:46px!important}
+          }
+          '''
+          s=s.replace('</style>',css+'\n</style>',1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/refine-hero-whyus.yml
+          git add index.html .github/workflows/refine-hero-whyus.yml
+          git commit -m "Refine yellow header and red white hero branding"
+          git push
