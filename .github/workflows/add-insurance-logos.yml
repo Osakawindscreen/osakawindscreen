@@ -1,0 +1,92 @@
+name: Add insurance panel logos
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-insurance-logos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add insurance logo section
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("index.html")
+          html = path.read_text(encoding="utf-8")
+
+          marker = "<!-- OSAKA_INSURANCE_PANELS -->"
+          if marker in html:
+              print("Insurance panel section already exists; nothing to do.")
+              raise SystemExit(0)
+
+          section = r'''<!-- OSAKA_INSURANCE_PANELS -->
+          <section class="insurance-panels" id="insurance-panels">
+            <div class="insurance-panel-header">
+              <span>INSURANCE SUPPORT</span>
+              <h2>OUR INSURANCE PANELS</h2>
+              <p>Recognised insurance &amp; takaful panels for windscreen claims.</p>
+            </div>
+
+            <div class="insurance-logo-grid">
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=aia.com&amp;sz=128" alt="AIA logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=axa.com&amp;sz=128" alt="AXA logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=chubb.com&amp;sz=128" alt="Chubb logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=libertymutual.com&amp;sz=128" alt="Liberty logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=lonpac.com&amp;sz=128" alt="Lonpac logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=msig.com.my&amp;sz=128" alt="MSIG logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=generali.com&amp;sz=128" alt="Generali logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=rhbinsurance.com.my&amp;sz=128" alt="RHB Insurance logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=takaful-ikhlas.com.my&amp;sz=128" alt="Takaful Ikhlas logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=tokio-marine.com&amp;sz=128" alt="Tokio Marine logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=zurich.com.my&amp;sz=128" alt="Zurich logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=aig.com&amp;sz=128" alt="AIG logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=poinsurance.com.my&amp;sz=128" alt="Pacific &amp; Orient logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=kurnia.com.my&amp;sz=128" alt="Kurnia logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=takaful-malaysia.com.my&amp;sz=128" alt="Takaful Malaysia logo"></div>
+              <div class="insurance-logo-card"><img src="https://www.google.com/s2/favicons?domain=progressiveinsurance.com&amp;sz=128" alt="Progressif logo"></div>
+            </div>
+          </section>
+
+          <style>
+            .insurance-panels{padding:90px 30px;background:#090909;text-align:center;border-top:1px solid #252525}
+            .insurance-panel-header{max-width:850px;margin:0 auto 42px}
+            .insurance-panel-header span{display:inline-block;color:#f4c400;font-size:11px;font-weight:900;letter-spacing:2.5px;margin-bottom:10px}
+            .insurance-panel-header h2{font-size:clamp(30px,4vw,46px);line-height:1.05;color:#fff;font-weight:900;margin-bottom:12px}
+            .insurance-panel-header p{color:#999;font-size:15px}
+            .insurance-logo-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+            .insurance-logo-card{height:145px;background:#fff;border:1px solid #333;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:25px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;overflow:hidden}
+            .insurance-logo-card:hover{transform:translateY(-4px);border-color:#c9232d;box-shadow:0 15px 35px rgba(0,0,0,.35)}
+            .insurance-logo-card img{width:110px;height:110px;object-fit:contain;display:block}
+            @media(max-width:900px){.insurance-logo-grid{grid-template-columns:repeat(3,1fr)}.insurance-logo-card{height:130px}}
+            @media(max-width:600px){.insurance-panels{padding:65px 16px}.insurance-logo-grid{grid-template-columns:repeat(2,1fr);gap:12px}.insurance-logo-card{height:125px;padding:20px}.insurance-logo-card img{width:90px;height:90px}}
+          </style>
+          '''
+
+          needle = '<section class="atome" id="instalment">'
+          if needle not in html:
+              raise SystemExit("Could not find the installment section in index.html")
+
+          html = html.replace(needle, section + "\n" + needle, 1)
+          path.write_text(html, encoding="utf-8")
+          print("Insurance panel logo section added.")
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Add insurance panel logo section"
+          git push
