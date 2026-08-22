@@ -25,14 +25,14 @@ nav{position:fixed;top:0;left:0;width:100%;height:78px;background:var(--yellow);
 
 /* INSURANCE PANEL LOGOS */
 .insurance-panel-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.insurance-panel-card{min-height:150px;background:#111;border:1px solid #292929;border-top:2px solid #c9232d;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:20px 14px;position:relative;overflow:hidden;transition:.25s}
+.insurance-panel-card{min-height:150px;background:#111;border:1px solid #292929;border-top:2px solid #c9232d;display:flex;align-items:center;justify-content:center;padding:22px;position:relative;overflow:hidden;transition:.25s}
 .insurance-panel-card:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,35,45,.10),transparent 60%);pointer-events:none}
 .insurance-panel-card:hover{transform:translateY(-4px);border-color:#c9232d;box-shadow:0 14px 32px rgba(0,0,0,.4)}
-.insurance-panel-card img{position:relative;z-index:1;width:76px;height:76px;object-fit:contain;background:#fff;border-radius:14px;padding:10px;box-shadow:0 8px 22px rgba(0,0,0,.25)}
-.insurance-panel-card span{position:relative;z-index:1;color:#888;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+.insurance-panel-card img{position:relative;z-index:1;width:min(190px,100%);height:82px;object-fit:contain;background:#fff;border-radius:10px;padding:10px;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+.insurance-panel-card span{display:none}
 @media(max-width:1000px){.insurance-panel-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){.insurance-panels{padding:65px 18px}.insurance-panel-grid{grid-template-columns:repeat(2,1fr);gap:10px}.insurance-panel-card{min-height:125px;padding:14px 8px}.insurance-panel-card img{width:64px;height:64px;padding:8px}.insurance-panel-card span{font-size:8px}}
-@media(max-width:420px){.insurance-panel-grid{grid-template-columns:1fr 1fr}.insurance-panel-card{min-height:112px}.insurance-panel-card img{width:58px;height:58px}}
+@media(max-width:700px){.insurance-panels{padding:65px 18px}.insurance-panel-grid{grid-template-columns:repeat(2,1fr);gap:10px}.insurance-panel-card{min-height:120px;padding:14px 8px}.insurance-panel-card img{width:min(150px,100%);height:66px;padding:8px}}
+@media(max-width:420px){.insurance-panel-grid{grid-template-columns:repeat(2,1fr)}.insurance-panel-card{min-height:105px}.insurance-panel-card img{height:58px;padding:7px}}
 </style>
 </head>
 <body>
@@ -52,23 +52,23 @@ nav{position:fixed;top:0;left:0;width:100%;height:78px;background:var(--yellow);
     <p>Recognised insurance &amp; takaful panels for windscreen claim assistance.</p>
   </div>
   <div class="insurance-panel-grid">
-    <div class="insurance-panel-card" title="AIA"><img src="https://www.google.com/s2/favicons?domain=https://www.aia.com.my/&sz=128" alt="AIA logo" loading="lazy"><span>AIA</span></div>
-    <div class="insurance-panel-card" title="AXA AFFIN"><img src="https://www.google.com/s2/favicons?domain=https://www.axa.com/&sz=128" alt="AXA AFFIN logo" loading="lazy"><span>AXA AFFIN</span></div>
-    <div class="insurance-panel-card" title="CHUBB"><img src="https://www.google.com/s2/favicons?domain=https://www.chubb.com/my-en/&sz=128" alt="CHUBB logo" loading="lazy"><span>CHUBB</span></div>
-    <div class="insurance-panel-card" title="LIBERTY"><img src="https://www.google.com/s2/favicons?domain=https://www.libertyinsurance.com.my/&sz=128" alt="LIBERTY logo" loading="lazy"><span>LIBERTY</span></div>
-    <div class="insurance-panel-card" title="LONPAC"><img src="https://www.google.com/s2/favicons?domain=https://www.lonpac.com/&sz=128" alt="LONPAC logo" loading="lazy"><span>LONPAC</span></div>
-    <div class="insurance-panel-card" title="MSIG"><img src="https://www.google.com/s2/favicons?domain=https://www.msig.com.my/&sz=128" alt="MSIG logo" loading="lazy"><span>MSIG</span></div>
-    <div class="insurance-panel-card" title="P & O"><img src="https://www.google.com/s2/favicons?domain=https://www.pacific-orient.com/&sz=128" alt="P & O logo" loading="lazy"><span>P & O</span></div>
-    <div class="insurance-panel-card" title="PROGRESIF"><img src="https://www.google.com/s2/favicons?domain=https://www.progresif.com/&sz=128" alt="PROGRESIF logo" loading="lazy"><span>PROGRESIF</span></div>
-    <div class="insurance-panel-card" title="GENERALI"><img src="https://www.google.com/s2/favicons?domain=https://www.generali.com.my/&sz=128" alt="GENERALI logo" loading="lazy"><span>GENERALI</span></div>
-    <div class="insurance-panel-card" title="RHB"><img src="https://www.google.com/s2/favicons?domain=https://www.rhbinsurance.com.my/&sz=128" alt="RHB logo" loading="lazy"><span>RHB</span></div>
-    <div class="insurance-panel-card" title="TAKAFUL IKHLAS"><img src="https://www.google.com/s2/favicons?domain=https://www.takaful-ikhlas.com.my/&sz=128" alt="TAKAFUL IKHLAS logo" loading="lazy"><span>TAKAFUL IKHLAS</span></div>
-    <div class="insurance-panel-card" title="THE PACIFIC"><img src="https://www.google.com/s2/favicons?domain=https://www.pacificinsurance.com.my/&sz=128" alt="THE PACIFIC logo" loading="lazy"><span>THE PACIFIC</span></div>
-    <div class="insurance-panel-card" title="TOKIO MARINE"><img src="https://www.google.com/s2/favicons?domain=https://www.tokiomarine.com/my/en/&sz=128" alt="TOKIO MARINE logo" loading="lazy"><span>TOKIO MARINE</span></div>
-    <div class="insurance-panel-card" title="ZURICH"><img src="https://www.google.com/s2/favicons?domain=https://www.zurich.com.my/&sz=128" alt="ZURICH logo" loading="lazy"><span>ZURICH</span></div>
-    <div class="insurance-panel-card" title="KURNIA"><img src="https://www.google.com/s2/favicons?domain=https://www.kurnia.com/&sz=128" alt="KURNIA logo" loading="lazy"><span>KURNIA</span></div>
-    <div class="insurance-panel-card" title="AIG"><img src="https://www.google.com/s2/favicons?domain=https://www.aig.com/&sz=128" alt="AIG logo" loading="lazy"><span>AIG</span></div>
-    <div class="insurance-panel-card" title="TAKAFUL MALAYSIA"><img src="https://www.google.com/s2/favicons?domain=https://www.takaful-malaysia.com.my/&sz=128" alt="TAKAFUL MALAYSIA logo" loading="lazy"><span>TAKAFUL MALAYSIA</span></div>
+    <div class="insurance-panel-card" title="AIA"><img src="https://cdn.simpleicons.org/aia" alt="AIA logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="AXA AFFIN"><img src="https://cdn.simpleicons.org/axa" alt="AXA AFFIN logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="CHUBB"><img src="https://cdn.simpleicons.org/chubb" alt="CHUBB logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="LIBERTY"><img src="https://logo.clearbit.com/libertyinsurance.com.my" alt="Liberty Insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="LONPAC"><img src="https://logo.clearbit.com/lonpac.com" alt="Lonpac logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="MSIG"><img src="https://cdn.simpleicons.org/msig" alt="MSIG logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="P &amp; O"><img src="https://logo.clearbit.com/pacific-orient.com" alt="Pacific &amp; Orient logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="PROGRESIF"><img src="https://logo.clearbit.com/progresif.com" alt="Progresif logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="GENERALI"><img src="https://cdn.simpleicons.org/generali" alt="Generali logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="RHB"><img src="https://logo.clearbit.com/rhbinsurance.com.my" alt="RHB Insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="TAKAFUL IKHLAS"><img src="https://logo.clearbit.com/takaful-ikhlas.com.my" alt="Takaful Ikhlas logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="THE PACIFIC"><img src="https://logo.clearbit.com/pacificinsurance.com.my" alt="The Pacific Insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="TOKIO MARINE"><img src="https://cdn.simpleicons.org/tokiomarine" alt="Tokio Marine logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="ZURICH"><img src="https://cdn.simpleicons.org/zurich" alt="Zurich logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="KURNIA"><img src="https://logo.clearbit.com/kurnia.com" alt="Kurnia logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="AIG"><img src="https://cdn.simpleicons.org/aig" alt="AIG logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="TAKAFUL MALAYSIA"><img src="https://logo.clearbit.com/takaful-malaysia.com.my" alt="Takaful Malaysia logo" loading="lazy"></div>
   </div>
   <p class="insurance-panel-note"><b>Need to claim?</b> Send us your insurance details on WhatsApp and we will help you check the latest claim procedure and required documents.</p>
 </section>
