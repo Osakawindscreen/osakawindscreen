@@ -1,0 +1,57 @@
+name: Osaka Design Update
+
+on:
+  push:
+    paths:
+      - '.github/osaka-design-trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  update-design:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update homepage layout and logo
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          # Header: use more of the available width and make the supplied logo more prominent.
+          s = s.replace('height:80px;', 'height:92px;', 1)
+          s = s.replace('padding:0 45px;', 'padding:0 20px;', 1)
+          s = s.replace('.nav-logo img{\n\nheight:70px;', '.nav-logo img{\n\nheight:84px;', 1)
+
+          # Keep navigation comfortable while using the full desktop width.
+          s = s.replace('.nav-menu{\n\ndisplay:flex;\n\nalign-items:center;\n\ngap:38px;', '.nav-menu{\n\ndisplay:flex;\n\nalign-items:center;\n\njustify-content:center;\n\nflex:1;\n\ngap:30px;', 1)
+
+          # Hero: reduce empty side margins and give the left copy / right label a cleaner split.
+          s = s.replace('.hero-content {\n  position: relative;\n  z-index: 2;\n\n  width: 100%;\n  max-width: 900px;', '.hero-content {\n  position: relative;\n  z-index: 2;\n\n  width: 100%;\n  max-width: 1480px;', 1)
+          s = s.replace('.hero-left{\n\nwidth:52%;', '.hero-left{\n\nwidth:62%;', 1)
+          s = s.replace('.hero-right{\n\nwidth:48%;', '.hero-right{\n\nwidth:38%;', 1)
+
+          # If a trust label exists in a newer copy, keep it flush toward the right edge.
+          s = re.sub(r'\.hero-right\{([^}]*)\}', lambda m: '.hero-right{' + m.group(1) + 'padding-right:0;justify-content:flex-end;}', s, count=1)
+
+          # Google review button: yellow, matching the header/footer brand accent.
+          s = re.sub(r'\.review-button\{.*?\n\n\}', '''.review-button{\n\ndisplay:inline-block;\n\nmargin-top:25px;\n\npadding:16px 45px;\n\nbackground:#d6af2b;\n\ncolor:#111;\n\ntext-decoration:none;\n\nfont-weight:bold;\n\nborder-radius:8px;\n\nfont-size:20px;\n\ntransition:.3s;\n\n}''', s, count=1, flags=re.S)
+          s = re.sub(r'\.review-button:hover\{.*?\n\n\}', '''.review-button:hover{\n\nbackground:#f4c400;\n\ncolor:#111;\n\n}''', s, count=1, flags=re.S)
+
+          # Responsive header/hero sizing. Appended so it wins over older duplicated rules.
+          responsive = '''\n/* FINAL OSAKA RESPONSIVE OVERRIDES */\nnav{height:92px;padding:0 20px;}\n.nav-logo img{height:84px;width:auto;max-width:230px;object-fit:contain;}\n.hero{margin-top:92px;padding:45px 3vw;}\n.hero-content{max-width:1480px;width:100%;}\n.review-button{background:#d6af2b;color:#111;}\n.review-button:hover{background:#f4c400;color:#111;}\n\n@media (max-width:800px){\n  nav{height:auto;min-height:70px;padding:7px 10px;overflow-x:auto;}\n  .nav-logo img{height:62px;max-width:175px;}\n  .nav-menu{gap:12px;flex:0 0 auto;}\n  .nav-menu a{font-size:10px;}\n  .nav-call a{padding:9px 14px;font-size:11px;}\n  .hero{margin-top:70px;padding:60px 18px 35px;min-height:calc(100vh - 70px);}\n  .hero-content{max-width:none;width:100%;}\n  .hero-left,.hero-right{width:100%;}\n  .hero-right{justify-content:center;padding-right:0;margin-top:25px;}\n  .hero h1{font-size:clamp(36px,11vw,58px);letter-spacing:-1.5px;}\n  .hero h2{font-size:20px;}\n  .hero-list p{font-size:16px;}\n  .buttons{width:100%;}\n  .btn{min-width:0;width:100%;font-size:18px;padding:14px 20px;}\n  .review-button{font-size:16px;padding:14px 28px;}\n}\n'''
+          s = s.replace('</style>', responsive + '</style>', 1)
+
+          p.write_text(s, encoding='utf-8')
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Refine homepage spacing, Google review button and logo size"
+          git push
