@@ -1,0 +1,58 @@
+name: Apply requested homepage layout
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply homepage changes
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          s = path.read_text(encoding='utf-8')
+
+          # 1) Use the newly uploaded company logo.
+          s = s.replace('src="osaka-logo-final.png"', 'src="osaka-logo.png"')
+
+          # 2) Make the Google Rating button completely yellow.
+          s = s.replace(
+              '.review-button{display:inline-block;margin-top:16px;background:var(--green);color:#fff;border:1px solid var(--green);',
+              '.review-button{display:inline-block;margin-top:16px;background:var(--yellow);color:#111;border:1px solid var(--yellow);'
+          )
+
+          # 3) Add the right-side trust badge and service strip if the current HTML does not have them.
+          if 'class="hero-trust-card"' not in s:
+              marker = '''\n</div>\n\n</section>\n\n<!-- OUR SERVICES -->'''
+              insert = '''\n  <div class="hero-trust-card">\n    <div class="trust-line">TRUSTED BY</div>\n    <strong>10,000+</strong>\n    <span>CUSTOMERS</span>\n  </div>\n</div>\n\n<div class="hero-service-strip">\n  <div class="hero-service-item"><b>CAR WINDSCREEN</b><span>Replacement &amp; Repair</span></div>\n  <div class="hero-service-item"><b>LORRY &amp; TRUCK</b><span>All Types of Commercial Vehicles</span></div>\n  <div class="hero-service-item"><b>WINDSCREEN REPAIR</b><span>Chip Repair &amp; Crack Restoration</span></div>\n  <div class="hero-service-item"><b>WINDSCREEN TINTING</b><span>Premium Quality Film &amp; UV Protection</span></div>\n  <div class="hero-service-item"><b>INSURANCE CLAIM</b><span>We Handle the Process for You</span></div>\n  <div class="hero-service-item"><b>GLASS &amp; PARTS</b><span>Original &amp; OEM Quality Guarantee</span></div>\n</div>\n\n</section>\n\n<!-- OUR SERVICES -->'''
+              if marker in s:
+                  s = s.replace(marker, insert, 1)
+
+          # 4) Override the hero layout to match the supplied reference: left edge text and right edge badge.
+          override = r'''\n/* FINAL HOMEPAGE LAYOUT OVERRIDE */\n.nav-logo img{height:72px;width:auto;max-width:210px;object-fit:contain;display:block}\n.hero{padding:55px 0 0 5vw;min-height:calc(100vh - 78px);align-items:center}\n.hero-content{width:100%;max-width:none;margin:0;grid-template-columns:minmax(0,1fr) 270px;gap:0;padding:0}\n.hero-left{width:auto;max-width:760px}\n.hero-trust-card{width:260px;margin-right:0;justify-self:end}\n.hero-service-strip{max-width:none;margin:-1px 2.1vw 0;grid-template-columns:repeat(6,minmax(0,1fr))}\n.review-button{background:var(--yellow)!important;color:#111!important;border-color:var(--yellow)!important}\n.review-button:hover{background:#ffd52a!important;border-color:#ffd52a!important;color:#111!important}\n\n@media (max-width:800px){\n  nav{height:72px;padding:0 12px}\n  .nav-logo img{height:58px;max-width:170px}\n  .nav-menu{gap:14px;overflow-x:auto;justify-content:flex-start}\n  .nav-menu a{font-size:10px}\n  .nav-call a{padding:9px 14px;font-size:11px}\n  .hero{margin-top:72px;min-height:auto;padding:45px 18px 0;align-items:flex-start}\n  .hero:before{background-position:center;background-size:cover}\n  .hero-content{display:flex;flex-direction:column;align-items:stretch;gap:25px}\n  .hero-left{max-width:none;text-align:center;width:100%}\n  .hero h1{font-size:clamp(38px,12vw,58px);letter-spacing:-2px}\n  .hero h2{font-size:18px}\n  .hero-list{justify-content:center;gap:7px 15px}\n  .hero-list p{font-size:12px}\n  .buttons{justify-content:center}\n  .hero-trust-card{width:min(260px,86vw);align-self:center;justify-self:center;margin:0 auto}\n  .hero-service-strip{margin:18px 0 0;grid-template-columns:repeat(2,1fr)}\n  .hero-service-item{min-height:74px;padding:12px 9px}\n  .hero-service-item b{font-size:9px}\n  .hero-service-item span{font-size:10px}\n}\n'''
+          if '/* FINAL HOMEPAGE LAYOUT OVERRIDE */' not in s:
+              s = s.replace('</style>', override + '</style>', 1)
+
+          path.write_text(s, encoding='utf-8')
+
+      - name: Commit homepage changes and remove one-time workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/one-time-homepage-fix.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/one-time-homepage-fix.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Finish requested homepage layout updates [skip ci]"
+          git push
