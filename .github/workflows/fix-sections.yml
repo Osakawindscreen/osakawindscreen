@@ -10,24 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Fix section image paths
+      - name: Fix section image paths exactly
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          replacements = {
-            'why-us-1.png': 'experience.jpg',
-            'why-us-2.png': 'guarantee.jpg',
-            'why-us-3.png': 'referral.jpg',
-            'why-us-4.png': 'same-day.jpg',
-            '<img src="windscreen-hero.png" alt="Windscreen installation">': '<img src="customer-1.jpg" alt="Windscreen installation">',
-            '<img src="why-us-1.png" alt="Windscreen service">': '<img src="customer-2.jpg" alt="Windscreen service">',
-            '<img src="why-us-4.png" alt="Vehicle service">': '<img src="customer-3.jpg" alt="Vehicle service">',
-            'src="atome.png"': 'src="atome-logo.png"'
-          }
-          for old, new in replacements.items():
-              s = s.replace(old, new)
+          # Why Us: use the real image files that exist in the repository.
+          s = s.replace('src="why-us-1.png"', 'src="experience.jpg"')
+          s = s.replace('src="why-us-2.png"', 'src="guarantee.jpg"')
+          s = s.replace('src="why-us-3.png"', 'src="referral.jpg"')
+          s = s.replace('src="why-us-4.png"', 'src="same-day.jpg"')
+          # Customer Gallery: use the dedicated customer gallery photos.
+          import re
+          pattern = r'<section class="gallery">.*?</section>'
+          replacement = '<section class="gallery"><div class="section-header"><h2>CUSTOMER GALLERY</h2><p>Professional installation and repair work.</p></div><div class="gallery-grid"><div class="gallery-item"><img src="customer-1.jpg" alt="Windscreen installation"></div><div class="gallery-item"><img src="customer-2.jpg" alt="Windscreen service"></div><div class="gallery-item"><img src="customer-3.jpg" alt="Vehicle service"></div></div></section>'
+          s, n = re.subn(pattern, replacement, s, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('Customer Gallery section was not found exactly once')
+          s = s.replace('src="atome.png"', 'src="atome-logo.png"')
           p.write_text(s, encoding='utf-8')
           PY
       - name: Commit
@@ -35,5 +36,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Fix Why Us and Customer Gallery images [sections-fixed]"
+          git diff --cached --quiet || git commit -m "Fix section image paths [sections-fixed]"
           git push
