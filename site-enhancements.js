@@ -7,7 +7,6 @@
     const style = document.createElement('style');
     style.id = 'osaka-final-enhancements-css';
     style.textContent = `
-      /* MOBILE NAVIGATION */
       .osaka-mobile-toggle{display:none;width:44px;height:44px;border:0;border-radius:7px;background:#111;color:#fff;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:10002;flex:0 0 44px}
       .osaka-mobile-toggle span,.osaka-mobile-toggle span:before,.osaka-mobile-toggle span:after{display:block;width:21px;height:2px;background:#fff;content:"";position:absolute;transition:.25s ease}
       .osaka-mobile-toggle span:before{transform:translateY(-7px)}.osaka-mobile-toggle span:after{transform:translateY(7px)}
@@ -17,7 +16,6 @@
       .osaka-mobile-panel a{display:block;padding:17px 24px;color:#fff;border-bottom:1px solid #292929;font-size:14px;font-weight:900;letter-spacing:.6px;text-align:left}
       .osaka-mobile-panel a:hover{background:#151515;color:#c9232d}.osaka-mobile-panel .mobile-call{background:#fff;color:#111;margin:18px 20px;border:0;border-radius:28px;text-align:center}
 
-      /* PREMIUM SCROLL MOTION */
       .osaka-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);transition-delay:var(--osaka-delay,0ms);will-change:opacity,transform}
       .osaka-reveal.is-visible{opacity:1;transform:none}
       .hero-left{animation:osakaHeroLeft .85s cubic-bezier(.22,.61,.36,1) both}.hero-trust-card{animation:osakaHeroRight .85s .15s cubic-bezier(.22,.61,.36,1) both}.hero-service-strip{animation:osakaHeroStrip .75s .3s cubic-bezier(.22,.61,.36,1) both}
@@ -25,7 +23,7 @@
       @keyframes osakaHeroRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
       @keyframes osakaHeroStrip{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-      /* INSURANCE PANEL — reliable logo wall */
+      /* INSURANCE PANEL — premium logo-only presentation */
       .insurance-panels{background:#090909!important;color:#fff!important;text-align:center!important}
       .insurance-panels .panel-header{max-width:1050px!important;margin:0 auto 46px!important;text-align:center!important}
       .insurance-panels .panel-header h2{font-size:clamp(32px,4vw,48px)!important;line-height:1.05!important;font-weight:900!important;color:#fff!important;letter-spacing:-1.4px!important;margin-bottom:13px!important}
@@ -35,9 +33,10 @@
       .insurance-panel-card{min-height:118px!important;background:#111!important;border:1px solid #292929!important;border-top:2px solid #292929!important;border-radius:6px!important;padding:16px 12px!important;display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;overflow:hidden!important;box-shadow:0 10px 28px rgba(0,0,0,.22)!important;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease!important}
       .insurance-panel-card:before{content:""!important;position:absolute!important;inset:0!important;background:linear-gradient(135deg,rgba(201,35,45,.09),transparent 48%,rgba(244,196,0,.035))!important;pointer-events:none!important}
       .insurance-panel-card:hover{transform:translateY(-4px)!important;border-color:#c9232d!important;box-shadow:0 16px 36px rgba(0,0,0,.4)!important}
-      .insurance-panel-card strong{display:block!important;position:relative!important;z-index:1!important;color:#fff!important;font-size:14px!important}
-      .insurance-panel-card .insurance-logo{position:relative!important;z-index:2!important;display:block!important;width:100%!important;max-width:180px!important;height:74px!important;object-fit:contain!important;object-position:center!important;margin:auto!important;background:transparent!important;border:0!important;padding:0!important;filter:none!important}
-      .insurance-panel-card.logo-failed strong{display:block!important}
+      /* Original wording is deliberately removed: logos are the only visible insurance identity. */
+      .insurance-panel-card strong,.insurance-panel-card.logo-failed strong{display:none!important}
+      .insurance-panel-card .insurance-logo{position:relative!important;z-index:2!important;display:block!important;width:100%!important;max-width:180px!important;height:74px!important;object-fit:contain!important;object-position:center!important;margin:auto!important;background:transparent!important;border:0!important;padding:0!important;filter:url(#osaka-remove-white)!important}
+      .insurance-panel-card .insurance-logo:hover{transform:scale(1.035);transition:transform .25s ease}
       .insurance-panel-note{max-width:900px!important;margin:30px auto 0!important;color:#777!important;font-size:12px!important;line-height:1.6!important}
 
       /* EASY INSTALLMENT — each provider gets an independent slot */
@@ -47,7 +46,7 @@
       .payment-logo-card img{display:block!important;width:100%!important;max-width:180px!important;height:70px!important;object-fit:contain!important;object-position:center!important;margin:0!important;flex:0 1 auto!important}
       .payment-logo-card:last-child{grid-column:1 / -1;max-width:50%;justify-self:center;width:100%}
 
-      /* FOLLOW US — force real links, even if the HTML uses href="#" */
+      /* FOLLOW US */
       .social{opacity:1!important;transform:none!important}
       .social a{position:relative!important;z-index:20!important;display:block!important;color:#fff!important;cursor:pointer!important;pointer-events:auto!important}
       .social .social-icon{width:64px!important;height:64px!important;border-radius:14px!important;background:#fff!important;color:#111!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 auto 10px!important;box-shadow:0 10px 25px rgba(0,0,0,.28)!important;overflow:hidden!important}
@@ -64,6 +63,14 @@
       @media(prefers-reduced-motion:reduce){.osaka-reveal,.hero-left,.hero-trust-card,.hero-service-strip{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}.osaka-mobile-panel,.osaka-mobile-toggle span,.osaka-mobile-toggle span:before,.osaka-mobile-toggle span:after{transition:none!important}}
     `;
     document.head.appendChild(style);
+
+    /* SVG filter: makes near-white pixels transparent, allowing supplied logo artwork to sit naturally on the dark site. */
+    const ns='http://www.w3.org/2000/svg';
+    const filterSvg=document.createElementNS(ns,'svg');
+    filterSvg.setAttribute('aria-hidden','true');
+    filterSvg.style.cssText='position:absolute;width:0;height:0;overflow:hidden;pointer-events:none';
+    filterSvg.innerHTML='<filter id="osaka-remove-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -1 -1 -1 0 3"/></filter>';
+    document.body.prepend(filterSvg);
 
     /* Mobile navigation */
     const nav=document.querySelector('nav');
@@ -92,24 +99,24 @@
       targets.forEach(el=>observer.observe(el));
     }
 
-    /* Insurance panel logos — use exact repository assets and explicit text matching. */
+    /* Insurance panel logos — exact uploaded assets. Visible wording is intentionally removed. */
     const logoMap={
       'aia':'ins-aia-logo.png','aig':'ins-aig-logo.png','axa affin':'ins-axa-logo.png','axa':'ins-axa-logo.png','chubb':'ins-chubb-logo.png','generali':'ins-generali-logo.jpg','ikhlas':'ins-ikhlas-logo.png','takaful / ikhlas':'ins-ikhlas-logo.png','kurnia':'ins-kurnia-logo.png','liberty':'ins-liberty-logo.png','lonpac':'ins-lonpac-logo.jpg','takaful malaysia':'ins-malaysia-logo.png','msig':'ins-msig-logo.png','pacific':'ins-pacific-logo.png','p&o':'ins-pno-logo.png','p & o':'ins-pno-logo.png','progresif':'ins-progresif-logo.png','progressive':'ins-progresif-logo.png','rhb':'ins-rhb-logo.png','tokio marine':'ins-tokio-logo.png','tokio':'ins-tokio-logo.png','tune':'ins-tune-logo.png','zurich':'ins-zurich-logo.png','syarikat takaful malaysia':'ins-malaysia-logo.png'
     };
     document.querySelectorAll('.insurance-panel-card').forEach(card=>{
       const strong=card.querySelector('strong');
       if(!strong)return;
-      const text=strong.textContent.replace(/&/g,'&').replace(/\s+/g,' ').trim().toLowerCase();
+      const text=strong.textContent.replace(/\s+/g,' ').trim().toLowerCase();
       const key=Object.keys(logoMap).sort((a,b)=>b.length-a.length).find(k=>text.includes(k));
       if(!key)return;
       const existing=card.querySelector('.insurance-logo');if(existing)existing.remove();
       const img=document.createElement('img');
-      img.className='insurance-logo';img.alt=strong.textContent.trim();
-      img.src='./'+logoMap[key]+'?v=2';
+      img.className='insurance-logo';img.alt='';img.setAttribute('aria-hidden','true');
+      img.src='./'+logoMap[key]+'?v=3';
       img.loading='eager';img.decoding='async';
       img.addEventListener('load',()=>{strong.style.display='none';card.classList.remove('logo-failed')});
-      img.addEventListener('error',()=>{img.src='https://raw.githubusercontent.com/Osakawindscreen/osakawindscreen/main/'+logoMap[key]+'?v=2'});
-      img.addEventListener('error',()=>{card.classList.add('logo-failed');strong.style.display='block'});
+      img.addEventListener('error',()=>{img.src='https://raw.githubusercontent.com/Osakawindscreen/osakawindscreen/main/'+logoMap[key]+'?v=3'});
+      img.addEventListener('error',()=>{card.classList.add('logo-failed');strong.style.display='none'});
       card.appendChild(img);
     });
 
@@ -124,7 +131,7 @@
       });
     }
 
-    /* Follow Us — fix the existing # placeholders by detecting the visible label. */
+    /* Follow Us — force real external links. */
     document.querySelectorAll('.social a').forEach(link=>{
       const label=(link.textContent||'').trim().toLowerCase();
       const icon=link.querySelector('.social-icon');
