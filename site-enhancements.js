@@ -19,7 +19,6 @@
       .hero-left{animation:osakaHeroLeft .85s cubic-bezier(.22,.61,.36,1) both}.hero-trust-card{animation:osakaHeroRight .85s .15s cubic-bezier(.22,.61,.36,1) both}.hero-service-strip{animation:osakaHeroStrip .75s .3s cubic-bezier(.22,.61,.36,1) both}
       @keyframes osakaHeroLeft{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}@keyframes osakaHeroRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}@keyframes osakaHeroStrip{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-      /* Premium insurance-logo section — dark corporate partner wall */
       .insurance-panels{background:#090909!important;color:#fff!important;padding:88px 30px 92px!important;text-align:center!important}
       .insurance-panels .panel-header{max-width:1050px!important;margin:0 auto 46px!important;text-align:center!important}
       .insurance-panels .panel-header h2{font-size:clamp(32px,4vw,48px)!important;line-height:1.05!important;font-weight:900!important;color:#fff!important;letter-spacing:-1.4px!important;margin-bottom:13px!important}
@@ -34,10 +33,24 @@
       .insurance-panel-note{max-width:900px!important;margin:30px auto 0!important;color:#777!important;font-size:12px!important;line-height:1.6!important}
       .insurance-panel-note b{color:#f4c400!important}
 
+      /* Easy installment — keep payment providers in a stable logo wall */
+      .atome-content{display:grid!important;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr)!important;align-items:center!important;gap:55px!important}
+      .payment-logos{width:100%!important;max-width:560px!important;min-height:190px!important;margin:0 auto!important;padding:28px!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px!important;align-items:center!important;justify-items:center!important;background:#111!important;border:1px solid #303030!important;border-radius:12px!important;box-sizing:border-box!important}
+      .payment-logos img{display:block!important;width:100%!important;max-width:175px!important;height:78px!important;object-fit:contain!important;object-position:center!important;margin:0!important;flex:none!important}
+      .payment-logos img:hover{transform:scale(1.05)!important}
+
+      /* Follow Us — real, visible social icons and reliable links */
+      .social{opacity:1!important;transform:none!important}
+      .social .social-icon{width:64px!important;height:64px!important;border-radius:14px!important;background:#fff!important;color:#111!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 auto 10px!important;box-shadow:0 10px 25px rgba(0,0,0,.28)!important;overflow:hidden!important}
+      .social .social-icon svg{display:block!important;width:38px!important;height:38px!important;fill:#111!important}
+      .social a{position:relative!important;z-index:5!important;cursor:pointer!important;pointer-events:auto!important}
+      .social a:hover .social-icon{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.4)!important}
+
       .gallery-item img{transition:transform .55s cubic-bezier(.22,.61,.36,1)}.gallery-item:hover img{transform:scale(1.035)}
       @media(max-width:800px){
         nav{padding:0 14px}.nav-logo{flex:1 1 auto;min-width:0;height:94px}.nav-logo img{height:72px;width:185px}.nav-menu{display:none!important}.nav-call{display:flex;align-items:center;gap:8px}.nav-call a{padding:10px 15px;font-size:12px}.osaka-mobile-toggle{display:flex}.osaka-mobile-panel{display:block}.hero-left,.hero-trust-card,.hero-service-strip{animation:none}.osaka-reveal{transform:translateY(13px);transition-duration:.55s}
         .insurance-panels{padding:64px 18px 72px!important}.insurance-panels .panel-header{margin-bottom:28px!important}.insurance-panels .panel-header h2{font-size:30px!important;line-height:1.08!important;letter-spacing:-.7px!important}.insurance-panels .panel-header p{font-size:14px!important;line-height:1.5!important}.insurance-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.insurance-panel-card{min-height:92px!important;padding:12px 8px!important}.insurance-panel-card .insurance-logo{max-width:145px!important;height:55px!important}
+        .atome-content{grid-template-columns:1fr!important;gap:28px!important}.payment-logos{max-width:430px!important;min-height:150px!important;padding:20px!important;gap:14px!important}.payment-logos img{max-width:145px!important;height:60px!important}
       }
       @media(prefers-reduced-motion:reduce){.osaka-reveal,.hero-left,.hero-trust-card,.hero-service-strip{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}.osaka-mobile-panel,.osaka-mobile-toggle span,.osaka-mobile-toggle span:before,.osaka-mobile-toggle span:after{transition:none!important}}
     `;
@@ -58,7 +71,7 @@
     }
 
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      const targets=[];['.why-us-card','.service-card','.gallery-item','.review-card','.insurance-panel-card','.about-card','.claim-card','.payment-logos','.video-wrap','.atome-content','.contact-column'].forEach(sel=>document.querySelectorAll(sel).forEach(el=>{if(!targets.includes(el))targets.push(el)}));
+      const targets=[];['.why-us-card','.service-card','.gallery-item','.review-card','.insurance-panel-card','.about-card','.claim-card','.payment-logos','.video-wrap','.atome-content'].forEach(sel=>document.querySelectorAll(sel).forEach(el=>{if(!targets.includes(el))targets.push(el)}));
       targets.forEach((el,i)=>{el.classList.add('osaka-reveal');el.style.setProperty('--osaka-delay',`${(i%4)*80}ms`)});
       const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});targets.forEach(el=>observer.observe(el));
     }
@@ -78,6 +91,23 @@
       const key=Object.keys(logoMap).find(k=>text.includes(k));if(!key)return;
       const img=document.createElement('img');img.className='insurance-logo';img.alt=strong.textContent.trim();img.src=logoMap[key];
       img.onerror=()=>{img.remove();strong.style.display='block'};strong.style.display='none';card.appendChild(img);
+    });
+
+    /* Replace placeholder social glyphs with real inline SVG logos and normalize URLs. */
+    const socialLinks=document.querySelectorAll('.social a');
+    socialLinks.forEach(link=>{
+      const href=(link.getAttribute('href')||'').toLowerCase();
+      const icon=link.querySelector('.social-icon');
+      if(!icon)return;
+      link.setAttribute('target','_blank');
+      link.setAttribute('rel','noopener noreferrer');
+      if(href.includes('tiktok')){
+        link.setAttribute('href','https://www.tiktok.com/@osakawindscreen');
+        icon.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3c.4 2.2 1.7 3.7 3.9 4.1v3.1c-1.4-.1-2.7-.5-3.9-1.3v6.2c0 4-2.8 6.5-6.6 6.5-3.7 0-6.1-2.4-6.1-5.6 0-3.5 2.7-5.9 6.3-5.9.3 0 .7 0 1 .1v3.2c-.3-.1-.7-.2-1-.2-1.7 0-3 1.1-3 2.7 0 1.5 1.1 2.6 2.8 2.6 1.9 0 3.3-1.2 3.3-3.5V3h3.3z"/></svg>';
+      }else if(href.includes('facebook')){
+        link.setAttribute('href','https://www.facebook.com/osakawindscreen');
+        icon.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.6 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.3 1.6-4.3 4.4v2H7.2V13H10v8h3.6z"/></svg>';
+      }
     });
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
