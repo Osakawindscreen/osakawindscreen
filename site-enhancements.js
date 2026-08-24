@@ -1,4 +1,4 @@
-/* Osaka Windscreen — mobile navigation, premium motion, insurance logo presentation */
+/* Osaka Windscreen — mobile navigation, premium motion, premium insurance logo grid */
 (() => {
   const init = () => {
     if (window.__osakaEnhancementsReady) return;
@@ -18,10 +18,27 @@
       .osaka-reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);transition-delay:var(--osaka-delay,0ms);will-change:opacity,transform}.osaka-reveal.is-visible{opacity:1;transform:none}
       .hero-left{animation:osakaHeroLeft .85s cubic-bezier(.22,.61,.36,1) both}.hero-trust-card{animation:osakaHeroRight .85s .15s cubic-bezier(.22,.61,.36,1) both}.hero-service-strip{animation:osakaHeroStrip .75s .3s cubic-bezier(.22,.61,.36,1) both}
       @keyframes osakaHeroLeft{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}@keyframes osakaHeroRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}@keyframes osakaHeroStrip{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-      .insurance-panel-card{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}.insurance-panel-card:hover{transform:translateY(-4px);border-color:#c9232d;box-shadow:0 14px 32px rgba(0,0,0,.35)}
-      .insurance-panel-card .insurance-logo{position:relative;z-index:2;display:block;width:100%;max-width:190px;height:62px;object-fit:contain;margin:auto;background:#fff;padding:8px 14px;border-radius:4px}
+
+      /* Premium insurance-logo section — inspired by the supplied reference */
+      .insurance-panels{background:#fff!important;color:#172033!important;padding:78px 30px 86px!important}
+      .insurance-panels .panel-header{max-width:1050px!important;margin:0 auto 42px!important;text-align:center!important}
+      .insurance-panels .panel-header h2{font-size:clamp(26px,3vw,38px)!important;line-height:1.18!important;font-weight:900!important;color:#172033!important;letter-spacing:-.7px!important}
+      .insurance-panels .panel-header h2:after{display:none!important}
+      .insurance-panels .panel-header p{display:none!important}
+      .insurance-panel-grid{max-width:1050px!important;margin:0 auto!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:0!important;background:transparent!important;border:0!important;align-items:center!important}
+      .insurance-panel-card{min-height:110px!important;background:transparent!important;border:0!important;border-top:0!important;border-radius:0!important;padding:16px 18px!important;display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;overflow:visible!important;box-shadow:none!important;transition:transform .25s ease!important}
+      .insurance-panel-card:before{display:none!important}
+      .insurance-panel-card:hover{transform:translateY(-3px)!important;border:0!important;box-shadow:none!important}
+      .insurance-panel-card strong{display:none!important}
+      .insurance-panel-card .insurance-logo{position:relative!important;z-index:2!important;display:block!important;width:100%!important;max-width:175px!important;height:72px!important;object-fit:contain!important;margin:auto!important;background:transparent!important;padding:0!important;border-radius:0!important;filter:none!important}
+      .insurance-panel-note{max-width:900px!important;margin:30px auto 0!important;color:#6f7785!important;font-size:12px!important;line-height:1.6!important}
+      .insurance-panel-note b{color:#c9232d!important}
+
       .gallery-item img{transition:transform .55s cubic-bezier(.22,.61,.36,1)}.gallery-item:hover img{transform:scale(1.035)}
-      @media(max-width:800px){nav{padding:0 14px}.nav-logo{flex:1 1 auto;min-width:0;height:94px}.nav-logo img{height:72px;width:185px}.nav-menu{display:none!important}.nav-call{display:flex;align-items:center;gap:8px}.nav-call a{padding:10px 15px;font-size:12px}.osaka-mobile-toggle{display:flex}.osaka-mobile-panel{display:block}.hero-left,.hero-trust-card,.hero-service-strip{animation:none}.osaka-reveal{transform:translateY(13px);transition-duration:.55s}.insurance-panel-grid{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}.insurance-panel-card{min-height:92px}.insurance-panel-card .insurance-logo{max-width:155px;height:52px;padding:7px 10px}}
+      @media(max-width:800px){
+        nav{padding:0 14px}.nav-logo{flex:1 1 auto;min-width:0;height:94px}.nav-logo img{height:72px;width:185px}.nav-menu{display:none!important}.nav-call{display:flex;align-items:center;gap:8px}.nav-call a{padding:10px 15px;font-size:12px}.osaka-mobile-toggle{display:flex}.osaka-mobile-panel{display:block}.hero-left,.hero-trust-card,.hero-service-strip{animation:none}.osaka-reveal{transform:translateY(13px);transition-duration:.55s}
+        .insurance-panels{padding:60px 18px 68px!important}.insurance-panels .panel-header{margin-bottom:26px!important}.insurance-panels .panel-header h2{font-size:24px!important;line-height:1.22!important}.insurance-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0!important}.insurance-panel-card{min-height:90px!important;padding:12px 8px!important}.insurance-panel-card .insurance-logo{max-width:145px!important;height:55px!important}
+      }
       @media(prefers-reduced-motion:reduce){.osaka-reveal,.hero-left,.hero-trust-card,.hero-service-strip{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}.osaka-mobile-panel,.osaka-mobile-toggle span,.osaka-mobile-toggle span:before,.osaka-mobile-toggle span:after{transition:none!important}}
     `;
     document.head.appendChild(style);
@@ -45,6 +62,10 @@
       targets.forEach((el,i)=>{el.classList.add('osaka-reveal');el.style.setProperty('--osaka-delay',`${(i%4)*80}ms`)});
       const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});targets.forEach(el=>observer.observe(el));
     }
+
+    /* Set the section heading to match the supplied professional reference. */
+    const panelHeading=document.querySelector('.insurance-panels .panel-header h2');
+    if(panelHeading){panelHeading.textContent='We Provide Hassle Free Windscreen Claim Services to the Following Insurance Companies:';}
 
     const logoMap={
       'aia':'ins-aia-logo.png','aig':'ins-aig-logo.jpg','axa':'ins-axa-logo.png','chubb':'ins-chubb-logo.png','takaful ikhlas':'ins-ikhlas-logo.png','ikhlas':'ins-ikhlas-logo.png','kurnia':'ins-kurnia-logo.png','liberty':'ins-liberty-logo.png','lonpac':'ins-lonpac-logo.jpg','takaful malaysia':'ins-malaysia-logo.png','mpi':'ins-mpi-logo.jpg','msig':'ins-msig-logo.png','pacific':'ins-pacific-logo.png','p&o':'ins-pno-logo.png','pno':'ins-pno-logo.png','progressive':'ins-progressive-logo.png','rhb':'ins-rhb-logo.png','tokio marine':'ins-tokio-logo.png','tokio':'ins-tokio-logo.png','tune':'ins-tune-logo.png','zurich':'ins-zurich-logo.png'
