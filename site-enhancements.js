@@ -19,7 +19,7 @@
       .hero-left{animation:osakaHeroLeft .85s cubic-bezier(.22,.61,.36,1) both}.hero-trust-card{animation:osakaHeroRight .85s .15s cubic-bezier(.22,.61,.36,1) both}.hero-service-strip{animation:osakaHeroStrip .75s .3s cubic-bezier(.22,.61,.36,1) both}
       @keyframes osakaHeroLeft{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}@keyframes osakaHeroRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}@keyframes osakaHeroStrip{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-      /* Premium insurance-logo section — inspired by the supplied reference */
+      /* Premium insurance-logo section — clean corporate logo wall */
       .insurance-panels{background:#fff!important;color:#172033!important;padding:78px 30px 86px!important}
       .insurance-panels .panel-header{max-width:1050px!important;margin:0 auto 42px!important;text-align:center!important}
       .insurance-panels .panel-header h2{font-size:clamp(26px,3vw,38px)!important;line-height:1.18!important;font-weight:900!important;color:#172033!important;letter-spacing:-.7px!important}
@@ -63,12 +63,11 @@
       const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});targets.forEach(el=>observer.observe(el));
     }
 
-    /* Set the section heading to match the supplied professional reference. */
     const panelHeading=document.querySelector('.insurance-panels .panel-header h2');
     if(panelHeading){panelHeading.textContent='We Provide Hassle Free Windscreen Claim Services to the Following Insurance Companies:';}
 
     const logoMap={
-      'aia':'ins-aia-logo.png','aig':'ins-aig-logo.jpg','axa':'ins-axa-logo.png','chubb':'ins-chubb-logo.png','takaful ikhlas':'ins-ikhlas-logo.png','ikhlas':'ins-ikhlas-logo.png','kurnia':'ins-kurnia-logo.png','liberty':'ins-liberty-logo.png','lonpac':'ins-lonpac-logo.jpg','takaful malaysia':'ins-malaysia-logo.png','mpi':'ins-mpi-logo.jpg','msig':'ins-msig-logo.png','pacific':'ins-pacific-logo.png','p&o':'ins-pno-logo.png','pno':'ins-pno-logo.png','progressive':'ins-progressive-logo.png','rhb':'ins-rhb-logo.png','tokio marine':'ins-tokio-logo.png','tokio':'ins-tokio-logo.png','tune':'ins-tune-logo.png','zurich':'ins-zurich-logo.png'
+      'aia':'ins-aia-logo.png','aig':'ins-aig-logo.jpg','axa':'ins-axa-logo.png','chubb':'ins-chubb-logo.png','generali':'ins-generali-logo.jpg','takaful ikhlas':'ins-ikhlas-logo.png','ikhlas':'ins-ikhlas-logo.png','kurnia':'ins-kurnia-logo.png','liberty':'ins-liberty-logo.png','lonpac':'ins-lonpac-logo.jpg','takaful malaysia':'ins-malaysia-logo.png','msig':'ins-msig-logo.png','pacific':'ins-pacific-logo.png','p&o':'ins-pno-logo.png','pno':'ins-pno-logo.png','progresif':'ins-progresif-logo.png','progressive':'ins-progresif-logo.png','rhb':'ins-rhb-logo.png','tokio marine':'ins-tokio-logo.png','tokio':'ins-tokio-logo.png','tune':'ins-tune-logo.png','zurich':'ins-zurich-logo.png'
     };
     document.querySelectorAll('.insurance-panel-card').forEach(card=>{
       if(card.querySelector('.insurance-logo'))return;
