@@ -13,22 +13,61 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inject enhancement script
+      - name: Inject premium insurance panel and enhancement script
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          tag = '<script src="site-enhancements.js"></script>'
-          if tag not in s:
+
+          insurance = '''
+          <section class="insurance-panels" id="insurance-panel">
+            <div class="panel-header">
+              <h2>INSURANCE PANEL</h2>
+              <p>We Provide Hassle Free Windscreen Claim Services to the Following Insurance Companies.</p>
+            </div>
+            <div class="insurance-panel-grid">
+              <div class="insurance-panel-card"><strong>AIA</strong></div>
+              <div class="insurance-panel-card"><strong>AIG</strong></div>
+              <div class="insurance-panel-card"><strong>AXA AFFIN</strong></div>
+              <div class="insurance-panel-card"><strong>CHUBB</strong></div>
+              <div class="insurance-panel-card"><strong>GENERALI</strong></div>
+              <div class="insurance-panel-card"><strong>TAKAFUL / IKHLAS</strong></div>
+              <div class="insurance-panel-card"><strong>KURNIA</strong></div>
+              <div class="insurance-panel-card"><strong>LIBERTY</strong></div>
+              <div class="insurance-panel-card"><strong>LONPAC</strong></div>
+              <div class="insurance-panel-card"><strong>TAKAFUL MALAYSIA</strong></div>
+              <div class="insurance-panel-card"><strong>MSIG</strong></div>
+              <div class="insurance-panel-card"><strong>PACIFIC</strong></div>
+              <div class="insurance-panel-card"><strong>P &amp; O</strong></div>
+              <div class="insurance-panel-card"><strong>PROGRESIF</strong></div>
+              <div class="insurance-panel-card"><strong>RHB</strong></div>
+              <div class="insurance-panel-card"><strong>TOKIO MARINE</strong></div>
+              <div class="insurance-panel-card"><strong>TUNE</strong></div>
+              <div class="insurance-panel-card"><strong>ZURICH</strong></div>
+            </div>
+          </section>
+          '''
+
+          if 'class="insurance-panels"' not in s:
+              marker = '<section class="atome" id="instalment">'
+              if marker in s:
+                  s = s.replace(marker, insurance + '\n' + marker, 1)
+              else:
+                  body = '</body>'
+                  s = s.replace(body, insurance + '\n' + body, 1)
+
+          tag = '<script src="site-enhancements.js?v=8"></script>'
+          if 'site-enhancements.js' not in s:
               marker = '</body>'
               if marker in s:
                   s = s.replace(marker, tag + '\n' + marker, 1)
               else:
                   s += '\n' + tag + '\n'
-              p.write_text(s, encoding='utf-8')
+
+          p.write_text(s, encoding='utf-8')
           PY
-      - name: Commit injected script
+      - name: Commit injected changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -36,6 +75,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes needed"
           else
-            git commit -m "[site-enhancements] Enable mobile navigation, motion and insurance logos"
+            git commit -m "[site-enhancements] Enable premium insurance panel and enhancement layer"
             git push
           fi
