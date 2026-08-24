@@ -57,6 +57,12 @@ jobs:
                   body = '</body>'
                   s = s.replace(body, insurance + '\n' + body, 1)
 
+          # Update the footer legal/company line while preserving the site's existing footer styling.
+          old_footer = '© 2026 Osaka Windscreen. All Rights Reserved'
+          new_footer = '© 2026 Osaka Windscreen. All Rights Reserved | Osaka Auto Technologies Sdn. Bhd. (906621-H)'
+          s = s.replace(old_footer + ' | Osaka Auto Technologies Sdn. Bhd. (906621-H)', new_footer)
+          s = s.replace(old_footer, new_footer)
+
           tag = '<script src="site-enhancements.js?v=8"></script>'
           if 'site-enhancements.js' not in s:
               marker = '</body>'
@@ -75,6 +81,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes needed"
           else
-            git commit -m "[site-enhancements] Enable premium insurance panel and enhancement layer"
+            git commit -m "[site-enhancements] Update footer company legal name"
             git push
           fi
