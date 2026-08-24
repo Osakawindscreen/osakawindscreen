@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inject premium insurance panel and enhancement script
+      - name: Inject premium insurance panel and enhancement scripts
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -57,19 +57,22 @@ jobs:
                   body = '</body>'
                   s = s.replace(body, insurance + '\n' + body, 1)
 
-          # Update the footer legal/company line while preserving the site's existing footer styling.
           old_footer = '© 2026 Osaka Windscreen. All Rights Reserved'
           new_footer = '© 2026 Osaka Windscreen. All Rights Reserved | Osaka Auto Technologies Sdn. Bhd. (906621-H)'
           s = s.replace(old_footer + ' | Osaka Auto Technologies Sdn. Bhd. (906621-H)', new_footer)
           s = s.replace(old_footer, new_footer)
 
-          tag = '<script src="site-enhancements.js?v=8"></script>'
-          if 'site-enhancements.js' not in s:
-              marker = '</body>'
-              if marker in s:
-                  s = s.replace(marker, tag + '\n' + marker, 1)
-              else:
-                  s += '\n' + tag + '\n'
+          tags = [
+              '<script src="site-enhancements.js?v=8"></script>',
+              '<script src="contact-enhancements.js?v=1"></script>'
+          ]
+          for tag in tags:
+              if tag.split('"')[1] not in s:
+                  marker = '</body>'
+                  if marker in s:
+                      s = s.replace(marker, tag + '\n' + marker, 1)
+                  else:
+                      s += '\n' + tag + '\n'
 
           p.write_text(s, encoding='utf-8')
           PY
@@ -81,6 +84,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes needed"
           else
-            git commit -m "[site-enhancements] Update footer company legal name"
+            git commit -m "[site-enhancements] Load contact and social icon enhancements"
             git push
           fi
