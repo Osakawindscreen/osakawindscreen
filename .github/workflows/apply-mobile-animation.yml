@@ -1,0 +1,78 @@
+name: Apply mobile navigation and premium animations
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  enhance:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch index.html
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          nav_old = '<div class="nav-menu"><a href="#home">HOME</a><a href="#services">OUR SERVICES</a><a href="#video">OUR VIDEO</a><a href="#why">WHY CHOOSE US</a><a href="#reviews">CLIENT REVIEW</a><a href="#atome">EASY INSTALLMENT</a><a href="#about">ABOUT US</a></div><div class="nav-call"><a href="tel:0103209929">📞 CALL US</a></div>'
+          nav_new = '<div class="nav-menu"><a href="#home">HOME</a><a href="#services">OUR SERVICES</a><a href="#video">OUR VIDEO</a><a href="#why">WHY CHOOSE US</a><a href="#reviews">CLIENT REVIEW</a><a href="#atome">EASY INSTALLMENT</a><a href="#about">ABOUT US</a></div><div class="nav-call"><a href="tel:0103209929">📞 CALL US</a></div><button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button><div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div><div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-head"><span>MENU</span><button id="mobileMenuClose" aria-label="Close menu">×</button></div><a href="#home">HOME</a><a href="#services">OUR SERVICES</a><a href="#video">OUR VIDEO</a><a href="#why">WHY CHOOSE US</a><a href="#reviews">CLIENT REVIEW</a><a href="#atome">EASY INSTALLMENT</a><a href="#about">ABOUT US</a><a class="mobile-menu-call" href="tel:0103209929">📞 CALL US</a><a class="mobile-menu-whatsapp" href="https://wa.me/60103209929">💬 WHATSAPP US</a></div>'
+          if nav_old not in s:
+              raise SystemExit('Expected navigation markup not found; no changes made.')
+          s = s.replace(nav_old, nav_new, 1)
+
+          css = r'''
+/* PREMIUM MOBILE NAVIGATION + MOTION SYSTEM */
+.nav-toggle{display:none;width:42px;height:42px;margin-left:10px;border:0;border-radius:8px;background:#111;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;flex:0 0 42px}.nav-toggle span{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .2s ease}.nav-toggle.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-toggle.active span:nth-child(2){opacity:0}.nav-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.mobile-menu,.mobile-menu-backdrop{display:none}.mobile-menu{position:fixed;top:70px;right:14px;width:min(330px,calc(100vw - 28px));background:#0b0b0b;border:1px solid #303030;border-top:3px solid var(--red);box-shadow:0 22px 60px rgba(0,0,0,.55);padding:10px;z-index:10001;transform:translateY(-12px) scale(.98);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}.mobile-menu.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}.mobile-menu-backdrop{position:fixed;inset:70px 0 0;background:rgba(0,0,0,.42);backdrop-filter:blur(2px);z-index:10000;opacity:0;pointer-events:none;transition:opacity .25s ease}.mobile-menu-backdrop.open{opacity:1;pointer-events:auto}.mobile-menu-head{display:flex;align-items:center;justify-content:space-between;padding:7px 8px 12px;border-bottom:1px solid #292929;color:var(--yellow);font-size:11px;font-weight:900;letter-spacing:2px}.mobile-menu-head button{background:none;border:0;color:#fff;font-size:28px;line-height:1;cursor:pointer}.mobile-menu>a{display:block;padding:14px 12px;border-bottom:1px solid #222;color:#fff;font-size:12px;font-weight:900;letter-spacing:.5px}.mobile-menu>a:hover{color:var(--yellow);background:#151515}.mobile-menu-call{margin-top:10px!important;border:1px solid #fff!important;text-align:center;border-radius:5px;background:#fff!important;color:#111!important}.mobile-menu-whatsapp{margin-top:8px;text-align:center;border:0!important;border-radius:5px;background:var(--green);color:#fff!important}.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.is-visible{opacity:1;transform:none}.reveal-stagger>*{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}.reveal-stagger.is-visible>*{opacity:1;transform:none}.reveal-stagger.is-visible>*:nth-child(2){transition-delay:.08s}.reveal-stagger.is-visible>*:nth-child(3){transition-delay:.16s}.reveal-stagger.is-visible>*:nth-child(4){transition-delay:.24s}.reveal-stagger.is-visible>*:nth-child(5){transition-delay:.32s}.reveal-stagger.is-visible>*:nth-child(6){transition-delay:.40s}.hero .hero-kicker,.hero h1,.hero h2,.hero-list,.hero .buttons,.hero-trust-card{opacity:0;transform:translateY(18px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}.hero.hero-ready .hero-kicker{opacity:1;transform:none}.hero.hero-ready h1{opacity:1;transform:none;transition-delay:.12s}.hero.hero-ready h2{opacity:1;transform:none;transition-delay:.22s}.hero.hero-ready .hero-list{opacity:1;transform:none;transition-delay:.30s}.hero.hero-ready .buttons{opacity:1;transform:none;transition-delay:.38s}.hero.hero-ready .hero-trust-card{opacity:1;transform:none;transition-delay:.45s}.hero:before{transition:transform 1.8s ease}.hero.hero-ready:before{transform:scale(1.015)}.gallery-item img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}.gallery-item:hover img{transform:scale(1.045)}.service-card,.insurance-panel-card,.review-card,.why-us-card{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}.service-card:hover,.insurance-panel-card:hover,.review-card:hover,.why-us-card:hover{transform:translateY(-4px)}
+@media(max-width:900px){.nav-menu{display:none}.nav-toggle{display:flex}.nav-call{margin-left:auto}.mobile-menu,.mobile-menu-backdrop{display:block}.mobile-menu{display:block}.hero .hero-trust-card{transform:translateY(18px) translateX(18px)}.hero.hero-ready .hero-trust-card{transform:none}.service-card:hover,.insurance-panel-card:hover,.review-card:hover,.why-us-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal-stagger>*,.hero .hero-kicker,.hero h1,.hero h2,.hero-list,.hero .buttons,.hero-trust-card{opacity:1!important;transform:none!important;transition:none!important}.hero:before{transition:none!important}.mobile-menu,.mobile-menu-backdrop{transition:none!important}}
+'''
+          s = s.replace('</style>', css + '</style>', 1)
+
+          js = r'''
+<script>
+(function(){
+  const toggle=document.getElementById('navToggle');
+  const menu=document.getElementById('mobileMenu');
+  const backdrop=document.getElementById('mobileMenuBackdrop');
+  const closeBtn=document.getElementById('mobileMenuClose');
+  if(toggle&&menu&&backdrop){
+    const close=()=>{menu.classList.remove('open');backdrop.classList.remove('open');toggle.classList.remove('active');toggle.setAttribute('aria-expanded','false');document.body.style.overflow='';};
+    const open=()=>{menu.classList.add('open');backdrop.classList.add('open');toggle.classList.add('active');toggle.setAttribute('aria-expanded','true');};
+    toggle.addEventListener('click',()=>menu.classList.contains('open')?close():open());
+    backdrop.addEventListener('click',close); if(closeBtn) closeBtn.addEventListener('click',close);
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  }
+  const hero=document.querySelector('.hero');
+  requestAnimationFrame(()=>{setTimeout(()=>hero&&hero.classList.add('hero-ready'),120);});
+  const targets=[
+    '.why-us-header','.why-us-grid','.why-us-whatsapp','.video-section .section-header','.video-wrap',
+    '.services-header','.service-grid','.gallery .section-header','.gallery-grid','.reviews .section-header','.review-grid','.google-review',
+    '.claims .section-header','.claim-steps','.insurance-panels .panel-header','.insurance-panel-grid','.atome-content','.about .section-header','.about-stats','.about-text','.contact-column','footer'
+  ];
+  const addReveal=(el)=>{if(!el)return;el.classList.add('reveal');};
+  targets.forEach(sel=>document.querySelectorAll(sel).forEach(addReveal));
+  document.querySelectorAll('.service-grid,.gallery-grid,.review-grid,.claim-steps,.insurance-panel-grid,.about-stats').forEach(el=>el.classList.add('reveal-stagger'));
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((entries,obs)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');obs.unobserve(entry.target);}});},{threshold:.14,rootMargin:'0px 0px -45px 0px'});
+    document.querySelectorAll('.reveal,.reveal-stagger').forEach(el=>io.observe(el));
+  }else{document.querySelectorAll('.reveal,.reveal-stagger').forEach(el=>el.classList.add('is-visible'));}
+})();
+</script>
+'''
+          s = s.replace('</body>', js + '</body>', 1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          if git diff --quiet -- index.html; then echo 'No changes'; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Add mobile navigation and premium scroll animations'
+          git push
+          rm -f .github/workflows/apply-mobile-animation.yml
+          git add -u .github/workflows/apply-mobile-animation.yml || true
+          git commit -m 'Remove one-time enhancement workflow' || true
+          git push || true
