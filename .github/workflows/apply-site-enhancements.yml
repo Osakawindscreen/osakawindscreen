@@ -58,17 +58,14 @@ jobs:
                   body = '</body>'
                   s = s.replace(body, insurance + '\n' + body, 1)
 
-          # Normalize the footer so the legal/company line appears exactly once.
-          new_footer = '© 2026 Osaka Windscreen. All Rights Reserved | Osaka Auto Technologies Sdn. Bhd. (906621-H)'
+          # Normalize the footer to the exact requested legal/company line.
+          new_footer = 'Copyright © 2026 Osaka Auto Technologies Sdn. Bhd. 201001022851 (906621-H). All Rights Reserved.'
           def normalize_footer(match):
               opening, inner, closing = match.groups()
-              inner = re.sub(
-                  r'© 2026 Osaka Windscreen\. All Rights Reserved(?:\s*\|\s*Osaka Auto Technologies Sdn\. Bhd\. \(906621-H\))*',
-                  new_footer,
-                  inner
-              )
+              # Replace the complete existing footer text, including previous variants/duplicates.
+              inner = new_footer
               return opening + inner + closing
-          s = re.sub(r'(<footer\b[^>]*>)(.*?)(</footer>)', normalize_footer, s, flags=re.I|re.S)
+          s = re.sub(r'(<footer\b[^>]*>)(.*?)(</footer>)', normalize_footer, s, count=1, flags=re.I|re.S)
 
           tags = [
               '<script src="site-enhancements.js?v=8"></script>',
@@ -93,6 +90,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes needed"
           else
-            git commit -m "[site-enhancements] Normalize footer and refresh social icon" 
+            git commit -m "[site-enhancements] Update footer legal company line"
             git push
           fi
