@@ -17,6 +17,7 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
 
@@ -57,22 +58,30 @@ jobs:
                   body = '</body>'
                   s = s.replace(body, insurance + '\n' + body, 1)
 
-          old_footer = '© 2026 Osaka Windscreen. All Rights Reserved'
+          # Normalize the footer so the legal/company line appears exactly once.
           new_footer = '© 2026 Osaka Windscreen. All Rights Reserved | Osaka Auto Technologies Sdn. Bhd. (906621-H)'
-          s = s.replace(old_footer + ' | Osaka Auto Technologies Sdn. Bhd. (906621-H)', new_footer)
-          s = s.replace(old_footer, new_footer)
+          def normalize_footer(match):
+              opening, inner, closing = match.groups()
+              inner = re.sub(
+                  r'© 2026 Osaka Windscreen\. All Rights Reserved(?:\s*\|\s*Osaka Auto Technologies Sdn\. Bhd\. \(906621-H\))*',
+                  new_footer,
+                  inner
+              )
+              return opening + inner + closing
+          s = re.sub(r'(<footer\b[^>]*>)(.*?)(</footer>)', normalize_footer, s, flags=re.I|re.S)
 
           tags = [
               '<script src="site-enhancements.js?v=8"></script>',
-              '<script src="contact-enhancements.js?v=1"></script>'
+              '<script src="contact-enhancements.js?v=2"></script>'
           ]
           for tag in tags:
-              if tag.split('"')[1] not in s:
-                  marker = '</body>'
-                  if marker in s:
-                      s = s.replace(marker, tag + '\n' + marker, 1)
-                  else:
-                      s += '\n' + tag + '\n'
+              src = tag.split('"')[1]
+              s = re.sub(r'<script\s+src=["\']' + re.escape(src.split('?')[0]) + r'(?:\?[^"\']*)?["\']\s*></script>\s*', '', s, flags=re.I)
+              marker = '</body>'
+              if marker in s:
+                  s = s.replace(marker, tag + '\n' + marker, 1)
+              else:
+                  s += '\n' + tag + '\n'
 
           p.write_text(s, encoding='utf-8')
           PY
@@ -84,6 +93,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes needed"
           else
-            git commit -m "[site-enhancements] Load contact and social icon enhancements"
+            git commit -m "[site-enhancements] Normalize footer and refresh social icon" 
             git push
           fi
