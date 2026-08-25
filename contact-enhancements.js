@@ -34,6 +34,25 @@
       link.innerHTML = '<span class="tiktok-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#111" d="M16.5 3c.4 1.8 1.4 3.1 3.2 3.8v3.1c-1.5-.1-2.8-.6-4-1.4v6.8c0 4.1-2.7 6.7-6.4 6.7-3.2 0-5.8-2.3-5.8-5.4 0-3.3 2.8-5.6 6.2-5.6.4 0 .8 0 1.2.1v3.1c-.4-.1-.8-.2-1.2-.2-1.5 0-2.8 1-2.8 2.5 0 1.3 1.1 2.4 2.5 2.4 1.8 0 2.8-1.2 2.8-3.4V3h4.3z"/></svg></span><span>@osakawindscreen</span>';
       social.appendChild(link);
     }
+
+    // Direct Google Maps destination for both the location CTA and the Google rating CTA.
+    // This is the known Osaka Auto Windscreen listing in Klang, so customers land on the
+    // business listing directly instead of having to search/select it manually.
+    const googleMapsDirect = 'https://goo.gl/maps/SvesNAt1qWMs38aP7';
+    const normalize = s => (s || '').replace(/\s+/g,' ').trim().toLowerCase();
+    document.querySelectorAll('a').forEach(a => {
+      const label = normalize(a.textContent);
+      if (label.includes('google map location') || label.includes('google maps location') || label === 'view map' || label.includes('view google map')) {
+        a.href = googleMapsDirect;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      }
+      if (label.includes('view more google rating') || label.includes('google rating')) {
+        a.href = googleMapsDirect;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      }
+    });
   };
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded',initContactEnhancements,{once:true});
