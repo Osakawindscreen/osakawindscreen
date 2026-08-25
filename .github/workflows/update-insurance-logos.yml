@@ -15,17 +15,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install image processing dependency
+        run: python3 -m pip install --disable-pip-version-check pillow
+
       - name: Update insurance panel
         run: python scripts/update-insurance-logos.py
 
       - name: Commit changes
         run: |
-          if git diff --quiet -- index.html; then
+          if git diff --quiet -- index.html && git diff --quiet -- '*-clean.png'; then
             echo "No changes needed"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
+          git add index.html '*-clean.png'
           git commit -m "Update insurance panel logos"
           git push
