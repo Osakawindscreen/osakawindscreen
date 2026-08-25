@@ -5,13 +5,13 @@
 
     const style = document.createElement('style');
     style.textContent = `
-      .contact-item.email-contact h3{display:flex;align-items:center;justify-content:center;gap:9px}
-      .contact-item.email-contact .email-logo{font-size:27px;line-height:1;display:inline-flex;align-items:center;justify-content:center;transform:translateY(-1px)}
-      .tiktok-follow-link{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:9px;margin:28px 0!important;color:#fff!important;font-size:16px!important;font-weight:800!important}
-      .tiktok-follow-link .tiktok-logo{width:72px;height:72px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(0,0,0,.28);transition:transform .25s ease,box-shadow .25s ease;overflow:hidden}
-      .tiktok-follow-link .tiktok-logo img{display:block;width:45px;height:45px;object-fit:contain}
+      .contact-item.email-contact h3{display:flex;align-items:center;justify-content:center;gap:10px}
+      .contact-item.email-contact .email-logo{font-size:30px;line-height:1;display:inline-flex;align-items:center;justify-content:center;transform:translateY(-1px)}
+      .tiktok-follow-link{display:flex!important;flex-direction:column;align-items:center;justify-content:flex-start;gap:7px;margin:28px 0!important;color:#fff!important;font-size:16px!important;font-weight:800!important;text-align:center}
+      .tiktok-follow-link .tiktok-logo{width:68px;height:68px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(0,0,0,.28);transition:transform .25s ease,box-shadow .25s ease;overflow:hidden}
+      .tiktok-follow-link .tiktok-logo svg{width:43px;height:43px;display:block}
       .tiktok-follow-link:hover .tiktok-logo{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 30px rgba(0,0,0,.4)}
-      @media(max-width:600px){.contact-item.email-contact .email-logo{font-size:24px}.tiktok-follow-link .tiktok-logo{width:64px;height:64px}.tiktok-follow-link .tiktok-logo img{width:40px;height:40px}}
+      @media(max-width:600px){.contact-item.email-contact .email-logo{font-size:26px}.tiktok-follow-link .tiktok-logo{width:62px;height:62px}.tiktok-follow-link .tiktok-logo svg{width:39px;height:39px}}
     `;
     document.head.appendChild(style);
 
@@ -31,7 +31,7 @@
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
       link.setAttribute('aria-label','Osaka Windscreen on TikTok');
-      link.innerHTML = '<span class="tiktok-logo"><img src="https://cdn.simpleicons.org/tiktok/000000" alt="TikTok"></span><span>@osakawindscreen</span>';
+      link.innerHTML = '<span class="tiktok-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#111" d="M16.5 3c.4 1.8 1.4 3.1 3.2 3.8v3.1c-1.5-.1-2.8-.6-4-1.4v6.8c0 4.1-2.7 6.7-6.4 6.7-3.2 0-5.8-2.3-5.8-5.4 0-3.3 2.8-5.6 6.2-5.6.4 0 .8 0 1.2.1v3.1c-.4-.1-.8-.2-1.2-.2-1.5 0-2.8 1-2.8 2.5 0 1.3 1.1 2.4 2.5 2.4 1.8 0 2.8-1.2 2.8-3.4V3h4.3z"/></svg></span><span>@osakawindscreen</span>';
       social.appendChild(link);
     }
   };
