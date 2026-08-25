@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inject premium insurance panel and enhancement scripts
+      - name: Inject premium insurance panel, footer and enhancement scripts
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -62,10 +62,19 @@ jobs:
           new_footer = 'Copyright © 2026 Osaka Auto Technologies Sdn. Bhd. 201001022851 (906621-H). All Rights Reserved.'
           def normalize_footer(match):
               opening, inner, closing = match.groups()
-              # Replace the complete existing footer text, including previous variants/duplicates.
-              inner = new_footer
-              return opening + inner + closing
+              return opening + new_footer + closing
           s = re.sub(r'(<footer\b[^>]*>)(.*?)(</footer>)', normalize_footer, s, count=1, flags=re.I|re.S)
+
+          # Make the existing Our Video HTML5 video start automatically.
+          # Browsers generally require autoplay video to be muted; playsinline keeps
+          # it inline on mobile rather than forcing fullscreen playback.
+          def autoplay_video(match):
+              tag = match.group(0)
+              for attr in ('autoplay', 'muted', 'loop', 'playsinline'):
+                  if not re.search(r'\b' + attr + r'\b', tag, flags=re.I):
+                      tag = tag[:-1] + ' ' + attr + '>'
+              return tag
+          s = re.sub(r'<video\b[^>]*>', autoplay_video, s, flags=re.I)
 
           tags = [
               '<script src="site-enhancements.js?v=8"></script>',
@@ -90,6 +99,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes needed"
           else
-            git commit -m "[site-enhancements] Update footer legal company line"
+            git commit -m "[site-enhancements] Enable automatic video playback"
             git push
           fi
