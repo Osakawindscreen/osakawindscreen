@@ -115,7 +115,10 @@
     if (translated) node.nodeValue = `${match[1]}${translated}${match[3]}`;
   };
 
+  let currentLanguage = 'en';
+
   const translatePage = (language) => {
+    currentLanguage = language;
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode: node => node.parentElement && ['SCRIPT', 'STYLE'].includes(node.parentElement.tagName) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
     });
@@ -151,4 +154,5 @@
 
   addLanguageSwitcher();
   translatePage(localStorage.getItem('osaka-language') === 'ms' ? 'ms' : 'en');
+  new MutationObserver(() => translatePage(currentLanguage)).observe(document.body, { childList: true, subtree: true });
 })();
