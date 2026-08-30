@@ -1,5 +1,6 @@
 (() => {
   const translations = {
+    'See Clearly, Drive Safely.': 'Lihat Dengan Jelas, Pandu Dengan Selamat.',
     'WHY CHOOSE US': 'KENAPA PILIH KAMI',
     'OUR VIDEOS': 'VIDEO KAMI',
     'OUR SERVICES': 'PERKHIDMATAN KAMI',
