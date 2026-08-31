@@ -104,7 +104,7 @@ for name, filename in LOGOS:
     cls = ' insurance-logo-problem' if name in PROBLEM_LOGOS else ''
     cards.append(
         f'<div class="insurance-panel-card{cls}" title="{name}">'
-        f'<img src="{filename}" alt="{name} insurance logo" loading="lazy">'
+        f'<img class="insurance-logo" src="{filename}" alt="{name} insurance logo" loading="lazy">'
         f'</div>'
     )
 
@@ -125,20 +125,24 @@ if count != 1:
 
 css = '''
 /* PREMIUM INSURANCE PANEL LOGOS */
-.insurance-panel-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #292929;border-left:1px solid #292929}
-.insurance-panel-card{min-height:145px;background:#0d0d0d;border-right:1px solid #292929;border-bottom:1px solid #292929;display:flex;align-items:center;justify-content:center;padding:18px 20px;position:relative;overflow:hidden;transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
-.insurance-panel-card:after{content:"";position:absolute;left:22%;right:22%;bottom:0;height:2px;background:#c9232d;transform:scaleX(.35);transform-origin:center;transition:transform .25s ease}
-.insurance-panel-card:hover{transform:translateY(-3px);background:#151515;box-shadow:0 14px 32px rgba(0,0,0,.35)}
-.insurance-panel-card:hover:after{transform:scaleX(1)}
-.insurance-panel-card img{position:relative;z-index:1;display:block;width:210px;height:92px;object-fit:contain;object-position:center;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}
-.insurance-panel-card.insurance-logo-problem img{width:250px;height:105px}
-@media(max-width:1000px){.insurance-panel-grid{grid-template-columns:repeat(3,1fr)}.insurance-panel-card img{width:190px}.insurance-panel-card.insurance-logo-problem img{width:220px}}
-@media(max-width:700px){.insurance-panels{padding:65px 18px}.insurance-panel-grid{grid-template-columns:repeat(2,1fr)}.insurance-panel-card{min-height:125px;padding:14px 8px}.insurance-panel-card img{width:150px;height:72px}.insurance-panel-card.insurance-logo-problem img{width:175px;height:78px}}
-@media(max-width:420px){.insurance-panel-card{min-height:112px}.insurance-panel-card img{width:135px;height:65px}.insurance-panel-card.insurance-logo-problem img{width:155px;height:70px}}
+.insurance-panel-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid #292929;border-radius:14px;overflow:hidden;background:#0d0d0d;box-shadow:0 18px 45px rgba(0,0,0,.28)}
+.insurance-panel-card{min-width:0;min-height:150px;background:#111;border-right:1px solid #292929;border-bottom:1px solid #292929;display:flex;align-items:center;justify-content:center;padding:26px 24px;position:relative;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.018);transition:transform .22s ease,background .22s ease,box-shadow .22s ease,border-color .22s ease}
+.insurance-panel-card:nth-child(4n){border-right:0}
+.insurance-panel-card:nth-last-child(-n+4){border-bottom:0}
+.insurance-panel-card:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,35,45,.055),transparent 58%);opacity:0;pointer-events:none;transition:opacity .22s ease}
+.insurance-panel-card:after{content:"";position:absolute;left:50%;bottom:0;width:0;height:2px;background:#c9232d;transform:translateX(-50%);transition:width .22s ease}
+.insurance-panel-card .insurance-logo{position:relative;z-index:1;display:block;width:100%;max-width:210px;height:88px;object-fit:contain;object-position:center;margin:auto;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none;transition:transform .22s ease}
+.insurance-panel-card.insurance-logo-problem .insurance-logo{max-width:240px;height:98px}
+@media (hover:hover) and (pointer:fine){.insurance-panel-card:hover{transform:translateY(-3px);background:#151515;border-color:#3a3a3a;box-shadow:0 14px 30px rgba(0,0,0,.28)}.insurance-panel-card:hover:before{opacity:1}.insurance-panel-card:hover:after{width:44px}.insurance-panel-card:hover .insurance-logo{transform:scale(1.035)}}
+@media(max-width:1000px){.insurance-panel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.insurance-panel-card:nth-child(4n){border-right:1px solid #292929}.insurance-panel-card:nth-child(3n){border-right:0}.insurance-panel-card:nth-last-child(-n+4){border-bottom:1px solid #292929}.insurance-panel-card:nth-last-child(-n+3){border-bottom:0}.insurance-panel-card{min-height:145px;padding:24px 18px}.insurance-panel-card .insurance-logo{max-width:190px;height:82px}.insurance-panel-card.insurance-logo-problem .insurance-logo{max-width:220px;height:92px}}
+@media(max-width:700px){.insurance-panels{padding-left:18px;padding-right:18px}.insurance-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr));border-radius:12px}.insurance-panel-card{min-height:138px;padding:22px 14px}.insurance-panel-card:nth-child(3n){border-right:1px solid #292929}.insurance-panel-card:nth-child(2n){border-right:0}.insurance-panel-card:nth-last-child(-n+3){border-bottom:1px solid #292929}.insurance-panel-card:nth-last-child(-n+2){border-bottom:0}.insurance-panel-card .insurance-logo{max-width:165px;height:72px}.insurance-panel-card.insurance-logo-problem .insurance-logo{max-width:185px;height:80px}}
+@media(max-width:420px){.insurance-panel-card{min-height:128px;padding:20px 10px}.insurance-panel-card .insurance-logo{max-width:150px;height:66px}.insurance-panel-card.insurance-logo-problem .insurance-logo{max-width:170px;height:74px}}
 '''
 
+# Remove prior insurance-panel CSS blocks generated by this script, then add one canonical block.
+html = re.sub(r'/\* PREMIUM INSURANCE PANEL LOGOS \*/.*?@media\(max-width:420px\)\{.*?\}\n', '', html, flags=re.S)
 html = re.sub(r'/\* INSURANCE PANEL LOGOS \*/.*?@media\(max-width:420px\)\{.*?\}\n', '', html, flags=re.S)
 html = html.replace('</style>', css + '</style>', 1)
 
 INDEX.write_text(html, encoding='utf-8')
-print('Insurance panel updated with real uploaded logos and cleaned Lonpac/MSIG/Progresif/Tokio Marine assets.')
+print('Insurance panel updated with real uploaded logos, consistent contain-based logo slots, and responsive premium cards.')
