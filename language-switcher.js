@@ -1,5 +1,20 @@
 (() => {
   const translations = {
+    'INSURANCE CLAIM & PANEL': 'TUNTUTAN & PANEL INSURANS',
+    'Original & Quality Options': 'Pilihan Asli & Berkualiti',
+    'EXPERIENCE': 'PENGALAMAN',
+    'UP TO 90% READY STOCK': 'SEHINGGA 90% STOK SEDIA ADA',
+    'FOR CAR & LORRY': 'UNTUK KERETA & LORI',
+    'REFERRAL': 'RUJUKAN',
+    'PROGRAM': 'PROGRAM',
+    'SAME DAY': 'HARI YANG SAMA',
+    'RELEASE CAR': 'KERETA SIAP',
+    'Professional installation and repair work.': 'Kerja pemasangan dan pembaikan profesional.',
+    'Vehicle Release': 'Kenderaan Siap',
+    '💬 WhatsApp': '💬 WhatsApp Kami',
+    'CALL US': 'HUBUNGI KAMI',
+    'EMAIL': 'EMEL',
+
     'See Clearly, Drive Safely.': 'Lihat Dengan Jelas, Pandu Dengan Selamat.',
     'WHY CHOOSE US': 'KENAPA PILIH KAMI',
     'OUR VIDEOS': 'VIDEO KAMI',
