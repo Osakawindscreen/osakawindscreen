@@ -144,6 +144,18 @@ nav{position:fixed;top:0;left:0;width:100%;height:94px;background:var(--yellow);
 @media(max-width:1000px){.insurance-panel-grid{grid-template-columns:repeat(3,1fr)}.insurance-panel-card img{width:190px}.insurance-panel-card.insurance-logo-problem img{width:220px}}
 @media(max-width:700px){.insurance-panels{padding:65px 18px}.insurance-panel-grid{grid-template-columns:repeat(2,1fr)}.insurance-panel-card{min-height:125px;padding:14px 8px}.insurance-panel-card img{width:150px;height:72px}.insurance-panel-card.insurance-logo-problem img{width:175px;height:78px}}
 @media(max-width:420px){.insurance-panel-card{min-height:112px}.insurance-panel-card img{width:135px;height:65px}.insurance-panel-card.insurance-logo-problem img{width:155px;height:70px}}
+
+/* PREMIUM INSURANCE PANEL LOGOS */
+.insurance-panel-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #292929;border-left:1px solid #292929}
+.insurance-panel-card{min-height:145px;background:#0d0d0d;border-right:1px solid #292929;border-bottom:1px solid #292929;display:flex;align-items:center;justify-content:center;padding:18px 20px;position:relative;overflow:hidden;transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
+.insurance-panel-card:after{content:"";position:absolute;left:22%;right:22%;bottom:0;height:2px;background:#c9232d;transform:scaleX(.35);transform-origin:center;transition:transform .25s ease}
+.insurance-panel-card:hover{transform:translateY(-3px);background:#151515;box-shadow:0 14px 32px rgba(0,0,0,.35)}
+.insurance-panel-card:hover:after{transform:scaleX(1)}
+.insurance-panel-card img{position:relative;z-index:1;display:block;width:210px;height:92px;object-fit:contain;object-position:center;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}
+.insurance-panel-card.insurance-logo-problem img{width:250px;height:105px}
+@media(max-width:1000px){.insurance-panel-grid{grid-template-columns:repeat(3,1fr)}.insurance-panel-card img{width:190px}.insurance-panel-card.insurance-logo-problem img{width:220px}}
+@media(max-width:700px){.insurance-panels{padding:65px 18px}.insurance-panel-grid{grid-template-columns:repeat(2,1fr)}.insurance-panel-card{min-height:125px;padding:14px 8px}.insurance-panel-card img{width:150px;height:72px}.insurance-panel-card.insurance-logo-problem img{width:175px;height:78px}}
+@media(max-width:420px){.insurance-panel-card{min-height:112px}.insurance-panel-card img{width:135px;height:65px}.insurance-panel-card.insurance-logo-problem img{width:155px;height:70px}}
 </style>
 </head>
 <body>
