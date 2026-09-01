@@ -1,0 +1,35 @@
+name: Fix hero button overlap
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: ${{ !startsWith(github.event.head_commit.message, 'Fix hero button overlap') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply targeted spacing fix
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          html = p.read_text(encoding='utf-8')
+          marker = '/* HERO BUTTON OVERLAP FIX */'
+          if marker not in html:
+              css = '''\n/* HERO BUTTON OVERLAP FIX */\n@media (min-width:901px) and (max-width:1200px){.hero-left .buttons{transform:translateY(-28px)}}\n'''
+              html = html.replace('</style>', css + '</style>', 1)
+              p.write_text(html, encoding='utf-8')
+          PY
+      - name: Commit and clean up
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git rm .github/workflows/fix-hero-overlap.yml
+          git commit -m "Fix hero button overlap"
+          git push
