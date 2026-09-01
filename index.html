@@ -159,6 +159,18 @@ nav{position:fixed;top:0;left:0;width:100%;height:94px;background:var(--yellow);
 
 /* HERO BUTTON OVERLAP FIX */
 @media (min-width:901px) and (max-width:1200px){.hero-left .buttons{transform:translateY(-28px)}}
+
+/* HERO BUTTONS OVERLAP FIX V2 */
+@media (min-width:901px){
+  .hero-left .buttons{
+    position:relative !important;
+    z-index:10 !important;
+    transform:translateY(-65px) !important;
+  }
+}
+@media (max-width:900px){
+  .hero-left .buttons{position:relative;z-index:6;}
+}
 </style>
 </head>
 <body>
