@@ -98,6 +98,7 @@ nav{position:fixed;top:0;left:0;width:100%;height:94px;background:var(--yellow);
 }
 
 
+
 /* PREMIUM INSURANCE PARTNER PANEL - SECTION ONLY */
 .insurance-panels{padding:88px 30px;background:#090909;text-align:center}
 .insurance-panels .panel-header{max-width:900px;margin:0 auto 38px}
@@ -111,6 +112,12 @@ nav{position:fixed;top:0;left:0;width:100%;height:94px;background:var(--yellow);
 .insurance-panel-card{min-width:0;min-height:118px;background:#0d0d0d;border:1px solid #292929;border-radius:4px;display:flex;align-items:center;justify-content:center;padding:16px 14px;position:relative;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 4px 14px rgba(0,0,0,.18)}
 .insurance-panel-card:after{content:"";position:absolute;left:18%;right:18%;bottom:0;height:2px;background:#c9232d;transform:scaleX(.35);transform-origin:center;transition:transform .22s ease}
 .insurance-panel-card .insurance-logo{display:block;position:relative;z-index:1;width:100%;max-width:190px;height:76px;object-fit:contain;object-position:center;margin:auto;padding:0;background:transparent;border:0;box-shadow:none;image-rendering:auto}
+.insurance-panel-card .insurance-logo-chubb{max-width:195px}
+.insurance-panel-card .insurance-logo-generali{max-width:175px}
+.insurance-panel-card .insurance-logo-takaful-ikhlas{max-width:165px}
+.insurance-panel-card .insurance-logo-lonpac{max-width:170px}
+.insurance-panel-card .insurance-logo-rhb{max-width:165px}
+.insurance-panel-card .insurance-logo-takaful-malaysia{max-width:175px}
 @media (hover:hover) and (pointer:fine){.insurance-panel-card:hover{transform:translateY(-2px);border-color:#444;box-shadow:0 10px 24px rgba(0,0,0,.35)}.insurance-panel-card:hover:after{transform:scaleX(1)}}
 @media(max-width:1000px){.insurance-panel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.insurance-panel-card{min-height:125px}.insurance-panel-card .insurance-logo{max-width:185px;height:78px}}
 @media(max-width:700px){.insurance-panels{padding:65px 18px}.insurance-panels .panel-header{margin-bottom:30px}.insurance-kicker{font-size:11px;gap:9px}.insurance-kicker:before,.insurance-kicker:after{width:30px}.insurance-panels .panel-header h2{font-size:clamp(28px,8vw,38px);letter-spacing:-.6px}.insurance-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.insurance-panel-card{min-height:128px;padding:14px 9px}.insurance-panel-card .insurance-logo{max-width:160px;height:72px}}
@@ -133,24 +140,24 @@ nav{position:fixed;top:0;left:0;width:100%;height:94px;background:var(--yellow);
     <p>We work with Malaysia's most reliable insurance companies to provide you the best coverage and service.</p>
   </div>
   <div class="insurance-panel-grid">
-    <div class="insurance-panel-card" title="AIA"><img class="insurance-logo" src="ins-aia-logo-clean.png" alt="AIA insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="AIG"><img class="insurance-logo" src="ins-aig-logo-clean.png" alt="AIG insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="AXA AFFIN"><img class="insurance-logo" src="ins-axa-logo-clean.png" alt="AXA AFFIN insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="CHUBB"><img class="insurance-logo" src="ins-chubb-logo-clean.png" alt="CHUBB insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="GENERALI"><img class="insurance-logo" src="ins-generali-logo-clean.png" alt="GENERALI insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="TAKAFUL IKHLAS"><img class="insurance-logo" src="ins-ikhlas-logo-clean.png" alt="TAKAFUL IKHLAS insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="KURNIA"><img class="insurance-logo" src="ins-kurnia-logo-clean.png" alt="KURNIA insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="LIBERTY"><img class="insurance-logo" src="ins-liberty-logo-clean.png" alt="LIBERTY insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="LONPAC"><img class="insurance-logo" src="ins-lonpac-logo-clean.png" alt="LONPAC insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="MSIG"><img class="insurance-logo" src="ins-msig-logo-clean.png" alt="MSIG insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="PACIFIC"><img class="insurance-logo" src="ins-pacific-logo-clean.png" alt="PACIFIC insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="P & O"><img class="insurance-logo" src="ins-pno-logo-clean.png" alt="P & O insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="PROGRESIF"><img class="insurance-logo" src="ins-progresif-logo-clean.png" alt="PROGRESIF insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="RHB"><img class="insurance-logo" src="ins-rhb-logo-clean.png" alt="RHB insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="TAKAFUL MALAYSIA"><img class="insurance-logo" src="ins-malaysia-logo-clean.png" alt="TAKAFUL MALAYSIA insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="TOKIO MARINE"><img class="insurance-logo" src="ins-tokio-logo-clean.png" alt="TOKIO MARINE insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="TUNE"><img class="insurance-logo" src="ins-tune-logo-clean.png" alt="TUNE insurance logo" loading="lazy"></div>
-    <div class="insurance-panel-card" title="ZURICH"><img class="insurance-logo" src="ins-zurich-logo-clean.png" alt="ZURICH insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="AIA"><img class="insurance-logo insurance-logo-aia" src="ins-aia-logo-clean.png" alt="AIA insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="AIG"><img class="insurance-logo insurance-logo-aig" src="ins-aig-logo-clean.png" alt="AIG insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="AXA AFFIN"><img class="insurance-logo insurance-logo-axa-affin" src="ins-axa-logo-clean.png" alt="AXA AFFIN insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="CHUBB"><img class="insurance-logo insurance-logo-chubb" src="ins-chubb-logo-clean.png" alt="CHUBB insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="GENERALI"><img class="insurance-logo insurance-logo-generali" src="ins-generali-logo-clean.png" alt="GENERALI insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="TAKAFUL IKHLAS"><img class="insurance-logo insurance-logo-takaful-ikhlas" src="ins-ikhlas-logo-clean.png" alt="TAKAFUL IKHLAS insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="KURNIA"><img class="insurance-logo insurance-logo-kurnia" src="ins-kurnia-logo-clean.png" alt="KURNIA insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="LIBERTY"><img class="insurance-logo insurance-logo-liberty" src="ins-liberty-logo-clean.png" alt="LIBERTY insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="LONPAC"><img class="insurance-logo insurance-logo-lonpac" src="ins-lonpac-logo-clean.png" alt="LONPAC insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="MSIG"><img class="insurance-logo insurance-logo-msig" src="ins-msig-logo-clean.png" alt="MSIG insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="PACIFIC"><img class="insurance-logo insurance-logo-pacific" src="ins-pacific-logo-clean.png" alt="PACIFIC insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="P & O"><img class="insurance-logo insurance-logo-p-o" src="ins-pno-logo-clean.png" alt="P & O insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="PROGRESIF"><img class="insurance-logo insurance-logo-progresif" src="ins-progresif-logo-clean.png" alt="PROGRESIF insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="RHB"><img class="insurance-logo insurance-logo-rhb" src="ins-rhb-logo-clean.png" alt="RHB insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="TAKAFUL MALAYSIA"><img class="insurance-logo insurance-logo-takaful-malaysia" src="ins-malaysia-logo-clean.png" alt="TAKAFUL MALAYSIA insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="TOKIO MARINE"><img class="insurance-logo insurance-logo-tokio-marine" src="ins-tokio-logo-clean.png" alt="TOKIO MARINE insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="TUNE"><img class="insurance-logo insurance-logo-tune" src="ins-tune-logo-clean.png" alt="TUNE insurance logo" loading="lazy"></div>
+    <div class="insurance-panel-card" title="ZURICH"><img class="insurance-logo insurance-logo-zurich" src="ins-zurich-logo-clean.png" alt="ZURICH insurance logo" loading="lazy"></div>
   </div>
   <p class="insurance-panel-note"><b>Need to claim?</b> Send us your insurance details on WhatsApp and we will help you check the latest claim procedure and required documents.</p>
 </section>
