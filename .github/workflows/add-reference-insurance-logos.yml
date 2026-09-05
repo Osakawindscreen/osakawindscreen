@@ -1,0 +1,22 @@
+name: Add reference insurance logos
+on:
+  push:
+    branches: [main]
+jobs:
+  add-assets:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write reference logos
+        run: |
+          echo 'iVBORw0KGgoAAAANSUhEUgAAASwAAAB9CAYAAAB3p2XWAAAA...' | base64 -d > ins-chubb-reference.png
+      - name: Commit reference logos
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ins-*-reference.png
+          git diff --cached --quiet || git commit -m 'Add reference insurance logos'
+          git push
