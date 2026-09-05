@@ -26,12 +26,24 @@ LOGOS = [
     ('ZURICH', 'ins-zurich-logo.png'),
 ]
 
+# These six logos are already supplied as brand-colour artwork. Do not apply
+# the dark-neutral-to-white correction to them, because it can change the
+# original brand appearance seen in the reference panel.
+PRESERVE_BRAND_COLOURS = {
+    'CHUBB',
+    'GENERALI',
+    'TAKAFUL IKHLAS',
+    'LONPAC',
+    'RHB',
+    'TAKAFUL MALAYSIA',
+}
+
 
 def colour_distance(a, b):
     return sum((a[i] - b[i]) ** 2 for i in range(3)) ** 0.5
 
 
-def clean_logo(src_name, dst_name):
+def clean_logo(src_name, dst_name, brand_name):
     """Create a transparent, tightly cropped presentation copy of a logo."""
     src = Path(src_name)
     if not src.exists():
@@ -45,8 +57,8 @@ def clean_logo(src_name, dst_name):
     opaque = [c[:3] for c in corners if c[3] > 0]
     bg = tuple(sum(c[i] for c in opaque) // len(opaque) for i in range(3)) if opaque else (255, 255, 255)
 
-    # Remove only matte-coloured pixels connected to an image edge. This avoids
-    # deleting white brand lettering that is enclosed inside the logo artwork.
+    # Remove only matte-coloured pixels connected to an image edge. This keeps
+    # enclosed white brand lettering intact and avoids rectangular white mats.
     seen = bytearray(w * h)
     q = deque()
     for x in range(w):
@@ -70,18 +82,19 @@ def clean_logo(src_name, dst_name):
         if y > 0: q.append((x, y - 1))
         if y + 1 < h: q.append((x, y + 1))
 
-    # Make dark neutral source lettering readable on the dark website while
-    # preserving saturated brand colours.
-    for y in range(h):
-        for x in range(w):
-            r, g, b, a = px[x, y]
-            if a == 0:
-                continue
-            mx, mn = max(r, g, b), min(r, g, b)
-            sat = 0 if mx == 0 else (mx - mn) / mx
-            lum = 0.299 * r + 0.587 * g + 0.114 * b
-            if sat < 0.18 and lum < 125:
-                px[x, y] = (255, 255, 255, a)
+    # Keep the six reference-sensitive brand colours untouched. For the other
+    # partners, convert dark neutral source lettering to white for readability.
+    if brand_name not in PRESERVE_BRAND_COLOURS:
+        for y in range(h):
+            for x in range(w):
+                r, g, b, a = px[x, y]
+                if a == 0:
+                    continue
+                mx, mn = max(r, g, b), min(r, g, b)
+                sat = 0 if mx == 0 else (mx - mn) / mx
+                lum = 0.299 * r + 0.587 * g + 0.114 * b
+                if sat < 0.18 and lum < 125:
+                    px[x, y] = (255, 255, 255, a)
 
     bbox = im.getbbox()
     if bbox:
@@ -90,19 +103,20 @@ def clean_logo(src_name, dst_name):
 
 
 clean_files = []
-for _, src in LOGOS:
+for brand_name, src in LOGOS:
     stem = Path(src).stem
     dst = f'{stem}-clean.png'
-    clean_logo(src, dst)
+    clean_logo(src, dst, brand_name)
     clean_files.append(dst)
 
 html = INDEX.read_text(encoding='utf-8')
 
 cards = []
 for (name, _), clean_file in zip(LOGOS, clean_files):
+    slug = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
     cards.append(
         f'<div class="insurance-panel-card" title="{name}">'
-        f'<img class="insurance-logo" src="{clean_file}" alt="{name} insurance logo" loading="lazy">'
+        f'<img class="insurance-logo insurance-logo-{slug}" src="{clean_file}" alt="{name} insurance logo" loading="lazy">'
         f'</div>'
     )
 
@@ -136,6 +150,12 @@ css = '''
 .insurance-panel-card{min-width:0;min-height:118px;background:#0d0d0d;border:1px solid #292929;border-radius:4px;display:flex;align-items:center;justify-content:center;padding:16px 14px;position:relative;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 4px 14px rgba(0,0,0,.18)}
 .insurance-panel-card:after{content:"";position:absolute;left:18%;right:18%;bottom:0;height:2px;background:#c9232d;transform:scaleX(.35);transform-origin:center;transition:transform .22s ease}
 .insurance-panel-card .insurance-logo{display:block;position:relative;z-index:1;width:100%;max-width:190px;height:76px;object-fit:contain;object-position:center;margin:auto;padding:0;background:transparent;border:0;box-shadow:none;image-rendering:auto}
+.insurance-panel-card .insurance-logo-chubb{max-width:195px}
+.insurance-panel-card .insurance-logo-generali{max-width:175px}
+.insurance-panel-card .insurance-logo-takaful-ikhlas{max-width:165px}
+.insurance-panel-card .insurance-logo-lonpac{max-width:170px}
+.insurance-panel-card .insurance-logo-rhb{max-width:165px}
+.insurance-panel-card .insurance-logo-takaful-malaysia{max-width:175px}
 @media (hover:hover) and (pointer:fine){.insurance-panel-card:hover{transform:translateY(-2px);border-color:#444;box-shadow:0 10px 24px rgba(0,0,0,.35)}.insurance-panel-card:hover:after{transform:scaleX(1)}}
 @media(max-width:1000px){.insurance-panel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.insurance-panel-card{min-height:125px}.insurance-panel-card .insurance-logo{max-width:185px;height:78px}}
 @media(max-width:700px){.insurance-panels{padding:65px 18px}.insurance-panels .panel-header{margin-bottom:30px}.insurance-kicker{font-size:11px;gap:9px}.insurance-kicker:before,.insurance-kicker:after{width:30px}.insurance-panels .panel-header h2{font-size:clamp(28px,8vw,38px);letter-spacing:-.6px}.insurance-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.insurance-panel-card{min-height:128px;padding:14px 9px}.insurance-panel-card .insurance-logo{max-width:160px;height:72px}}
