@@ -26,6 +26,8 @@ LOGOS = [
     ('ZURICH', 'ins-zurich-logo.png'),
 ]
 
+# The seven requested brands use their local cleaned logo artwork. This avoids
+# any missing screenshot-sprite URL and keeps every logo self-contained in GitHub.
 
 def colour_distance(a, b):
     return sum((a[i] - b[i]) ** 2 for i in range(3)) ** 0.5
