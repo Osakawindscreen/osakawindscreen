@@ -131,7 +131,6 @@ css = '''
 .insurance-panel-card{min-width:0;min-height:118px;background:#0d0d0d;border:1px solid #292929;border-radius:4px;display:flex;align-items:center;justify-content:center;padding:16px 14px;position:relative;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 4px 14px rgba(0,0,0,.18)}
 .insurance-panel-card:after{content:"";position:absolute;left:18%;right:18%;bottom:0;height:2px;background:#c9232d;transform:scaleX(.35);transform-origin:center;transition:transform .22s ease}
 .insurance-panel-card .insurance-logo{display:block;position:relative;z-index:1;width:100%;max-width:190px;height:76px;object-fit:contain;object-position:center;margin:auto;padding:0;background:transparent;border:0;box-shadow:none;image-rendering:auto}
-/* Match the proportions visible in the supplied reference screenshot. */
 .insurance-panel-card .insurance-logo-aig{max-width:128px;height:78px}
 .insurance-panel-card .insurance-logo-chubb{max-width:170px;height:70px}
 .insurance-panel-card .insurance-logo-generali{max-width:175px;height:78px}
