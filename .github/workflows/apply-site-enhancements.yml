@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   enhance:
-    if: ${{ !contains(github.event.head_commit.message, '[site-enhancements]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[site-enhancements]') && !contains(github.event.head_commit.message, 'Fix broken insurance logo references') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,16 +58,12 @@ jobs:
                   body = '</body>'
                   s = s.replace(body, insurance + '\n' + body, 1)
 
-          # Normalize the footer to the exact requested legal/company line.
           new_footer = 'Copyright © 2026 Osaka Auto Technologies Sdn. Bhd. 201001022851 (906621-H). All Rights Reserved.'
           def normalize_footer(match):
               opening, inner, closing = match.groups()
               return opening + new_footer + closing
           s = re.sub(r'(<footer\b[^>]*>)(.*?)(</footer>)', normalize_footer, s, count=1, flags=re.I|re.S)
 
-          # Make the existing Our Video HTML5 video start automatically.
-          # Browsers generally require autoplay video to be muted; playsinline keeps
-          # it inline on mobile rather than forcing fullscreen playback.
           def autoplay_video(match):
               tag = match.group(0)
               for attr in ('autoplay', 'muted', 'loop', 'playsinline'):
