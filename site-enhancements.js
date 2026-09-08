@@ -38,6 +38,14 @@
       .insurance-panel-card:after{content:""!important;position:absolute!important;left:50%!important;bottom:0!important;width:0!important;height:2px!important;background:#c9232d!important;transform:translateX(-50%)!important;transition:width .25s ease!important}.insurance-panel-card:hover:after{width:42px!important}
       .insurance-panel-card strong{display:none!important}
       .insurance-panel-card .insurance-logo{position:relative!important;z-index:2!important;display:block!important;width:100%!important;max-width:190px!important;height:82px!important;object-fit:contain!important;object-position:center!important;margin:auto!important;background:transparent!important;border:0!important;padding:0!important;transition:transform .25s ease,opacity .25s ease!important}
+      /* Screenshot sprite fix: the six reference crops must not be scaled as one image. */
+      .insurance-panel-card .reference-sprite{width:218px!important;max-width:none!important;height:100px!important;object-fit:none!important;object-position:center!important}
+      .insurance-panel-card .insurance-logo-chubb.reference-sprite{object-position:center 36px!important}
+      .insurance-panel-card .insurance-logo-generali.reference-sprite{object-position:center -36px!important}
+      .insurance-panel-card .insurance-logo-lonpac.reference-sprite{object-position:center -151px!important}
+      .insurance-panel-card .insurance-logo-rhb.reference-sprite{object-position:center -240px!important}
+      .insurance-panel-card .insurance-logo-takaful-ikhlas.reference-sprite{object-position:center -320px!important}
+      .insurance-panel-card .insurance-logo-takaful-malaysia.reference-sprite{object-position:center -438px!important}
       .insurance-panel-card:hover .insurance-logo{transform:scale(1.045)!important}
       .insurance-panel-note{max-width:900px!important;margin:25px auto 0!important;color:#777!important;font-size:12px!important;line-height:1.6!important}
 
@@ -56,10 +64,10 @@
       @media(max-width:800px){
         nav{padding:0 14px}.nav-logo{flex:1 1 auto;min-width:0}.nav-menu{display:none!important}.nav-call{display:flex;align-items:center;gap:8px}.nav-call a{padding:10px 15px;font-size:12px}.osaka-mobile-toggle{display:flex}.osaka-mobile-panel{display:block}
         .hero-left,.hero-trust-card,.hero-service-strip{animation:none}.osaka-reveal{transform:translateY(13px);transition-duration:.55s}
-        .insurance-panels{padding-left:18px!important;padding-right:18px!important}.insurance-panels .panel-header{margin-bottom:28px!important}.insurance-panels .panel-header h2{font-size:30px!important}.insurance-panels .panel-header p{font-size:14px!important}.insurance-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;border-radius:14px!important}.insurance-panel-card{min-height:104px!important;padding:12px 8px!important}.insurance-panel-card:nth-child(4n){border-right:1px solid rgba(255,255,255,.075)!important}.insurance-panel-card:nth-child(2n){border-right:0!important}.insurance-panel-card:nth-last-child(-n+4){border-bottom:1px solid rgba(255,255,255,.075)!important}.insurance-panel-card:nth-last-child(-n+2){border-bottom:0!important}.insurance-panel-card .insurance-logo{max-width:155px!important;height:60px!important}
+        .insurance-panels{padding-left:18px!important;padding-right:18px!important}.insurance-panels .panel-header{margin-bottom:28px!important}.insurance-panels .panel-header h2{font-size:30px!important}.insurance-panels .panel-header p{font-size:14px!important}.insurance-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;border-radius:14px!important}.insurance-panel-card{min-height:104px!important;padding:12px 8px!important}.insurance-panel-card:nth-child(4n){border-right:1px solid rgba(255,255,255,.075)!important}.insurance-panel-card:nth-child(2n){border-right:0!important}.insurance-panel-card:nth-last-child(-n+4){border-bottom:1px solid rgba(255,255,255,.075)!important}.insurance-panel-card:nth-last-child(-n+2){border-bottom:0!important}.insurance-panel-card .insurance-logo{max-width:155px!important;height:60px!important}.insurance-panel-card .reference-sprite{width:190px!important;max-width:none!important;height:90px!important}
         .payment-logos{max-width:430px!important;padding:14px!important;gap:10px!important}.payment-logo-card{min-height:90px!important;padding:8px!important}.payment-logo-card img{max-width:145px!important;height:56px!important}.payment-logo-card:last-child{max-width:100%!important}
       }
-      @media(max-width:480px){.payment-logos{grid-template-columns:1fr!important}.payment-logo-card:last-child{grid-column:auto!important;max-width:none!important}.payment-logo-card img{max-width:180px!important}.insurance-panel-card .insurance-logo{max-width:145px!important;height:54px!important}}
+      @media(max-width:480px){.payment-logos{grid-template-columns:1fr!important}.payment-logo-card:last-child{grid-column:auto!important;max-width:none!important}.payment-logo-card img{max-width:180px!important}.insurance-panel-card .insurance-logo{max-width:145px!important;height:54px!important}.insurance-panel-card .reference-sprite{width:170px!important;max-width:none!important;height:82px!important}}
       @media(prefers-reduced-motion:reduce){.osaka-reveal,.hero-left,.hero-trust-card,.hero-service-strip{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}.osaka-mobile-panel,.osaka-mobile-toggle span,.osaka-mobile-toggle span:before,.osaka-mobile-toggle span:after{transition:none!important}}
     `;
     document.head.appendChild(style);
@@ -93,8 +101,6 @@
       aia:'ins-aia-logo.png',aig:'ins-aig-logo.png','axa affin':'ins-axa-logo.png',axa:'ins-axa-logo.png',chubb:'ins-chubb-logo.png',generali:'ins-generali-logo.jpg',ikhlas:'ins-ikhlas-logo.png','takaful / ikhlas':'ins-ikhlas-logo.png',kurnia:'ins-kurnia-logo.png',liberty:'ins-liberty-logo.png',lonpac:'ins-lonpac-logo.jpg','takaful malaysia':'ins-malaysia-logo.png',msig:'ins-msig-logo.png',pacific:'ins-pacific-logo.png','p&o':'ins-pno-logo.png','p & o':'ins-pno-logo.png',progresif:'ins-progresif-logo.png',progressive:'ins-progresif-logo.png',rhb:'ins-rhb-logo.png','tokio marine':'ins-tokio-logo.png',tokio:'ins-tokio-logo.png',tune:'ins-tune-logo.png',zurich:'ins-zurich-logo.png','syarikat takaful malaysia':'ins-malaysia-logo.png'
     };
 
-    // Convert supplied opaque logo artwork into transparent PNGs in-browser.
-    // This specifically fixes black-background/dark-wordmark logos such as Progressive and Tokio Marine.
     function processLogo(img){
       if(!img.complete || !img.naturalWidth){img.addEventListener('load',()=>processLogo(img),{once:true});return}
       if(img.dataset.logoProcessed==='1')return;
