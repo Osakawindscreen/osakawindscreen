@@ -55,38 +55,29 @@ jobs:
               if marker in s:
                   s = s.replace(marker, insurance + '\n' + marker, 1)
               else:
-                  body = '</body>'
-                  s = s.replace(body, insurance + '\n' + body, 1)
+                  s = s.replace('</body>', insurance + '\n</body>', 1)
 
           new_footer = 'Copyright © 2026 Osaka Auto Technologies Sdn. Bhd. 201001022851 (906621-H). All Rights Reserved.'
-          def normalize_footer(match):
-              opening, inner, closing = match.groups()
-              return opening + new_footer + closing
-          s = re.sub(r'(<footer\b[^>]*>)(.*?)(</footer>)', normalize_footer, s, count=1, flags=re.I|re.S)
+          s = re.sub(r'(<footer\b[^>]*>)(.*?)(</footer>)', lambda m:m.group(1)+new_footer+m.group(3), s, count=1, flags=re.I|re.S)
 
           def autoplay_video(match):
               tag = match.group(0)
-              for attr in ('autoplay', 'muted', 'loop', 'playsinline'):
-                  if not re.search(r'\b' + attr + r'\b', tag, flags=re.I):
-                      tag = tag[:-1] + ' ' + attr + '>'
+              for attr in ('autoplay','muted','loop','playsinline'):
+                  if not re.search(r'\b'+attr+r'\b', tag, flags=re.I): tag=tag[:-1]+' '+attr+'>'
               return tag
           s = re.sub(r'<video\b[^>]*>', autoplay_video, s, flags=re.I)
 
           tags = [
               '<script src="site-enhancements.js?v=8"></script>',
               '<script src="contact-enhancements.js?v=2"></script>',
-              '<script src="insurance-logo-reference-fix.js?v=1"></script>'
+              '<script src="insurance-logo-reference-fix.js?v=2"></script>'
           ]
           for tag in tags:
-              src = tag.split('"')[1]
-              s = re.sub(r'<script\s+src=["\']' + re.escape(src.split('?')[0]) + r'(?:\?[^"\']*)?["\']\s*></script>\s*', '', s, flags=re.I)
-              marker = '</body>'
-              if marker in s:
-                  s = s.replace(marker, tag + '\n' + marker, 1)
-              else:
-                  s += '\n' + tag + '\n'
+              src=tag.split('"')[1]
+              s=re.sub(r'<script\s+src=["\']'+re.escape(src.split('?')[0])+r'(?:\?[^"\']*)?["\']\s*></script>\s*','',s,flags=re.I)
+              s=s.replace('</body>',tag+'\n</body>',1)
 
-          p.write_text(s, encoding='utf-8')
+          p.write_text(s,encoding='utf-8')
           PY
       - name: Commit injected changes
         run: |
