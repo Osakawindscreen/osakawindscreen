@@ -26,26 +26,12 @@ LOGOS = [
     ('ZURICH', 'ins-zurich-logo.png'),
 ]
 
-# These seven logos must follow the user's supplied screenshot, not the
-# existing GitHub logo artwork.
-SCREENSHOT_REFERENCE_LOGOS = {
-    'AIG',
-    'CHUBB',
-    'GENERALI',
-    'TAKAFUL IKHLAS',
-    'LONPAC',
-    'RHB',
-    'TAKAFUL MALAYSIA',
-}
-SCREENSHOT_REFERENCE_SPRITE = 'insurance-screenshot-seven-card-q50.jpg'
-
 
 def colour_distance(a, b):
     return sum((a[i] - b[i]) ** 2 for i in range(3)) ** 0.5
 
 
-def clean_logo(src_name, dst_name, brand_name):
-    """Create a transparent, tightly cropped presentation copy of a logo."""
+def clean_logo(src_name, dst_name):
     src = Path(src_name)
     if not src.exists():
         raise FileNotFoundError(src)
@@ -53,7 +39,6 @@ def clean_logo(src_name, dst_name, brand_name):
     im = Image.open(src).convert('RGBA')
     w, h = im.size
     px = im.load()
-
     corners = [px[0, 0], px[w - 1, 0], px[0, h - 1], px[w - 1, h - 1]]
     opaque = [c[:3] for c in corners if c[3] > 0]
     bg = tuple(sum(c[i] for c in opaque) // len(opaque) for i in range(3)) if opaque else (255, 255, 255)
@@ -81,17 +66,16 @@ def clean_logo(src_name, dst_name, brand_name):
         if y > 0: q.append((x, y - 1))
         if y + 1 < h: q.append((x, y + 1))
 
-    if brand_name not in SCREENSHOT_REFERENCE_LOGOS:
-        for y in range(h):
-            for x in range(w):
-                r, g, b, a = px[x, y]
-                if a == 0:
-                    continue
-                mx, mn = max(r, g, b), min(r, g, b)
-                sat = 0 if mx == 0 else (mx - mn) / mx
-                lum = 0.299 * r + 0.587 * g + 0.114 * b
-                if sat < 0.18 and lum < 125:
-                    px[x, y] = (255, 255, 255, a)
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = px[x, y]
+            if a == 0:
+                continue
+            mx, mn = max(r, g, b), min(r, g, b)
+            sat = 0 if mx == 0 else (mx - mn) / mx
+            lum = 0.299 * r + 0.587 * g + 0.114 * b
+            if sat < 0.18 and lum < 125:
+                px[x, y] = (255, 255, 255, a)
 
     bbox = im.getbbox()
     if bbox:
@@ -103,7 +87,7 @@ clean_files = []
 for brand_name, src in LOGOS:
     stem = Path(src).stem
     dst = f'{stem}-clean.png'
-    clean_logo(src, dst, brand_name)
+    clean_logo(src, dst)
     clean_files.append(dst)
 
 html = INDEX.read_text(encoding='utf-8')
@@ -111,11 +95,9 @@ html = INDEX.read_text(encoding='utf-8')
 cards = []
 for (name, _), clean_file in zip(LOGOS, clean_files):
     slug = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
-    src_file = SCREENSHOT_REFERENCE_SPRITE if name in SCREENSHOT_REFERENCE_LOGOS else clean_file
-    ref_class = ' reference-logo' if name in SCREENSHOT_REFERENCE_LOGOS else ''
     cards.append(
         f'<div class="insurance-panel-card" title="{name}">'
-        f'<img class="insurance-logo insurance-logo-{slug}{ref_class}" src="{src_file}" alt="{name} insurance logo" loading="lazy">'
+        f'<img class="insurance-logo insurance-logo-{slug}" src="{clean_file}" alt="{name} insurance logo" loading="lazy">'
         f'</div>'
     )
 
@@ -149,20 +131,18 @@ css = '''
 .insurance-panel-card{min-width:0;min-height:118px;background:#0d0d0d;border:1px solid #292929;border-radius:4px;display:flex;align-items:center;justify-content:center;padding:16px 14px;position:relative;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 4px 14px rgba(0,0,0,.18)}
 .insurance-panel-card:after{content:"";position:absolute;left:18%;right:18%;bottom:0;height:2px;background:#c9232d;transform:scaleX(.35);transform-origin:center;transition:transform .22s ease}
 .insurance-panel-card .insurance-logo{display:block;position:relative;z-index:1;width:100%;max-width:190px;height:76px;object-fit:contain;object-position:center;margin:auto;padding:0;background:transparent;border:0;box-shadow:none;image-rendering:auto}
-/* The seven screenshot-reference logos use one exact screenshot crop sprite.
-   Each class reveals only its matching crop; the panel/card background stays unchanged. */
-.insurance-panel-card .reference-logo{width:218px;max-width:none;height:100px;object-fit:none;image-rendering:auto}
-.insurance-panel-card .insurance-logo-aig.reference-logo{object-position:center -5px}
-.insurance-panel-card .insurance-logo-chubb.reference-logo{object-position:center -115px}
-.insurance-panel-card .insurance-logo-generali.reference-logo{object-position:center -225px}
-.insurance-panel-card .insurance-logo-takaful-ikhlas.reference-logo{object-position:center -335px}
-.insurance-panel-card .insurance-logo-lonpac.reference-logo{object-position:center -445px}
-.insurance-panel-card .insurance-logo-rhb.reference-logo{object-position:center -555px}
-.insurance-panel-card .insurance-logo-takaful-malaysia.reference-logo{object-position:center -665px}
+/* Match the proportions visible in the supplied reference screenshot. */
+.insurance-panel-card .insurance-logo-aig{max-width:128px;height:78px}
+.insurance-panel-card .insurance-logo-chubb{max-width:170px;height:70px}
+.insurance-panel-card .insurance-logo-generali{max-width:175px;height:78px}
+.insurance-panel-card .insurance-logo-takaful-ikhlas{max-width:145px;height:80px}
+.insurance-panel-card .insurance-logo-lonpac{max-width:150px;height:80px}
+.insurance-panel-card .insurance-logo-rhb{max-width:150px;height:70px}
+.insurance-panel-card .insurance-logo-takaful-malaysia{max-width:150px;height:80px}
 @media (hover:hover) and (pointer:fine){.insurance-panel-card:hover{transform:translateY(-2px);border-color:#444;box-shadow:0 10px 24px rgba(0,0,0,.35)}.insurance-panel-card:hover:after{transform:scaleX(1)}}
-@media(max-width:1000px){.insurance-panel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.insurance-panel-card{min-height:125px}.insurance-panel-card .insurance-logo{max-width:185px;height:78px}.insurance-panel-card .reference-logo{width:218px;max-width:none;height:100px}}
-@media(max-width:700px){.insurance-panels{padding:65px 18px}.insurance-panels .panel-header{margin-bottom:30px}.insurance-kicker{font-size:11px;gap:9px}.insurance-kicker:before,.insurance-kicker:after{width:30px}.insurance-panels .panel-header h2{font-size:clamp(28px,8vw,38px);letter-spacing:-.6px}.insurance-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.insurance-panel-card{min-height:128px;padding:14px 9px}.insurance-panel-card .insurance-logo{max-width:160px;height:72px}.insurance-panel-card .reference-logo{width:190px;max-width:none;height:90px}}
-@media(max-width:420px){.insurance-panel-card{min-height:118px}.insurance-panel-card .insurance-logo{max-width:145px;height:65px}.insurance-panel-card .reference-logo{width:170px;max-width:none;height:82px}}
+@media(max-width:1000px){.insurance-panel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.insurance-panel-card{min-height:125px}.insurance-panel-card .insurance-logo{max-width:185px;height:78px}}
+@media(max-width:700px){.insurance-panels{padding:65px 18px}.insurance-panels .panel-header{margin-bottom:30px}.insurance-kicker{font-size:11px;gap:9px}.insurance-kicker:before,.insurance-kicker:after{width:30px}.insurance-panels .panel-header h2{font-size:clamp(28px,8vw,38px);letter-spacing:-.6px}.insurance-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.insurance-panel-card{min-height:128px;padding:14px 9px}.insurance-panel-card .insurance-logo{max-width:160px;height:72px}}
+@media(max-width:420px){.insurance-panel-card{min-height:118px}.insurance-panel-card .insurance-logo{max-width:145px;height:65px}}
 '''
 
 html = re.sub(r'/\* PREMIUM INSURANCE PARTNER PANEL - SECTION ONLY \*/.*?@media\(max-width:420px\)\{.*?\}\n', '', html, flags=re.S)
