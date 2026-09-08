@@ -74,7 +74,8 @@ jobs:
 
           tags = [
               '<script src="site-enhancements.js?v=8"></script>',
-              '<script src="contact-enhancements.js?v=2"></script>'
+              '<script src="contact-enhancements.js?v=2"></script>',
+              '<script src="insurance-logo-reference-fix.js?v=1"></script>'
           ]
           for tag in tags:
               src = tag.split('"')[1]
@@ -95,6 +96,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes needed"
           else
-            git commit -m "[site-enhancements] Enable automatic video playback"
+            git commit -m "[site-enhancements] Load insurance logo rendering fix"
             git push
           fi
