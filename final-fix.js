@@ -1,13 +1,13 @@
 /* Osaka Windscreen — final insurance logo rendering fix */
 (() => {
   const refs = {
-    AIG: {src:'ins-aig-logo-clean.png'},
+    AIG: {src:'ins-aig-logo-clean.png', mode:'aig'},
     CHUBB: {src:'insurance-screenshot-six-card-q50.jpg', pos:'center 36px', sprite:true},
-    GENERALI: {src:'ins-generali-logo-clean.png'},
-    'TAKAFUL IKHLAS': {src:'ins-ikhlas-logo-clean.png'},
-    LONPAC: {src:'ins-lonpac-logo-clean.png'},
-    RHB: {src:'ins-rhb-logo-clean.png'},
-    'TAKAFUL MALAYSIA': {src:'ins-malaysia-logo-clean.png'}
+    GENERALI: {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -36px', sprite:true},
+    'TAKAFUL IKHLAS': {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -320px', sprite:true},
+    LONPAC: {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -151px', sprite:true},
+    RHB: {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -240px', sprite:true},
+    'TAKAFUL MALAYSIA': {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -438px', sprite:true}
   };
 
   const apply = () => {
@@ -31,9 +31,9 @@
       }else{
         img.style.setProperty('object-fit','contain','important');
         img.style.setProperty('object-position','center','important');
-        img.style.setProperty('width','190px','important');
-        img.style.setProperty('max-width','190px','important');
-        img.style.setProperty('height','76px','important');
+        img.style.setProperty('width','128px','important');
+        img.style.setProperty('max-width','128px','important');
+        img.style.setProperty('height','78px','important');
       }
     });
   };
