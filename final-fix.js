@@ -1,13 +1,13 @@
 /* Osaka Windscreen — final insurance logo rendering fix */
 (() => {
   const refs = {
-    AIG: {src:'ins-aig-logo-clean.png', mode:'aig'},
-    CHUBB: {src:'insurance-screenshot-six-card-q50.jpg', pos:'center 36px'},
-    GENERALI: {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -36px'},
-    'TAKAFUL IKHLAS': {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -320px'},
-    LONPAC: {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -151px'},
-    RHB: {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -240px'},
-    'TAKAFUL MALAYSIA': {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -438px'}
+    AIG: {src:'ins-aig-logo-clean.png'},
+    CHUBB: {src:'insurance-screenshot-six-card-q50.jpg', pos:'center 36px', sprite:true},
+    GENERALI: {src:'ins-generali-logo-clean.png'},
+    'TAKAFUL IKHLAS': {src:'ins-ikhlas-logo-clean.png'},
+    LONPAC: {src:'ins-lonpac-logo-clean.png'},
+    RHB: {src:'ins-rhb-logo-clean.png'},
+    'TAKAFUL MALAYSIA': {src:'ins-malaysia-logo-clean.png'}
   };
 
   const apply = () => {
@@ -17,19 +17,23 @@
       if(!ref) return;
       const img=card.querySelector('.insurance-logo');
       if(!img) return;
+
       img.src=ref.src;
       img.classList.add('reference-logo');
-      img.style.setProperty('object-fit',ref.mode==='aig'?'contain':'none','important');
-      img.style.setProperty('object-position',ref.pos||'center','important');
       img.style.setProperty('image-rendering','auto','important');
-      if(ref.mode==='aig'){
-        img.style.setProperty('width','128px','important');
-        img.style.setProperty('max-width','128px','important');
-        img.style.setProperty('height','78px','important');
-      }else{
+
+      if(ref.sprite){
+        img.style.setProperty('object-fit','none','important');
+        img.style.setProperty('object-position',ref.pos,'important');
         img.style.setProperty('width','218px','important');
         img.style.setProperty('max-width','none','important');
         img.style.setProperty('height','100px','important');
+      }else{
+        img.style.setProperty('object-fit','contain','important');
+        img.style.setProperty('object-position','center','important');
+        img.style.setProperty('width','190px','important');
+        img.style.setProperty('max-width','190px','important');
+        img.style.setProperty('height','76px','important');
       }
     });
   };
