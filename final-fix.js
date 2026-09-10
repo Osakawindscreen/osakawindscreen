@@ -1,4 +1,4 @@
-/* Osaka Windscreen — final insurance logo rendering fix */
+/* Osaka Windscreen — exact screenshot insurance logo rendering */
 (() => {
   const refs = {
     AIA: {src:'ins-aia-logo.png', mode:'aia'},
@@ -11,6 +11,8 @@
     'TAKAFUL MALAYSIA': {src:'insurance-screenshot-six-card-q50.jpg', pos:'center -438px', sprite:true}
   };
 
+  const exactSeven = new Set(['AIG','CHUBB','LONPAC','GENERALI','RHB','TAKAFUL IKHLAS','TAKAFUL MALAYSIA']);
+
   const apply = () => {
     document.querySelectorAll('.insurance-panel-card').forEach(card => {
       const name=(card.getAttribute('title')||'').trim().toUpperCase();
@@ -20,12 +22,22 @@
       if(!img) return;
 
       img.dataset.logoProcessed='1';
-      img.src=ref.src;
+      img.src=ref.src + (ref.sprite ? '?v=exact7' : '?v=exact7');
       img.classList.add('reference-logo');
       img.style.setProperty('display','block','important');
       img.style.setProperty('opacity','1','important');
       img.style.setProperty('visibility','visible','important');
+      img.style.setProperty('filter','none','important');
+      img.style.setProperty('box-shadow','none','important');
+      img.style.setProperty('text-shadow','none','important');
+      img.style.setProperty('mix-blend-mode','normal','important');
+      img.style.setProperty('background','transparent','important');
       img.style.setProperty('image-rendering','auto','important');
+
+      if(exactSeven.has(name)){
+        card.style.setProperty('box-shadow','none','important');
+        card.style.setProperty('transform','none','important');
+      }
 
       if(ref.sprite){
         img.style.setProperty('object-fit','none','important');
