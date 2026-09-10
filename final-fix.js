@@ -31,9 +31,9 @@
       }else{
         img.style.setProperty('object-fit','contain','important');
         img.style.setProperty('object-position','center','important');
-        img.style.setProperty('width','128px','important');
-        img.style.setProperty('max-width','128px','important');
-        img.style.setProperty('height','78px','important');
+        img.style.setProperty('width','108px','important');
+        img.style.setProperty('max-width','108px','important');
+        img.style.setProperty('height','65px','important');
       }
     });
   };
