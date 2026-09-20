@@ -5,7 +5,7 @@
     ['AXA AFFIN', 'ins-axa-logo-clean.png', 'AXA AFFIN insurance logo', 'axa'],
     ['CHUBB', 'ins-chubb-logo-clean.png', 'CHUBB insurance logo', 'chubb'],
     ['LIBERTY', 'ins-liberty-logo-clean.png', 'Liberty Insurance logo', 'liberty'],
-    ['LONPAC', 'ins-lonpac-logo-clean.png', 'LONPAC insurance logo', 'lonpac'],
+    ['LONPAC', 'lonpac.webp', 'LONPAC insurance logo', 'lonpac'],
     ['MSIG', 'ins-msig-logo-clean.png', 'MSIG insurance logo', 'msig'],
     ['P & O', 'ins-pno-logo-clean.png', 'P & O insurance logo', 'pno'],
     ['PROGRESSIVE INSURANCE BHD', 'ins-progresif-logo-clean.png', 'Progressive Insurance BHD logo', 'progressive'],
@@ -16,7 +16,7 @@
     ['TOKIO MARINE', 'ins-tokio-logo-clean.png', 'Tokio Marine Insurance Group logo', 'tokio'],
     ['ZURICH', 'ins-zurich-logo-clean.png', 'Zurich insurance logo', 'zurich'],
     ['KURNIA', 'ins-kurnia-logo-clean.png', 'Kurnia insurance logo', 'kurnia'],
-    ['AIG', 'ins-aig-logo-clean.png', 'AIG insurance logo', 'aig'],
+    ['AIG', 'aig.png', 'AIG insurance logo', 'aig'],
     ['TAKAFUL MALAYSIA', 'ins-malaysia-logo-clean.png', 'Takaful Malaysia logo', 'malaysia']
   ];
 
