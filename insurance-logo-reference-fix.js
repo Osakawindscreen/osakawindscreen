@@ -9,7 +9,7 @@
     ['MSIG', 'ins-msig-logo-clean.png', 'MSIG insurance logo', 'msig'],
     ['P & O', 'ins-pno-logo-clean.png', 'P & O insurance logo', 'pno'],
     ['PROGRESSIVE INSURANCE BHD', 'ins-progresif-logo-clean.png', 'Progressive Insurance BHD logo', 'progressive'],
-    ['GENERALI', 'mpi.jpg?v=20260920-1900', 'MPI Generali insurance logo', 'generali'],
+    ['GENERALI', 'mpi.png?v=20260920-2127', 'MPI Generali insurance logo', 'generali'],
     ['RHB', 'ins-rhb-logo-clean.png', 'RHB insurance logo', 'rhb'],
     ['TAKAFUL IKHLAS', 'takaful ikhlas logo.png', 'Takaful Ikhlas logo', 'ikhlas'],
     ['PACIFIC INSURANCE', 'ins-pacific-logo-clean.png', 'Pacific Insurance logo', 'pacific'],
