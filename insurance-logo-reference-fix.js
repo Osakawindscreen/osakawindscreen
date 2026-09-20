@@ -3,9 +3,9 @@
   const partners = [
     ['AIA', 'ins-aia-logo-clean.png', 'AIA insurance logo', 'aia'],
     ['AXA AFFIN', 'ins-axa-logo-clean.png', 'AXA AFFIN insurance logo', 'axa'],
-    ['CHUBB', 'chubb-logo-png_seeklogo-299281.png', 'CHUBB insurance logo', 'chubb'],
+    ['CHUBB', 'CHUBB_Logo_Black_RBG.jpg', 'CHUBB insurance logo', 'chubb'],
     ['LIBERTY', 'ins-liberty-logo-clean.png', 'Liberty Insurance logo', 'liberty'],
-    ['LONPAC', 'lonpac.webp', 'LONPAC insurance logo', 'lonpac'],
+    ['LONPAC', 'lonpac.png', 'LONPAC insurance logo', 'lonpac'],
     ['MSIG', 'ins-msig-logo-clean.png', 'MSIG insurance logo', 'msig'],
     ['P & O', 'ins-pno-logo-clean.png', 'P & O insurance logo', 'pno'],
     ['PROGRESSIVE INSURANCE BHD', 'ins-progresif-logo-clean.png', 'Progressive Insurance BHD logo', 'progressive'],
@@ -17,7 +17,8 @@
     ['ZURICH', 'ins-zurich-logo-clean.png', 'Zurich insurance logo', 'zurich'],
     ['KURNIA', 'ins-kurnia-logo-clean.png', 'Kurnia insurance logo', 'kurnia'],
     ['AIG', 'aig.png', 'AIG insurance logo', 'aig'],
-    ['TAKAFUL MALAYSIA', 'takaful malaysia.webp', 'Takaful Malaysia logo', 'malaysia']
+    ['TAKAFUL MALAYSIA', 'takaful malaysia.png', 'Takaful Malaysia logo', 'malaysia'],
+    ['TUNE INSURANCE', 'ins-tune-logo.png', 'Tune Insurance logo', 'tune']
   ];
 
   const css = `
@@ -26,7 +27,7 @@
     .insurance-panel-card:before{content:none!important;display:none!important}
     .insurance-panel-card:after{content:""!important;position:absolute!important;left:10%!important;right:10%!important;bottom:0!important;height:2px!important;background:#c9232d!important}
     .insurance-panel-card .insurance-logo{position:relative!important;z-index:1!important;display:block!important;width:100%!important;max-width:210px!important;height:82px!important;margin:auto!important;padding:0!important;object-fit:contain!important;object-position:center!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;filter:none!important;opacity:1!important;image-rendering:auto!important}
-    .insurance-panel-card .insurance-logo-aia{max-width:170px!important}.insurance-panel-card .insurance-logo-axa{max-width:170px!important}.insurance-panel-card .insurance-logo-chubb{max-width:210px!important}.insurance-panel-card .insurance-logo-liberty{max-width:210px!important}.insurance-panel-card .insurance-logo-lonpac{max-width:180px!important}.insurance-panel-card .insurance-logo-msig{max-width:205px!important}.insurance-panel-card .insurance-logo-pno{max-width:190px!important}.insurance-panel-card .insurance-logo-progressive{max-width:205px!important}.insurance-panel-card .insurance-logo-generali{max-width:205px!important}.insurance-panel-card .insurance-logo-rhb{max-width:185px!important}.insurance-panel-card .insurance-logo-ikhlas{max-width:175px!important}.insurance-panel-card .insurance-logo-pacific{max-width:205px!important}.insurance-panel-card .insurance-logo-tokio{max-width:210px!important}.insurance-panel-card .insurance-logo-zurich{max-width:195px!important}.insurance-panel-card .insurance-logo-kurnia{max-width:205px!important}.insurance-panel-card .insurance-logo-aig{max-width:145px!important}.insurance-panel-card .insurance-logo-malaysia{max-width:190px!important}
+    .insurance-panel-card .insurance-logo-aia{max-width:170px!important}.insurance-panel-card .insurance-logo-axa{max-width:170px!important}.insurance-panel-card .insurance-logo-chubb{max-width:210px!important}.insurance-panel-card .insurance-logo-liberty{max-width:210px!important}.insurance-panel-card .insurance-logo-lonpac{max-width:180px!important}.insurance-panel-card .insurance-logo-msig{max-width:205px!important}.insurance-panel-card .insurance-logo-pno{max-width:190px!important}.insurance-panel-card .insurance-logo-progressive{max-width:205px!important}.insurance-panel-card .insurance-logo-generali{max-width:205px!important}.insurance-panel-card .insurance-logo-rhb{max-width:185px!important}.insurance-panel-card .insurance-logo-ikhlas{max-width:175px!important}.insurance-panel-card .insurance-logo-pacific{max-width:205px!important}.insurance-panel-card .insurance-logo-tokio{max-width:210px!important}.insurance-panel-card .insurance-logo-zurich{max-width:195px!important}.insurance-panel-card .insurance-logo-kurnia{max-width:205px!important}.insurance-panel-card .insurance-logo-aig{max-width:145px!important}.insurance-panel-card .insurance-logo-malaysia{max-width:190px!important}.insurance-logo-tune{max-width:190px!important}
     @media (hover:hover) and (pointer:fine){.insurance-panel-card:hover{border-color:#454545!important;box-shadow:0 10px 24px rgba(0,0,0,.28)!important}}
     @media(max-width:1000px){.insurance-panel-grid{gap:12px!important}.insurance-panel-card{flex-basis:calc((100% - 24px)/3)!important;min-height:120px!important}}
     @media(max-width:700px){.insurance-panel-grid{gap:9px!important}.insurance-panel-card{flex-basis:calc((100% - 9px)/2)!important;min-height:118px!important;padding:12px 9px!important}.insurance-panel-card .insurance-logo{max-width:170px!important;height:72px!important}}
