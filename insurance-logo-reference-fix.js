@@ -3,7 +3,7 @@
   const partners = [
     ['AIA', 'ins-aia-logo-clean.png', 'AIA insurance logo', 'aia'],
     ['AXA AFFIN', 'ins-axa-logo-clean.png', 'AXA AFFIN insurance logo', 'axa'],
-    ['CHUBB', 'CHUBB_Logo_Black_RBG.jpg', 'CHUBB insurance logo', 'chubb'],
+    ['CHUBB', 'chubb.png', 'CHUBB insurance logo', 'chubb'],
     ['LIBERTY', 'ins-liberty-logo-clean.png', 'Liberty Insurance logo', 'liberty'],
     ['LONPAC', 'lonpac.png', 'LONPAC insurance logo', 'lonpac'],
     ['MSIG', 'ins-msig-logo-clean.png', 'MSIG insurance logo', 'msig'],
