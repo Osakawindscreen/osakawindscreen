@@ -78,7 +78,7 @@
     const grid=document.querySelector('.insurance-panel-grid'); if(!grid) return;
     grid.innerHTML=partners.map(([title,src,alt,cls])=>`<div class="insurance-panel-card" title="${title}"><img class="insurance-logo insurance-logo-${cls}" src="${src}" alt="${alt}" loading="eager" decoding="async"></div>`).join('');
     grid.querySelectorAll('img.insurance-logo').forEach(img=>{
-      const finish=()=>{ try{ const cleaned=cleanRaster(img, img.classList.contains('insurance-logo-aia') || img.classList.contains('insurance-logo-malaysia')); if(cleaned && cleaned!==img.src) img.src=cleaned; }catch(e){} };
+      const finish=()=>{ try{ const cleaned=cleanRaster(img, img.classList.contains('insurance-logo-aia') || img.classList.contains('insurance-logo-malaysia') || img.classList.contains('insurance-logo-chubb')); if(cleaned && cleaned!==img.src) img.src=cleaned; }catch(e){} };
       if(img.complete) finish(); else img.addEventListener('load',finish,{once:true});
     });
   };
