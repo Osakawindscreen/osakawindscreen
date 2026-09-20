@@ -9,7 +9,7 @@
     ['MSIG', 'ins-msig-logo-clean.png', 'MSIG insurance logo', 'msig'],
     ['P & O', 'ins-pno-logo-clean.png', 'P & O insurance logo', 'pno'],
     ['PROGRESSIVE INSURANCE BHD', 'ins-progresif-logo-clean.png', 'Progressive Insurance BHD logo', 'progressive'],
-    ['GENERALI', 'ins-generali-logo-clean.png', 'Generali insurance logo', 'generali'],
+    ['GENERALI', 'mpi.jpg?v=20260920-1700', 'MPI Generali insurance logo', 'generali'],
     ['RHB', 'ins-rhb-logo-clean.png', 'RHB insurance logo', 'rhb'],
     ['TAKAFUL IKHLAS', 'takaful ikhlas logo.png', 'Takaful Ikhlas logo', 'ikhlas'],
     ['PACIFIC INSURANCE', 'ins-pacific-logo-clean.png', 'Pacific Insurance logo', 'pacific'],
@@ -59,14 +59,10 @@
     for(let s=0;s<n;s++){
       if(!white[s]||seen[s]) continue;
       let qh=0,qt=0,size=0,minX=w,minY=h,maxX=0,maxY=0; queue[qt++]=s; seen[s]=1;
-      while(qh<qt){
-        const idx=queue[qh++], yy=Math.floor(idx/w), xx=idx-yy*w; size++;
+      while(qh<qt){ const idx=queue[qh++], yy=Math.floor(idx/w), xx=idx-yy*w; size++;
         if(xx<minX)minX=xx;if(xx>maxX)maxX=xx;if(yy<minY)minY=yy;if(yy>maxY)maxY=yy;
-        for(const off of dirs){
-          const ni=idx+off;
-          if(ni<0||ni>=n||seen[ni]||!white[ni]) continue;
-          const ny=Math.floor(ni/w), nx=ni-ny*w;
-          if(Math.abs(nx-xx)>1||Math.abs(ny-yy)>1) continue;
+        for(const off of dirs){ const ni=idx+off; if(ni<0||ni>=n||seen[ni]||!white[ni]) continue;
+          const ny=Math.floor(ni/w), nx=ni-ny*w; if(Math.abs(nx-xx)>1||Math.abs(ny-yy)>1) continue;
           seen[ni]=1; queue[qt++]=ni;
         }
       }
