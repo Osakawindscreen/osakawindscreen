@@ -16,7 +16,7 @@
     ['TOKIO MARINE', 'ins-tokio-logo-clean.png', 'Tokio Marine Insurance Group logo', 'tokio'],
     ['ZURICH', 'ins-zurich-logo-clean.png', 'Zurich insurance logo', 'zurich'],
     ['KURNIA', 'ins-kurnia-logo-clean.png', 'Kurnia insurance logo', 'kurnia'],
-    ['AIG', 'aig.png', 'AIG insurance logo', 'aig'],
+    ['AIG', 'aig.png?v=20260920', 'AIG insurance logo', 'aig'],
     ['TAKAFUL MALAYSIA', 'takaful malaysia.png', 'Takaful Malaysia logo', 'malaysia'],
     ['TUNE INSURANCE', 'ins-tune-logo.png', 'Tune Insurance logo', 'tune']
   ];
@@ -36,8 +36,6 @@
 
   const isWhite = (r,g,b,a) => a > 8 && r > 242 && g > 242 && b > 242;
 
-  // Remove only obvious raster artifacts: a white background/halo component,
-  // or tiny isolated white specks. Large connected white logo elements remain.
   function cleanRaster(img, transparentWhite=false) {
     const w=img.naturalWidth, h=img.naturalHeight;
     if(!w || !h) return img.src;
@@ -62,8 +60,15 @@
       if(!white[s]||seen[s]) continue;
       let qh=0,qt=0,size=0,minX=w,minY=h,maxX=0,maxY=0; queue[qt++]=s; seen[s]=1;
       while(qh<qt){
-        const idx=queue[qh++], yy=Math.floor(idx/w), xx=idx-yy*w; size++; if(xx<minX)minX=xx;if(xx>maxX)maxX=xx;if(yy<minY)minY=yy;if(yy>maxY)maxY=yy;
-        for(const off of dirs){ const ni=idx+off; if(ni<0||ni>=n||seen[ni]||!white[ni]) continue; const ny=Math.floor(ni/w), nx=ni-ny*w; if(Math.abs(nx-xx)>1||Math.abs(ny-yy)>1) continue; seen[ni]=1; queue[qt++]=ni; }
+        const idx=queue[qh++], yy=Math.floor(idx/w), xx=idx-yy*w; size++;
+        if(xx<minX)minX=xx;if(xx>maxX)maxX=xx;if(yy<minY)minY=yy;if(yy>maxY)maxY=yy;
+        for(const off of dirs){
+          const ni=idx+off;
+          if(ni<0||ni>=n||seen[ni]||!white[ni]) continue;
+          const ny=Math.floor(ni/w), nx=ni-ny*w;
+          if(Math.abs(nx-xx)>1||Math.abs(ny-yy)>1) continue;
+          seen[ni]=1; queue[qt++]=ni;
+        }
       }
       const box=(maxX-minX+1)*(maxY-minY+1); const thin=size/box<0.22;
       const remove = (bgLike && size>n*0.08) || size < Math.max(12, n*0.00008) || (thin && size < n*0.003);
@@ -78,7 +83,15 @@
     const grid=document.querySelector('.insurance-panel-grid'); if(!grid) return;
     grid.innerHTML=partners.map(([title,src,alt,cls])=>`<div class="insurance-panel-card" title="${title}"><img class="insurance-logo insurance-logo-${cls}" src="${src}" alt="${alt}" loading="eager" decoding="async"></div>`).join('');
     grid.querySelectorAll('img.insurance-logo').forEach(img=>{
-      const finish=()=>{ try{ const cleaned=cleanRaster(img, img.classList.contains('insurance-logo-aia') || img.classList.contains('insurance-logo-malaysia') || img.classList.contains('insurance-logo-chubb')); if(cleaned && cleaned!==img.src) img.src=cleaned; }catch(e){} };
+      const finish=()=>{ try{
+        const cleaned=cleanRaster(img,
+          img.classList.contains('insurance-logo-aia') ||
+          img.classList.contains('insurance-logo-malaysia') ||
+          img.classList.contains('insurance-logo-chubb') ||
+          img.classList.contains('insurance-logo-aig')
+        );
+        if(cleaned && cleaned!==img.src) img.src=cleaned;
+      }catch(e){} };
       if(img.complete) finish(); else img.addEventListener('load',finish,{once:true});
     });
   };
