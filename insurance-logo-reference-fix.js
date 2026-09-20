@@ -16,7 +16,7 @@
     ['TOKIO MARINE', 'ins-tokio-logo-clean.png', 'Tokio Marine Insurance Group logo', 'tokio'],
     ['ZURICH', 'ins-zurich-logo-clean.png', 'Zurich insurance logo', 'zurich'],
     ['KURNIA', 'ins-kurnia-logo-clean.png', 'Kurnia insurance logo', 'kurnia'],
-    ['AIG', 'aig.png?v=20260920-1540', 'AIG insurance logo', 'aig'],
+    ['AIG', 'aig.png?v=20260920-1600', 'AIG insurance logo', 'aig'],
     ['TAKAFUL MALAYSIA', 'takaful malaysia.png', 'Takaful Malaysia logo', 'malaysia'],
     ['TUNE INSURANCE', 'ins-tune-logo.png', 'Tune Insurance logo', 'tune']
   ];
