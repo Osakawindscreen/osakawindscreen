@@ -85,7 +85,8 @@
           img.classList.contains('insurance-logo-malaysia') ||
           img.classList.contains('insurance-logo-chubb') ||
           img.classList.contains('insurance-logo-aig') ||
-          img.classList.contains('insurance-logo-generali')
+          img.classList.contains('insurance-logo-generali') ||
+          img.classList.contains('insurance-logo-lonpac')
         );
         if(cleaned && cleaned!==img.src) img.src=cleaned;
       }catch(e){} };
