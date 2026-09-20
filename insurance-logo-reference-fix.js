@@ -38,7 +38,7 @@
 
   // Remove only obvious raster artifacts: a white background/halo component,
   // or tiny isolated white specks. Large connected white logo elements remain.
-  function cleanRaster(img) {
+  function cleanRaster(img, transparentWhite=false) {
     const w=img.naturalWidth, h=img.naturalHeight;
     if(!w || !h) return img.src;
     const c=document.createElement('canvas'); c.width=w; c.height=h;
@@ -48,6 +48,13 @@
     let whiteCount=0;
     for(let i=0,j=0;i<n;i++,j+=4){ if(isWhite(p[j],p[j+1],p[j+2],p[j+3])){white[i]=1;whiteCount++;} }
     if(!whiteCount) return img.src;
+    if(transparentWhite){
+      let changedWhite=false;
+      for(let i=0,j=0;i<n;i++,j+=4){
+        if(p[j+3] > 8 && p[j] > 235 && p[j+1] > 235 && p[j+2] > 235){ p[j+3]=0; changedWhite=true; }
+      }
+      if(changedWhite){ x.putImageData(d,0,0); return c.toDataURL('image/png'); }
+    }
     const bgLike = whiteCount > n*0.45;
     const dirs=[-1,1,-w,w,-w-1,-w+1,w-1,w+1];
     const queue=new Int32Array(n); let changed=false;
@@ -71,7 +78,7 @@
     const grid=document.querySelector('.insurance-panel-grid'); if(!grid) return;
     grid.innerHTML=partners.map(([title,src,alt,cls])=>`<div class="insurance-panel-card" title="${title}"><img class="insurance-logo insurance-logo-${cls}" src="${src}" alt="${alt}" loading="eager" decoding="async"></div>`).join('');
     grid.querySelectorAll('img.insurance-logo').forEach(img=>{
-      const finish=()=>{ try{ const cleaned=cleanRaster(img); if(cleaned && cleaned!==img.src) img.src=cleaned; }catch(e){} };
+      const finish=()=>{ try{ const cleaned=cleanRaster(img, img.classList.contains('insurance-logo-aia') || img.classList.contains('insurance-logo-malaysia')); if(cleaned && cleaned!==img.src) img.src=cleaned; }catch(e){} };
       if(img.complete) finish(); else img.addEventListener('load',finish,{once:true});
     });
   };
