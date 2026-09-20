@@ -3,7 +3,7 @@
   const partners = [
     ['AIA', 'ins-aia-logo-clean.png', 'AIA insurance logo', 'aia'],
     ['AXA AFFIN', 'ins-axa-logo-clean.png', 'AXA AFFIN insurance logo', 'axa'],
-    ['CHUBB', 'ins-chubb-logo-clean.png', 'CHUBB insurance logo', 'chubb'],
+    ['CHUBB', 'chubb-logo-png_seeklogo-299281.png', 'CHUBB insurance logo', 'chubb'],
     ['LIBERTY', 'ins-liberty-logo-clean.png', 'Liberty Insurance logo', 'liberty'],
     ['LONPAC', 'lonpac.webp', 'LONPAC insurance logo', 'lonpac'],
     ['MSIG', 'ins-msig-logo-clean.png', 'MSIG insurance logo', 'msig'],
@@ -11,13 +11,13 @@
     ['PROGRESSIVE INSURANCE BHD', 'ins-progresif-logo-clean.png', 'Progressive Insurance BHD logo', 'progressive'],
     ['GENERALI', 'ins-generali-logo-clean.png', 'Generali insurance logo', 'generali'],
     ['RHB', 'ins-rhb-logo-clean.png', 'RHB insurance logo', 'rhb'],
-    ['TAKAFUL IKHLAS', 'ins-ikhlas-logo-clean.png', 'Takaful Ikhlas logo', 'ikhlas'],
+    ['TAKAFUL IKHLAS', 'takaful ikhlas logo.png', 'Takaful Ikhlas logo', 'ikhlas'],
     ['PACIFIC INSURANCE', 'ins-pacific-logo-clean.png', 'Pacific Insurance logo', 'pacific'],
     ['TOKIO MARINE', 'ins-tokio-logo-clean.png', 'Tokio Marine Insurance Group logo', 'tokio'],
     ['ZURICH', 'ins-zurich-logo-clean.png', 'Zurich insurance logo', 'zurich'],
     ['KURNIA', 'ins-kurnia-logo-clean.png', 'Kurnia insurance logo', 'kurnia'],
     ['AIG', 'aig.png', 'AIG insurance logo', 'aig'],
-    ['TAKAFUL MALAYSIA', 'ins-malaysia-logo-clean.png', 'Takaful Malaysia logo', 'malaysia']
+    ['TAKAFUL MALAYSIA', 'takaful malaysia.webp', 'Takaful Malaysia logo', 'malaysia']
   ];
 
   const css = `
