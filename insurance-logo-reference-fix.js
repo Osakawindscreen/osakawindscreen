@@ -9,7 +9,7 @@
     ['MSIG', 'ins-msig-logo-clean.png', 'MSIG insurance logo', 'msig'],
     ['P & O', 'ins-pno-logo-clean.png', 'P & O insurance logo', 'pno'],
     ['PROGRESSIVE INSURANCE BHD', 'ins-progresif-logo-clean.png', 'Progressive Insurance BHD logo', 'progressive'],
-    ['GENERALI', 'mpi.jpg?v=20260920-1700', 'MPI Generali insurance logo', 'generali'],
+    ['GENERALI', 'mpi.jpg?v=20260920-1800', 'MPI Generali insurance logo', 'generali'],
     ['RHB', 'ins-rhb-logo-clean.png', 'RHB insurance logo', 'rhb'],
     ['TAKAFUL IKHLAS', 'takaful ikhlas logo.png', 'Takaful Ikhlas logo', 'ikhlas'],
     ['PACIFIC INSURANCE', 'ins-pacific-logo-clean.png', 'Pacific Insurance logo', 'pacific'],
@@ -84,7 +84,8 @@
           img.classList.contains('insurance-logo-aia') ||
           img.classList.contains('insurance-logo-malaysia') ||
           img.classList.contains('insurance-logo-chubb') ||
-          img.classList.contains('insurance-logo-aig')
+          img.classList.contains('insurance-logo-aig') ||
+          img.classList.contains('insurance-logo-generali')
         );
         if(cleaned && cleaned!==img.src) img.src=cleaned;
       }catch(e){} };
