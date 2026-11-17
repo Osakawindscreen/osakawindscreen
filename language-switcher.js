@@ -163,12 +163,15 @@
   };
 
   window.closeLanguage = language => {
-    translatePage(language);
     const overlay = document.getElementById('languageOverlay');
     if (overlay) overlay.style.display = 'none';
+    requestAnimationFrame(() => translatePage(language));
   };
 
   addLanguageSwitcher();
-  translatePage(localStorage.getItem('osaka-language') === 'ms' ? 'ms' : 'en');
-  new MutationObserver(() => translatePage(currentLanguage)).observe(document.body, { childList: true, subtree: true });
+  const savedLanguage = localStorage.getItem('osaka-language') === 'ms' ? 'ms' : 'en';
+  currentLanguage = savedLanguage;
+  document.documentElement.lang = savedLanguage === 'ms' ? 'ms' : 'en';
+  document.querySelectorAll('[data-language-choice]').forEach(button => button.classList.toggle('is-active', button.dataset.languageChoice === savedLanguage));
+  if (savedLanguage === 'ms') requestAnimationFrame(() => translatePage('ms'));
 })();
