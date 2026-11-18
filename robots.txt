@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://osakawindscreen.com.my/sitemap.xml
