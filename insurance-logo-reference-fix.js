@@ -3,7 +3,7 @@
   const partners = [
     ['AIA', 'ins-aia-logo-clean.png', 'AIA insurance logo', 'aia'],
     ['AXA AFFIN', 'ins-axa-logo-clean.png', 'AXA AFFIN insurance logo', 'axa'],
-    ['CHUBB', 'chubb.png', 'CHUBB insurance logo', 'chubb'],
+    ['CHUBB', 'ins-chubb-logo-clean.png', 'CHUBB insurance logo', 'chubb'],
     ['LIBERTY', 'ins-liberty-logo-clean.png', 'Liberty Insurance logo', 'liberty'],
     ['LONPAC', 'lonpac.png', 'LONPAC insurance logo', 'lonpac'],
     ['MSIG', 'ins-msig-logo-clean.png', 'MSIG insurance logo', 'msig'],
@@ -16,9 +16,9 @@
     ['TOKIO MARINE', 'ins-tokio-logo-clean.png', 'Tokio Marine Insurance Group logo', 'tokio'],
     ['ZURICH', 'ins-zurich-logo-clean.png', 'Zurich insurance logo', 'zurich'],
     ['KURNIA', 'ins-kurnia-logo-clean.png', 'Kurnia insurance logo', 'kurnia'],
-    ['AIG', 'aig.png?v=20260920-1600', 'AIG insurance logo', 'aig'],
-    ['TAKAFUL MALAYSIA', 'takaful malaysia.png', 'Takaful Malaysia logo', 'malaysia'],
-    ['TUNE INSURANCE', 'ins-tune-logo.png', 'Tune Insurance logo', 'tune']
+    ['AIG', 'ins-aig-logo-clean.png', 'AIG insurance logo', 'aig'],
+    ['TAKAFUL MALAYSIA', 'ins-malaysia-logo-clean.png', 'Takaful Malaysia logo', 'malaysia'],
+    ['TUNE INSURANCE', 'ins-tune-logo-clean.png', 'Tune Insurance logo', 'tune']
   ];
 
   const css = `
@@ -78,6 +78,21 @@
     if (!document.getElementById('insurance-logo-reference-fix')) { const style=document.createElement('style'); style.id='insurance-logo-reference-fix'; style.textContent=css; document.head.appendChild(style); }
     const grid=document.querySelector('.insurance-panel-grid'); if(!grid) return;
     grid.innerHTML=partners.map(([title,src,alt,cls])=>`<div class="insurance-panel-card" title="${title}"><img class="insurance-logo insurance-logo-${cls}" src="${src}" alt="${alt}" loading="lazy" decoding="async"></div>`).join('');
+
+    // Lonpac and Generali are supplied as white-backed originals. Remove only
+    // their connected outer background after loading, preserving their logo
+    // colours and internal artwork.
+    grid.querySelectorAll('.insurance-panel-card').forEach(card => {
+      const title = (card.getAttribute('title') || '').trim().toUpperCase();
+      if (!['LONPAC', 'GENERALI'].includes(title)) return;
+      const img = card.querySelector('.insurance-logo');
+      const removeOuterWhite = () => {
+        const cleaned = cleanRaster(img, false);
+        if (cleaned !== img.src) img.src = cleaned;
+      };
+      if (img.complete) removeOuterWhite();
+      else img.addEventListener('load', removeOuterWhite, { once: true });
+    });
   };
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',apply,{once:true}); else apply();
 })();
