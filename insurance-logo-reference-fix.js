@@ -5,11 +5,11 @@
     ['AXA AFFIN', 'ins-axa-logo-clean.png', 'AXA AFFIN insurance logo', 'axa'],
     ['CHUBB', 'ins-chubb-logo-transparent.png', 'CHUBB insurance logo', 'chubb'],
     ['LIBERTY', 'ins-liberty-logo-clean.png', 'Liberty Insurance logo', 'liberty'],
-    ['LONPAC', 'ins-lonpac-logo-transparent.png', 'LONPAC insurance logo', 'lonpac'],
+    ['LONPAC', 'ins-lonpac-logo-dark.png', 'LONPAC insurance logo', 'lonpac'],
     ['MSIG', 'ins-msig-logo-clean.png', 'MSIG insurance logo', 'msig'],
     ['P & O', 'ins-pno-logo-clean.png', 'P & O insurance logo', 'pno'],
     ['PROGRESSIVE INSURANCE BHD', 'ins-progresif-logo-clean.png', 'Progressive Insurance BHD logo', 'progressive'],
-    ['GENERALI', 'mpi.jpg?v=20260920-2200', 'MPI insurance logo', 'generali'],
+    ['GENERALI', 'ins-generali-logo-dark.png', 'Generali insurance logo', 'generali'],
     ['RHB', 'ins-rhb-logo-clean.png', 'RHB insurance logo', 'rhb'],
     ['TAKAFUL IKHLAS', 'takaful ikhlas logo.png', 'Takaful Ikhlas logo', 'ikhlas'],
     ['PACIFIC INSURANCE', 'ins-pacific-logo-clean.png', 'Pacific Insurance logo', 'pacific'],
@@ -79,20 +79,6 @@
     const grid=document.querySelector('.insurance-panel-grid'); if(!grid) return;
     grid.innerHTML=partners.map(([title,src,alt,cls])=>`<div class="insurance-panel-card" title="${title}"><img class="insurance-logo insurance-logo-${cls}" src="${src}" alt="${alt}" loading="lazy" decoding="async"></div>`).join('');
 
-    // Generali is supplied as a white-backed original. Remove only its
-    // connected outer background after loading, preserving its logo colours
-    // and internal artwork.
-    grid.querySelectorAll('.insurance-panel-card').forEach(card => {
-      const title = (card.getAttribute('title') || '').trim().toUpperCase();
-      if (title !== 'GENERALI') return;
-      const img = card.querySelector('.insurance-logo');
-      const removeOuterWhite = () => {
-        const cleaned = cleanRaster(img, false);
-        if (cleaned !== img.src) img.src = cleaned;
-      };
-      if (img.complete) removeOuterWhite();
-      else img.addEventListener('load', removeOuterWhite, { once: true });
-    });
   };
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',apply,{once:true}); else apply();
 })();
